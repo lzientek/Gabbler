@@ -152,6 +152,16 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Gabbler.Core\Gabbler.Core.csproj">
+      <Project>{ba687864-d775-4497-bfdf-4d3c13234620}</Project>
+      <Name>Gabbler.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gabbler.DAL\Gabbler.DAL.csproj">
+      <Project>{1769D777-13E0-4226-B77C-0850E754EF16}</Project>
+      <Name>Gabbler.DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

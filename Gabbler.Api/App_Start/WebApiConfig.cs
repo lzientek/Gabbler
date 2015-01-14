@@ -11,11 +11,6 @@ namespace Gabbler.Api
             // Itinéraires de l'API Web
             config.MapHttpAttributeRoutes();
 
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
         }
     }
 }

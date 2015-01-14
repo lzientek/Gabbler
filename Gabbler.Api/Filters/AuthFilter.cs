@@ -11,7 +11,7 @@ namespace Gabbler.Api.Filters
             try
             {
 
-                WebSecurity.InitializeDatabaseConnection("DansTesComsSqlServeur", "Users", "id", "Mail", true);
+                WebSecurity.InitializeDatabaseConnection("WebSecConnection", "Users", "Id", "Mail", true);
             }
             catch (Exception ex)
             {

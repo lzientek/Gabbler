@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c59af62eb0bd414fb885671bcf7320b8" Name="Diagram1" >
+        <EntityTypeShape EntityType="Model1.Comment" Width="1.5" PointX="5.625" PointY="5.125" />
+        <EntityTypeShape EntityType="Model1.Follow" Width="1.5" PointX="2.75" PointY="2.875" />
+        <EntityTypeShape EntityType="Model1.Gab" Width="1.5" PointX="2.875" PointY="7" />
+        <EntityTypeShape EntityType="Model1.Like" Width="1.5" PointX="0.875" PointY="9.5" />
+        <EntityTypeShape EntityType="Model1.User" Width="1.5" PointX="0.5" PointY="4.125" />
+        <AssociationConnector Association="Model1.FK_Comments_Gabs" />
+        <AssociationConnector Association="Model1.FK_Comments_Users" />
+        <AssociationConnector Association="Model1.FK_Follows_Users" />
+        <AssociationConnector Association="Model1.FK_Follows_Users1" />
+        <AssociationConnector Association="Model1.FK_Gabs_Users" ManuallyRouted="true" >
+          <ConnectorPoint PointX="2" PointY="5.7870157291666731" />
+          <ConnectorPoint PointX="4.34375" PointY="5.7870157291666731" />
+          <ConnectorPoint PointX="4.34375" PointY="7" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model1.FK_Likes_Gabs" />
+        <AssociationConnector Association="Model1.FK_Likes_Users" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

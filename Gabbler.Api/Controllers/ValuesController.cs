@@ -1,14 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
+using Gabbler.DAL;
 
 namespace Gabbler.Api.Controllers
 {
-    [Authorize]
     public class ValuesController : ApiController
     {
-        // GET api/values
+        DbEntities db = new DbEntities(); 
+        [Route("values")]
         public IEnumerable<string> Get()
         {
+            var gabs = db.Gabs;
             return new string[] { "value1", "value2" };
         }
 
