@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
-using Gabbler.DAL;
+using Gabbler.Core;
 
 namespace Gabbler.Api.Controllers
 {
