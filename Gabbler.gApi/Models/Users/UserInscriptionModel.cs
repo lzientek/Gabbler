@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Gabbler.Api.Models.Users
+namespace Gabbler.gApi.Models.Users
 {
     public class UserInscriptionModel
     {

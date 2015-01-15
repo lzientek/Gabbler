@@ -1,6 +1,6 @@
 ﻿using Gabbler.Core;
 
-namespace Gabbler.Api.Models.Users
+namespace Gabbler.gApi.Models.Users
 {
     internal static class UserExtensions
     {

@@ -12,8 +12,8 @@ namespace Gabbler.gApi
             // Configure Web API for self-host. 
             HttpConfiguration config = new HttpConfiguration();
             config.MapHttpAttributeRoutes();
-
-            appBuilder.Use(config);
+            WebApiConfig.Register(config);
+            appBuilder.UseWebApi(config);
         }
     } 
 }
