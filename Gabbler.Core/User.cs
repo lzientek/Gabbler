@@ -28,6 +28,7 @@ namespace Gabbler.Core
         public string LastName { get; set; }
         public string FirstName { get; set; }
         public string Mail { get; set; }
+        public string ConnectionId { get; set; }
     
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<Follow> Followers { get; set; }

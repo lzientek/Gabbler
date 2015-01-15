@@ -32,16 +32,21 @@ namespace Gabbler.gApi.Helpers
             };
 
             var result = await _userManager.CreateAsync(user, userModel.Password);
-
+            
             return result;
         }
 
-        public async Task<IdentityUser> FindUser(string userName, string password)
+        public async Task<IdentityUser> FindUserByLogin(string userName, string password)
         {
             IdentityUser user = await _userManager.FindAsync(userName, password);
-
             return user;
         }
+
+        public async Task<IdentityUser> FindUser(string email)
+        {
+            IdentityUser user = await _userManager.FindByEmailAsync(email);
+            return user;
+        } 
 
         public void Dispose()
         {

@@ -135,8 +135,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\AuthContext.cs" />
-    <Compile Include="Helpers\AuthRepository.cs" />
+    <Compile Include="Helpers\Auth\AuthContext.cs" />
+    <Compile Include="Helpers\Auth\AuthRepository.cs" />
     <Compile Include="Models\Users\UserConnectionModel.cs" />
     <Compile Include="Models\Users\UserExtensions.cs" />
     <Compile Include="Models\Users\UserInscriptionModel.cs" />

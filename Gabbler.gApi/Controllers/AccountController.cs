@@ -28,37 +28,8 @@ namespace Gabbler.gApi.Controllers
 
 
         [HttpPost]
-        [Route("Inscription")]
-        [AllowAnonymous]
-        public IHttpActionResult Inscription([FromBody] UserInscriptionModel user)
-        {
-            if (user == null || !ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            var usr = user.ToUser();
-
-            try
-            {
-                db.Users.Add(usr);
-
-                return Ok();
-            }
-            catch (Exception)
-            {
-                db.Users.Remove(usr);
-                return BadRequest("DB error");
-            }
-            finally
-            {
-                db.SaveChanges();
-            }
-
-        }
-
-
-        [AllowAnonymous]
         [Route("Register")]
+        [AllowAnonymous]
         public async Task<IHttpActionResult> Register(UserInscriptionModel userModel)
         {
             if (!ModelState.IsValid)
@@ -74,7 +45,17 @@ namespace Gabbler.gApi.Controllers
             {
                 return errorResult;
             }
+            try
+            {
+                var usr = await rp.FindUser(userModel.Mail);
+                db.Users.Add(userModel.ToUser(usr.Id));
+                db.SaveChanges();
 
+            }
+            catch (Exception)
+            {
+                BadRequest("Db error");
+            }
             return Ok();
         }
         
