@@ -1,6 +1,9 @@
-﻿using System.Web.Http;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Http;
 
-namespace Gabbler.Api
+namespace Gabbler.gApi
 {
     public static class WebApiConfig
     {
@@ -10,7 +13,6 @@ namespace Gabbler.Api
 
             // Itinéraires de l'API Web
             config.MapHttpAttributeRoutes();
-
         }
     }
 }

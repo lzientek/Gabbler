@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using Gabbler.Api.Models.Users;
 using Gabbler.Core;
@@ -40,23 +36,25 @@ namespace Gabbler.Api.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var result = WebSecurity.CreateAccount(user.Mail, user.Password);
-            if ( !string.IsNullOrEmpty(result))
-            {
-                try
-                {
-                    var usr = user.ToUser();
-                    db.Users.Add(usr);
-                    db.SaveChanges();
-                }
-                catch (Exception)
-                {
+            var usr = user.ToUser();
 
-                    BadRequest("DB error");
-                }
+            try
+            {
+                db.Users.Add(usr);
+
+                var result = WebSecurity.CreateAccount(user.Mail, user.Password);
                 return Ok();
             }
-            return BadRequest("Check your credentials.");
+            catch (Exception)
+            {
+                db.Users.Remove(usr);
+                return BadRequest("DB error");
+            }
+            finally
+            {
+                db.SaveChanges();
+            }
+
         }
 
     }

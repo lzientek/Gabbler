@@ -1,36 +1,33 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
-using Gabbler.Core;
 
-namespace Gabbler.Api.Controllers
+namespace Gabbler.gApi.Controllers
 {
     public class ValuesController : ApiController
     {
-        DbEntities db = new DbEntities(); 
-        [Route("values")]
+        [Route("Values")]
         public IEnumerable<string> Get()
         {
-            var gabs = db.Gabs;
             return new string[] { "value1", "value2" };
         }
 
-        // GET api/values/5
+        [Route("Values/{id}")]
         public string Get(int id)
         {
             return "value";
         }
 
-        // POST api/values
+        // POST: api/Values
         public void Post([FromBody]string value)
         {
         }
 
-        // PUT api/values/5
+        // PUT: api/Values/5
         public void Put(int id, [FromBody]string value)
         {
         }
 
-        // DELETE api/values/5
+        // DELETE: api/Values/5
         public void Delete(int id)
         {
         }
