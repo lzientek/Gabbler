@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Gabbler.gApi.Helpers;
@@ -26,6 +27,13 @@ namespace Gabbler.gApi.Controllers
             return BadRequest("Check your credentials.");
         }
 
+        [HttpGet]
+        [Route("Me")]
+        [Authorize]
+        public IHttpActionResult ActualUser()
+        {
+            return Ok(db.Users.First().ToUserDetailModel());
+        }
 
         [HttpPost]
         [Route("Register")]
@@ -59,6 +67,8 @@ namespace Gabbler.gApi.Controllers
             return Ok();
         }
         
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

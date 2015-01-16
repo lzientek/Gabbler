@@ -26,5 +26,17 @@ namespace Gabbler.gApi.Models.Users
                 ConnectionId = foreignId,
             };
         }
+
+        internal static UserDetailModel ToUserDetailModel(this User usr)
+        {
+            return new UserDetailModel()
+            {
+                Id = usr.Id,
+                FirstName = usr.FirstName,
+                LastName = usr.LastName,
+                Mail = usr.Mail,
+                Pseudo = usr.Pseudo,
+            };
+        }
     }
 }
