@@ -15,7 +15,7 @@ namespace Gabbler.gApi.Models.Users
             };
         }
         
-        internal static User ToUser(this UserInscriptionModel uim,string foreignId)
+        internal static User ToUser(this UserInscriptionModel uim, string foreignId)
         {
             return new User()
             {

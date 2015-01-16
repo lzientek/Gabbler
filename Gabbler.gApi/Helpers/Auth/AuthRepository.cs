@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
-using Gabbler.Core;
 using Gabbler.gApi.Models.Users;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -42,9 +38,9 @@ namespace Gabbler.gApi.Helpers
             return user;
         }
 
-        public async Task<IdentityUser> FindUser(string email)
+        public async Task<IdentityUser> FindUser(string usrName)
         {
-            IdentityUser user = await _userManager.FindByEmailAsync(email);
+            IdentityUser user = await _userManager.FindByNameAsync(usrName);
             return user;
         } 
 

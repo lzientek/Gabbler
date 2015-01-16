@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Gabbler.gApi.Helpers;
+using Gabbler.gApi.Helpers.Auth;
 using Gabbler.gApi.Models.Users;
 using Gabbler.Core;
 using Microsoft.AspNet.Identity;
@@ -30,9 +31,11 @@ namespace Gabbler.gApi.Controllers
         [HttpGet]
         [Route("Me")]
         [Authorize]
-        public IHttpActionResult ActualUser()
+        public async Task<IHttpActionResult> ActualUser()
         {
-            return Ok(db.Users.First().ToUserDetailModel());
+            var usr =await User.GetActualUser(rp,db);
+
+            return Ok(usr.ToUserDetailModel());
         }
 
         [HttpPost]
@@ -55,8 +58,10 @@ namespace Gabbler.gApi.Controllers
             }
             try
             {
-                var usr = await rp.FindUser(userModel.Mail);
-                db.Users.Add(userModel.ToUser(usr.Id));
+                var usr = await rp.FindUser(userModel.Pseudo);
+                var u = userModel.ToUser();
+                u.ConnectionId = usr.Id;
+                db.Users.Add(u);
                 db.SaveChanges();
 
             }

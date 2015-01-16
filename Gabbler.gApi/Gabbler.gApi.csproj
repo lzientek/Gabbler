@@ -142,6 +142,7 @@
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Helpers\Auth\AuthContext.cs" />
     <Compile Include="Helpers\Auth\AuthRepository.cs" />
+    <Compile Include="Helpers\Auth\IdentityExtensions.cs" />
     <Compile Include="Models\Users\UserConnectionModel.cs" />
     <Compile Include="Models\Users\UserDetailModel.cs" />
     <Compile Include="Models\Users\UserExtensions.cs" />

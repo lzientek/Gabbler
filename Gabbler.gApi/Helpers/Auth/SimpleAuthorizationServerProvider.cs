@@ -1,8 +1,6 @@
-﻿using System;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using System.Threading.Tasks;
 using Gabbler.gApi.Helpers;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security.OAuth;
 
 namespace Gabbler.gApi
@@ -41,7 +39,7 @@ namespace Gabbler.gApi
             var identity = new ClaimsIdentity(context.Options.AuthenticationType);
             identity.AddClaim(new Claim("sub", context.UserName));
             identity.AddClaim(new Claim("role", "user"));
-
+            identity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
             context.Validated(identity);
 
         }
