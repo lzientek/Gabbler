@@ -15,12 +15,13 @@ namespace Gabbler.gApi
         // parameter in the WebApp.Start method.
         public void Configuration(IAppBuilder appBuilder)
         {
+            ConfigureOAuth(appBuilder);
             // Configure Web API 
             HttpConfiguration config = new HttpConfiguration();
             WebApiConfig.Register(config);
             appBuilder.UseCors(CorsOptions.AllowAll);
             appBuilder.UseWebApi(config);
-            ConfigureOAuth(appBuilder);
+            
 
         }
 

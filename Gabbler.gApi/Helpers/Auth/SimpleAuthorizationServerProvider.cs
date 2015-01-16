@@ -22,8 +22,8 @@ namespace Gabbler.gApi
         /// <returns></returns>
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-
-            //context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
+            if (!context.OwinContext.Response.Headers.ContainsKey("Access-Control-Allow-Origin"))
+            {context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });}
 
 
             using (var repo = new AuthRepository())
