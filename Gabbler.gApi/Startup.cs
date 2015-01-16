@@ -20,6 +20,7 @@ namespace Gabbler.gApi
             WebApiConfig.Register(config);
             appBuilder.UseCors(CorsOptions.AllowAll);
             appBuilder.UseWebApi(config);
+            ConfigureOAuth(appBuilder);
 
         }
 
@@ -29,6 +30,7 @@ namespace Gabbler.gApi
         /// <param name="app"></param>
         public void ConfigureOAuth(IAppBuilder app)
         {
+            //todo: faire marcher
             var oAuthServerOptions = new OAuthAuthorizationServerOptions()
             {
                 AllowInsecureHttp = true,
