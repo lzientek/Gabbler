@@ -4,7 +4,9 @@ using Microsoft.Owin.Cors;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
 using System.Web.Http;
+
 [assembly: OwinStartup(typeof(Gabbler.gApi.Startup))]
+
 namespace Gabbler.gApi
 {
     public class Startup
@@ -15,7 +17,6 @@ namespace Gabbler.gApi
         {
             // Configure Web API 
             HttpConfiguration config = new HttpConfiguration();
-            config.MapHttpAttributeRoutes();
             WebApiConfig.Register(config);
             appBuilder.UseCors(CorsOptions.AllowAll);
             appBuilder.UseWebApi(config);
@@ -28,7 +29,7 @@ namespace Gabbler.gApi
         /// <param name="app"></param>
         public void ConfigureOAuth(IAppBuilder app)
         {
-            var OAuthServerOptions = new OAuthAuthorizationServerOptions()
+            var oAuthServerOptions = new OAuthAuthorizationServerOptions()
             {
                 AllowInsecureHttp = true,
                 TokenEndpointPath = new PathString("/Token"),
@@ -37,7 +38,7 @@ namespace Gabbler.gApi
             };
 
             // Token Generation
-            app.UseOAuthAuthorizationServer(OAuthServerOptions);
+            app.UseOAuthAuthorizationServer(oAuthServerOptions);
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
 
         }
