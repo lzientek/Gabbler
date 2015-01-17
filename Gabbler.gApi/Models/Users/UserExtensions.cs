@@ -14,7 +14,7 @@ namespace Gabbler.gApi.Models.Users
             {
                 FirstName = uim.FirstName,
                 LastName = uim.LastName,
-                Mail = uim.LastName,
+                Mail = uim.Mail,
                 Pseudo = uim.Pseudo,
             };
         }
