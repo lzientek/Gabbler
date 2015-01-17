@@ -19,18 +19,6 @@ namespace Gabbler.gApi.Models.Users
             };
         }
 
-        internal static User ToUser(this UserInscriptionModel uim, string foreignId)
-        {
-            return new User()
-            {
-                FirstName = uim.FirstName,
-                LastName = uim.LastName,
-                Mail = uim.Mail,
-                Pseudo = uim.Pseudo,
-                ConnectionId = foreignId,
-            };
-        }
-
         internal static UserDetailModel ToUserDetailModel(this User usr)
         {
 
