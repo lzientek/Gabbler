@@ -13,11 +13,11 @@ namespace Gabbler.gApi.Helpers.Auth
 {
     public static class IdentityExtensions
     {
+        
         public static async Task<User> GetActualUser(this IPrincipal uPrincipal,AuthRepository rp,DbEntities db)
         {
             var result = await uPrincipal.Identity.GetIdentityUser(rp);
-            var usr = await db.Users.SqlQuery("SELECT * FROM dbo.Users WHERE dbo.Users.ConnectionId = @id", new SqlParameter("id", result.Id)).FirstAsync();
-            //await db.Users.SingleOrDefaultAsync(u => u.ConnectionId == result.Id);
+            var usr = await db.Users.SqlQuery("SELECT * FROM dbo.Users WHERE dbo.Users.ConnectionId = @id", new SqlParameter("id", result.Id)).FirstOrDefaultAsync();
             return usr;
         }
 

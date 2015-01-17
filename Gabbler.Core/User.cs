@@ -29,6 +29,10 @@ namespace Gabbler.Core
         public string FirstName { get; set; }
         public string Mail { get; set; }
         public string ConnectionId { get; set; }
+        public System.DateTime CreationDate { get; set; }
+        public Nullable<System.DateTime> ModificationDate { get; set; }
+        public string BackgroundImagePath { get; set; }
+        public string ProfilePhotoPath { get; set; }
     
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<Follow> Followers { get; set; }

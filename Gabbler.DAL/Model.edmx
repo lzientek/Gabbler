@@ -52,6 +52,10 @@
           <Property Name="FirstName" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Mail" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="ConnectionId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="ModificationDate" Type="datetime" />
+          <Property Name="BackgroundImagePath" Type="nvarchar" MaxLength="80" />
+          <Property Name="ProfilePhotoPath" Type="nvarchar" MaxLength="80" />
         </EntityType>
         <Association Name="FK_Comments_Gabs">
           <End Role="Gabs" Type="Self.Gabs" Multiplicity="1" />
@@ -272,6 +276,10 @@
           <NavigationProperty Name="Gabs" Relationship="Model1.FK_Gabs_Users" FromRole="User" ToRole="Gab" />
           <NavigationProperty Name="Likes" Relationship="Model1.FK_Likes_Users" FromRole="User" ToRole="Like" />
           <Property Name="ConnectionId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModificationDate" Type="DateTime" Precision="3" />
+          <Property Name="BackgroundImagePath" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="ProfilePhotoPath" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Comments_Gabs">
           <End Type="Model1.Gab" Role="Gab" Multiplicity="1" />
@@ -409,6 +417,10 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="Model1.User">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="ProfilePhotoPath" ColumnName="ProfilePhotoPath" />
+                <ScalarProperty Name="BackgroundImagePath" ColumnName="BackgroundImagePath" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
                 <ScalarProperty Name="ConnectionId" ColumnName="ConnectionId" />
                 <ScalarProperty Name="Mail" ColumnName="Mail" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />

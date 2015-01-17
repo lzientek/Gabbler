@@ -16,18 +16,6 @@ namespace Gabbler.gApi.Controllers
         private DbEntities db = new DbEntities();
         private AuthRepository rp = new AuthRepository();
 
-        [HttpPost]
-        [Route("Connection")]
-        [AllowAnonymous]
-        public IHttpActionResult Connection([FromBody] UserConnectionModel user)
-        {
-            if (user == null || !ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            return BadRequest("Check your credentials.");
-        }
-
         [HttpGet]
         [Route("Me")]
         [Authorize]
@@ -61,6 +49,7 @@ namespace Gabbler.gApi.Controllers
                 var usr = await rp.FindUser(userModel.Pseudo);
                 var u = userModel.ToUser();
                 u.ConnectionId = usr.Id;
+                u.CreationDate = DateTime.Now;
                 db.Users.Add(u);
                 db.SaveChanges();
 
