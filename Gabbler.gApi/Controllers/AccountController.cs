@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using Gabbler.gApi.Helpers;
 using Gabbler.gApi.Helpers.Auth;
+using Gabbler.gApi.Helpers.ModelExtensions;
 using Gabbler.gApi.Models.Users;
 using Gabbler.Core;
 using Microsoft.AspNet.Identity;

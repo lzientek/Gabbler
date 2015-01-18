@@ -2,6 +2,7 @@
 using System.Web.Http;
 using Gabbler.Core;
 using Gabbler.gApi.Helpers;
+using Gabbler.gApi.Helpers.ModelExtensions;
 using Gabbler.gApi.Models.Users;
 
 namespace Gabbler.gApi.Controllers
@@ -12,7 +13,7 @@ namespace Gabbler.gApi.Controllers
         private AuthRepository rp = new AuthRepository();
 
         [HttpGet]
-        [Route("User/{id}")]
+        [Route("Users/{id}")]
         [Authorize]
         public async Task<IHttpActionResult> GetUser([FromUri]int id)
         {
@@ -21,7 +22,7 @@ namespace Gabbler.gApi.Controllers
         }
 
         [HttpGet]
-        [Route("User/{id}/Follows")]
+        [Route("Users/{id}/Follows")]
         [Authorize]
         public async Task<IHttpActionResult> GetFollows([FromUri]int id)
         {
@@ -30,7 +31,7 @@ namespace Gabbler.gApi.Controllers
         }
 
         [HttpGet]
-        [Route("User/{id}/Followers")]
+        [Route("Users/{id}/Followers")]
         [Authorize]
         public async Task<IHttpActionResult> GetFollowers([FromUri]int id)
         {

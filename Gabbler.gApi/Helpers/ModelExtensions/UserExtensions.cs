@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Gabbler.Core;
-using Gabbler.gApi.Helpers;
-using Microsoft.AspNet.Identity.EntityFramework;
+using Gabbler.gApi.Models.Users;
 
-namespace Gabbler.gApi.Models.Users
+namespace Gabbler.gApi.Helpers.ModelExtensions
 {
     internal static class UserExtensions
     {
