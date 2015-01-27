@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Description;
 using Gabbler.gApi.Helpers;
 using Gabbler.gApi.Helpers.Auth;
 using Gabbler.gApi.Helpers.ModelExtensions;
@@ -11,15 +12,16 @@ using Microsoft.AspNet.Identity;
 
 namespace Gabbler.gApi.Controllers
 {
-    [RoutePrefix("Account")]
+ 
     public class AccountController : ApiController
     {
         private DbEntities db = new DbEntities();
         private AuthRepository rp = new AuthRepository();
 
         [HttpGet]
-        [Route("Me")]
+        [Route("Account/Me")]
         [Authorize]
+        [ResponseType(typeof(UserDetailModel))]
         public async Task<IHttpActionResult> ActualUser()
         {
             var usr =await User.GetActualUser(rp,db);
@@ -28,7 +30,7 @@ namespace Gabbler.gApi.Controllers
         }
 
         [HttpPost]
-        [Route("Register")]
+        [Route("Account/Register")]
         [AllowAnonymous]
         public async Task<IHttpActionResult> Register(UserInscriptionModel userModel)
         {

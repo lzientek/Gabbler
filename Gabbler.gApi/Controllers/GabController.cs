@@ -5,8 +5,11 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Description;
 using Gabbler.Core;
 using Gabbler.gApi.Helpers.ModelExtensions;
+using Gabbler.gApi.Models.Gabs;
+using Gabbler.gApi.Models.Users;
 
 namespace Gabbler.gApi.Controllers
 {
@@ -23,6 +26,7 @@ namespace Gabbler.gApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("Gabs/{id}")]
+        [ResponseType(typeof(GabDetailModel))]
         public async Task<IHttpActionResult> GetGabById([FromUri] int id)
         {
             var gab =await db.Gabs.FindAsync(id);
@@ -40,6 +44,7 @@ namespace Gabbler.gApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("Users/{userId}/Gabs")]
+        [ResponseType(typeof(GabsList))]
         public async Task<IHttpActionResult> GetUsersGabs([FromUri] int userId)
         {
             return await GetUsersGabs(userId,0);
@@ -53,6 +58,7 @@ namespace Gabbler.gApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("Users/{userId}/Gabs/{startNumber}")]
+        [ResponseType(typeof(GabsList))]
         public async Task<IHttpActionResult> GetUsersGabs([FromUri] int userId, [FromUri] int startNumber)
         {
             var user = await db.Users.FindAsync(userId);
@@ -67,6 +73,7 @@ namespace Gabbler.gApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("Gabs")]
+        [ResponseType(typeof(GabsList))]
         public IHttpActionResult GetGabs()
         {
             return GetGabs(0);
@@ -79,6 +86,7 @@ namespace Gabbler.gApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("Gabs/Start/{startNumber}")]
+        [ResponseType(typeof(GabsList))]
         public IHttpActionResult GetGabs([FromUri] int startNumber)
         {
             return Ok(db.Gabs.OrderByDescending(g => g.CreationDate)

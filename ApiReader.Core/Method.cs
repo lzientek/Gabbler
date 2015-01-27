@@ -88,12 +88,14 @@ namespace ApiReader.Core
                     switch (att)
                     {
                         case "Route":
-                            Route = values[0];
+                            Route = values[0].Trim('"','(',')');
                             break;
                         case "Authorize":
                             AuthorizeDetails = string.Join("; ",values);
                             break;
-
+                        case "ResponseType":
+                            ReturnType = values[0].Remove(0, ("(typeof(").Length).Trim(')');
+                            break;
                     }
 
                 }

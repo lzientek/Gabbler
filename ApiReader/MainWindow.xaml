@@ -3,6 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
+        <Grid.Resources>
+            <Style TargetType="{x:Type TextBlock}">
+                <Setter Property="Margin" Value="4"></Setter>
+            </Style>
+        </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
@@ -20,25 +25,63 @@
             <ItemsControl Name="Controlers" >
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Expander Header="{Binding ClassName}" >
-                            <Grid>
+                        <Expander Header="{Binding ClassName}" Margin="0,0,0,7" >
+                            <Grid Margin="28,0,0,0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
 
-                                <ListBox Name="MethodList"  ItemsSource="{Binding Methods}" DisplayMemberPath="MethodName">
+                                <ItemsControl Name="MethodList"  ItemsSource="{Binding Methods}" >
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid Margin="0,5">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                </Grid.RowDefinitions>
+                                                <TextBlock Text="{Binding Route}" FontSize="14" TextDecorations="{x:Null}" Foreground="#FF45F53D"></TextBlock>
+                                                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                                                    <StackPanel.ToolTip>
+                                                        <Grid>
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="Auto"/>
+                                                                <RowDefinition Height="Auto"/>
+                                                            </Grid.RowDefinitions>
+                                                            <TextBlock Text="Arguments :"/>
 
-                                </ListBox>
+                                                        </Grid>
+                                                    </StackPanel.ToolTip>
+                                                    <TextBlock Text="{Binding HttpMethod.Method}" Foreground="#FF576CF3" FontWeight="Bold" />
+                                                    <TextBlock Text="{Binding MethodName}" TextDecorations="Underline" Margin="5,0,0,0" />
+                                                    <TextBlock Text="("  />
+                                                    <ItemsControl Grid.Row="1" ItemsSource="{Binding Arguments}">
+                                                        <ItemsControl.ItemsPanel>
+                                                            <ItemsPanelTemplate>
+                                                                <StackPanel Orientation="Horizontal" />
+                                                            </ItemsPanelTemplate>
+                                                        </ItemsControl.ItemsPanel>
+                                                        <ItemsControl.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <StackPanel Orientation="Horizontal">
+                                                                    <TextBlock Text="{Binding Type}" Margin="0,0,5,0"/>
+                                                                    <TextBlock Text="{Binding Name}" Margin="0,0,5,0"/>
+                                                                    <TextBlock Text="," Margin="0,0,5,0"/>
+                                                                </StackPanel>
+                                                            </DataTemplate>
+                                                        </ItemsControl.ItemTemplate>
+                                                    </ItemsControl>
+                                                    <TextBlock Text=")"  />
+                                                    <TextBlock Text="{Binding ReturnType}" FontSize="10" Foreground="#FFF36565" VerticalAlignment="Bottom" Margin="5,0,0,0" />
+                                                </StackPanel>
 
-                                <StackPanel Grid.Column="1" DataContext="{Binding ElementName=MethodList,Path=SelectedItem}">
-                                    <TextBlock Text="{Binding HttpMethod.Method}" />
-                                    <TextBlock Text="{Binding Route}" />
-                                    <TextBlock Text="{Binding ReturnType}" />
-                                    <TextBlock Text="{Binding AuthorizeDetails}" />
-                                    <TextBlock Text="Argument :" />
-                                    <ItemsControl ItemsSource="{Binding Arguments}" DisplayMemberPath="Name"></ItemsControl>
-                                </StackPanel>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+
                             </Grid>
                         </Expander>
                     </DataTemplate>
