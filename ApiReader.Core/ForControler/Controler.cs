@@ -23,8 +23,7 @@ namespace ApiReader.Core
         public string FileContent { get; set; }
         public List<Method> Methods { get; set; }
 
-        private static readonly Regex MethodRegex = new Regex(@"^(public|internal) (async)? +([\S<>]+) +([\S<>]+)\((.+)?\)$");
-        private static readonly Regex AttributRegex = new Regex(@"^\[([\w])+ ?(.+)?\]$");
+        
 
         public void ExtractMethods()
         {
@@ -44,7 +43,7 @@ namespace ApiReader.Core
                         ClassName = lignes[i].Substring(lignes[i].IndexOf(" class ", StringComparison.Ordinal));
                     }
 
-                    Match m = MethodRegex.Match(lignes[i]);
+                    Match m = RegexHelper.MethodRegex.Match(lignes[i]);
                     if (m.Success)
                     {
                         Methods.Add(new Method(m.Groups[4].Value, attribute, m.Groups[5].Value, m.Groups[3].Value));
@@ -52,7 +51,7 @@ namespace ApiReader.Core
 
                     }
 
-                    m = AttributRegex.Match(lignes[i]);
+                    m = RegexHelper.AttributRegex.Match(lignes[i]);
                     if (m.Success)
                     {
                         attribute.Add(lignes[i]);

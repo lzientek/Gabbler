@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http" />
@@ -40,12 +44,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controler.cs" />
+    <Compile Include="ForControler\Controler.cs" />
     <Compile Include="FindControllers.cs" />
-    <Compile Include="Method.cs" />
-    <Compile Include="Model.cs" />
+    <Compile Include="ForControler\Method.cs" />
+    <Compile Include="ForControler\MethodArgs.cs" />
+    <Compile Include="ForControler\MethodModels.cs" />
+    <Compile Include="ForModel\IModel.cs" />
+    <Compile Include="ForModel\Model.cs" />
+    <Compile Include="ForModel\SimpleModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Propriete.cs" />
+    <Compile Include="ForModel\Propriete.cs" />
+    <Compile Include="RegexHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

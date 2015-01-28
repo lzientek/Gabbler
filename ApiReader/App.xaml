@@ -1,8 +1,9 @@
 ﻿<Application x:Class="ApiReader.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:converter="clr-namespace:ApiReader.Converter"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <converter:IsNotNull x:Key="IsNotNull"/>
     </Application.Resources>
 </Application>

@@ -12,10 +12,10 @@ namespace ApiReader.Core
         private string _controlerPath;
         private string[] _modelsPath;
 
-        public List<Controler> Controlers{ get; set; }
-        public List<Model> Models { get; set; } 
+        public List<Controler> Controlers { get; set; }
+        public List<Model> Models { get; set; }
 
-        public FindControllers(string controlerPath,params string[] modelPaths)
+        public FindControllers(string controlerPath, params string[] modelPaths)
         {
             _controlerPath = controlerPath;
             _modelsPath = modelPaths;
@@ -27,20 +27,23 @@ namespace ApiReader.Core
         public void GetControllerAndMethods()
         {
             var dir = new DirectoryInfo(_controlerPath);
-            var fichiers = dir.GetFiles("*Controller.cs",SearchOption.AllDirectories);
+            var fichiers = dir.GetFiles("*Controller.cs", SearchOption.AllDirectories);
 
             foreach (FileInfo fichier in fichiers)
             {
                 Controlers.Add(new Controler(fichier));
             }
-
-            dir = new DirectoryInfo(_controlerPath);
-            fichiers = dir.GetFiles("*.cs", SearchOption.AllDirectories);
-
-            foreach (FileInfo fichier in fichiers)
+            foreach (var mp in _modelsPath)
             {
-                Models.Add(new Model(fichier));
+                dir = new DirectoryInfo(mp);
+                fichiers = dir.GetFiles("*.cs", SearchOption.AllDirectories);
+
+                foreach (FileInfo fichier in fichiers)
+                {
+                    Models.Add(new Model(fichier));
+                }
             }
+
         }
 
     }

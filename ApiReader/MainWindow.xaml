@@ -32,10 +32,10 @@
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
 
-                                <ItemsControl Name="MethodList"  ItemsSource="{Binding Methods}" >
+                                <ItemsControl Name="MethodList"  ItemsSource="{Binding Methods}"  >
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
-                                            <Grid Margin="0,5">
+                                            <Grid Margin="0,5" MouseLeftButtonUp="Item_OnMouseLeftButtonUp" Cursor="Hand">
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="Auto"/>
                                                     <RowDefinition Height="Auto"/>

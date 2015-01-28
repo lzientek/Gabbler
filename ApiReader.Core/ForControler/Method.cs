@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
+using ApiReader.Core.ForModel;
 
 namespace ApiReader.Core
 {
@@ -33,7 +34,7 @@ namespace ApiReader.Core
                             arguments.IsFromBody = true;
                         }
                         int start = argt.IndexOf('[');
-                        argt = argt.Remove(start, (argt.IndexOf(']') - start)+1).Trim();
+                        argt = argt.Remove(start, (argt.IndexOf(']') - start) + 1).Trim();
                     }
                     var split = argt.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
                     arguments.Type = split[0];
@@ -88,10 +89,10 @@ namespace ApiReader.Core
                     switch (att)
                     {
                         case "Route":
-                            Route = values[0].Trim('"','(',')');
+                            Route = values[0].Trim('"', '(', ')');
                             break;
                         case "Authorize":
-                            AuthorizeDetails = string.Join("; ",values);
+                            AuthorizeDetails = string.Join("; ", values);
                             break;
                         case "ResponseType":
                             ReturnType = values[0].Remove(0, ("(typeof(").Length).Trim(')');
@@ -103,6 +104,51 @@ namespace ApiReader.Core
 
         }
 
+        private string RemoveList(string arg)
+        {
+            return arg.Replace("IEnumerable", "").Trim('<', '>');
+        }
+
+        public MethodModels FindMethodsModels(IEnumerable<Model> models)
+        {
+            var returnObject = new MethodModels();
+
+            foreach (var arg in Arguments)
+            {
+                var realType = RemoveList(arg.Type);
+                if (models.Any(m => m.ClassName == realType))
+                {
+                    var mod = models.First(m => m.ClassName == realType);
+                    mod.PropName = arg.Name;
+                    mod.ClassName = arg.Type;
+                    returnObject.Arguments.Add(mod);
+                }
+                else
+                {
+                    returnObject.Arguments.Add(new SimpleModel() { ClassName = arg.Type,PropName = arg.Name});
+                }
+
+
+            }
+
+            //type de retour
+            returnObject.ReturnModel = models.FirstOrDefault(m => m.ClassName == RemoveList(ReturnType));
+
+            if (returnObject.ReturnModel != null)
+            {
+                returnObject.ReturnModel.ClassName = ReturnType;
+            }
+            else
+            {
+                returnObject.ReturnModel = new SimpleModel()
+                {
+                    ClassName = ReturnType,
+                };
+            }
+            return returnObject;
+        }
+
+
         public string Route { get; set; }
 
         public string MethodName { get; set; }
@@ -112,12 +158,5 @@ namespace ApiReader.Core
         public string ReturnType { get; set; }
         public bool Authorize { get; set; }
         public string AuthorizeDetails { get; set; }
-    }
-
-    public class MethodArgs
-    {
-        public string Name { get; set; }
-        public string Type { get; set; }
-        public bool IsFromBody { get; set; }
     }
 }

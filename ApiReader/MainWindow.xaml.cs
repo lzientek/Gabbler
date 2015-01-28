@@ -21,6 +21,8 @@ namespace ApiReader
     /// </summary>
     public partial class MainWindow : Window
     {
+        private FindControllers _fc;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -32,8 +34,15 @@ namespace ApiReader
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            FindControllers fc = new FindControllers(ControllerPath.Text,ModelPath.Text);
-            Controlers.ItemsSource = fc.Controlers;
+            _fc = new FindControllers(ControllerPath.Text,ModelPath.Text);
+            Controlers.ItemsSource = _fc.Controlers;
+        }
+
+        private void Item_OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            var value = (Method) ((Grid) sender).DataContext;
+            var detailFenetre = new Detail(_fc.Models,value);
+            detailFenetre.Show();
         }
     }
 }

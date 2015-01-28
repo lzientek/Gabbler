@@ -1,0 +1,55 @@
+﻿<Window x:Class="ApiReader.Detail"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:core="clr-namespace:ApiReader.Core;assembly=ApiReader.Core"
+        Title="Detail" Height="300" Width="300" >
+    <Window.Resources>
+        <DataTemplate x:Key="ModelDataTemplate" >
+            <Expander Header="{Binding}" IsEnabled="{Binding Path=Json,Converter={StaticResource IsNotNull},Mode=OneWay}" >
+                <Expander.HeaderTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding ClassName}" Foreground="#FF2A78D4" />
+                            <TextBlock Text="{Binding PropName}" Margin="5,0,0,0" />
+                        </StackPanel>
+                    </DataTemplate>
+                </Expander.HeaderTemplate>
+                <TextBox IsReadOnly="True"
+                         Text="{Binding Path=Json,Mode=OneWay}"
+                         MinLines="{Binding Proprietes.Count}"
+                         TextWrapping="NoWrap"
+                         />
+            </Expander>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <CheckBox IsEnabled="False" IsChecked="{Binding Method.Authorize}" />
+                <TextBlock Text="Connection Required"/>
+            </StackPanel>
+            <TextBlock Text="{Binding Method.Route}" Foreground="#FF45F53D"/>
+            <TextBlock Text="{Binding Method.HttpMethod.Method}" Foreground="#FF576CF3" FontWeight="Bold"/>
+            <TextBlock Text="{Binding Method.MethodName}" />
+        </StackPanel>
+            <TextBlock Grid.Row="1" Text="Arguments :" />
+            <!--args-->
+            <ItemsControl Grid.Row="2" Name="ArgumentsControl" ItemsSource="{Binding MethodsModel.Arguments}" 
+                          ItemTemplate="{StaticResource ModelDataTemplate}" />
+                <!--return-->
+        <TextBlock Grid.Row="3" Text="Type de retour :" />
+        <ContentControl Grid.Row="4" Content="{Binding MethodsModel.ReturnModel}"
+                            ContentTemplate="{StaticResource ModelDataTemplate}"/>
+        
+    </Grid>
+</Window>
+                                     
