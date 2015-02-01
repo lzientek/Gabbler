@@ -152,6 +152,7 @@
     <Compile Include="Models\Users\UserBasicModel.cs" />
     <Compile Include="Models\Users\UserDetailModel.cs" />
     <Compile Include="Helpers\ModelExtensions\UserExtensions.cs" />
+    <Compile Include="Models\Users\UserModificationModel.cs" />
     <Compile Include="Models\Users\UserInscriptionModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Helpers\Auth\SimpleAuthorizationServerProvider.cs" />

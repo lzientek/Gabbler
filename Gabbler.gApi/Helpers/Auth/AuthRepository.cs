@@ -42,6 +42,17 @@ namespace Gabbler.gApi.Helpers
         {
             IdentityUser user = await _userManager.FindByNameAsync(usrName);
             return user;
+        }
+        public async Task<IdentityResult> ChangePassword(string id, string oldPass, string newPass)
+        {
+            IdentityResult result = await _userManager.ChangePasswordAsync(id,oldPass,newPass);
+            return result;
+        }
+
+        public async Task<IdentityResult> ChangeMail(string id, string mail)
+        {
+            IdentityResult result = await _userManager.SetEmailAsync(id, mail);
+            return result;
         } 
 
         public void Dispose()

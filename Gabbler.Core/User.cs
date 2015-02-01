@@ -17,8 +17,8 @@ namespace Gabbler.Core
         public User()
         {
             this.Comments = new HashSet<Comment>();
-            this.Followers = new HashSet<Follow>();
             this.Follows = new HashSet<Follow>();
+            this.Followers = new HashSet<Follow>();
             this.Gabs = new HashSet<Gab>();
             this.Likes = new HashSet<Like>();
         }
@@ -35,8 +35,8 @@ namespace Gabbler.Core
         public string ProfilePhotoPath { get; set; }
     
         public virtual ICollection<Comment> Comments { get; set; }
-        public virtual ICollection<Follow> Followers { get; set; }
         public virtual ICollection<Follow> Follows { get; set; }
+        public virtual ICollection<Follow> Followers { get; set; }
         public virtual ICollection<Gab> Gabs { get; set; }
         public virtual ICollection<Like> Likes { get; set; }
     }

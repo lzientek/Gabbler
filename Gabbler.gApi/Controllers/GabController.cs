@@ -68,18 +68,6 @@ namespace Gabbler.gApi.Controllers
         }
 
         /// <summary>
-        /// Recupere les dernier gabs
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        [Route("Gabs")]
-        [ResponseType(typeof(GabsList))]
-        public IHttpActionResult GetGabs()
-        {
-            return GetGabs(0);
-        }
-
-        /// <summary>
         /// Recupere les derniers gabs a partir d'une certaine plage 
         /// </summary>
         /// <param name="startNumber">gab de debut</param>
@@ -87,7 +75,7 @@ namespace Gabbler.gApi.Controllers
         [HttpGet]
         [Route("Gabs/Start/{startNumber}")]
         [ResponseType(typeof(GabsList))]
-        public IHttpActionResult GetGabs([FromUri] int startNumber)
+        public IHttpActionResult GetGabs([FromUri] int startNumber = 0)
         {
             return Ok(db.Gabs.OrderByDescending(g => g.CreationDate)
                 .ToList().ToGabsList(
