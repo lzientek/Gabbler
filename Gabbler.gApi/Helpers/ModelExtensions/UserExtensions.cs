@@ -47,7 +47,7 @@ namespace Gabbler.gApi.Helpers.ModelExtensions
                 Id = usr.Id,
                 Pseudo = usr.Pseudo,
                 NbFollowers = usr.Followers.Count,
-                ProfilImagePath = usr.UserImage.BackgroundImage,
+                ProfilImagePath = usr.UserImage.ProfileImage,
             };
         }
 

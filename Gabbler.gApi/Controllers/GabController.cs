@@ -1,21 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Gabbler.Core;
+using Gabbler.gApi.Helpers;
+using Gabbler.gApi.Helpers.Auth;
 using Gabbler.gApi.Helpers.ModelExtensions;
+using Gabbler.gApi.Models;
 using Gabbler.gApi.Models.Gabs;
-using Gabbler.gApi.Models.Users;
 
 namespace Gabbler.gApi.Controllers
 {
     public class GabController : ApiController
     {
         private DbEntities db = new DbEntities();
+        private AuthRepository rp = new AuthRepository();
 
         private const int NbOfGabsPerPage = 2;
 
@@ -29,7 +29,7 @@ namespace Gabbler.gApi.Controllers
         [ResponseType(typeof(GabDetailModel))]
         public async Task<IHttpActionResult> GetGabById([FromUri] int id)
         {
-            var gab =await db.Gabs.FindAsync(id);
+            var gab = await db.Gabs.FindAsync(id);
             if (gab == null)
             {
                 return NotFound();
@@ -47,7 +47,7 @@ namespace Gabbler.gApi.Controllers
         [ResponseType(typeof(GabsList))]
         public async Task<IHttpActionResult> GetUsersGabs([FromUri] int userId)
         {
-            return await GetUsersGabs(userId,0);
+            return await GetUsersGabs(userId, 0);
         }
 
         /// <summary>
@@ -63,8 +63,7 @@ namespace Gabbler.gApi.Controllers
         {
             var user = await db.Users.FindAsync(userId);
             return Ok(user.Gabs.OrderByDescending(g => g.CreationDate)
-                .ToList().ToGabsList(
-                startNumber>0?startNumber-1:0, NbOfGabsPerPage));
+                .ToList().ToGabsList(startNumber, NbOfGabsPerPage));
         }
 
         /// <summary>
@@ -74,12 +73,103 @@ namespace Gabbler.gApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("Gabs/Start/{startNumber}")]
+        [Route("Gabs")]
         [ResponseType(typeof(GabsList))]
         public IHttpActionResult GetGabs([FromUri] int startNumber = 0)
         {
             return Ok(db.Gabs.OrderByDescending(g => g.CreationDate)
                 .ToList().ToGabsList(
-                startNumber > 0 ? startNumber - 1 : 0, NbOfGabsPerPage));
+                startNumber, NbOfGabsPerPage));
+        }
+
+        /// <summary>
+        /// Add a new gab
+        /// </summary>
+        /// <param name="gab">gab infos</param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("Gabs")]
+        [Authorize]
+        [ResponseType(typeof(GabDetailModel))]
+        public async Task<IHttpActionResult> PostGab([FromBody] GabPostModel gab)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var g = gab.ToGab();
+            try
+            {
+                g.User = await User.GetActualUser(rp, db);
+                db.Gabs.Add(g);
+                await db.SaveChangesAsync();
+                return Created(string.Format("/Gabs/{0}", g.Id), g.ToGabDetailModel());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// modify a gab
+        /// </summary>
+        /// <param name="id">gab id</param>
+        /// <param name="gab">gab new values</param>
+        /// <returns></returns>
+        [HttpPut]
+        [Route("Gabs/{id}")]
+        [Authorize]
+        [ResponseType(typeof(GabDetailModel))]
+        public async Task<IHttpActionResult> PutGab([FromUri] int id, [FromBody] GabPostModel gab)
+        {
+            //check values
+            if (!ModelState.IsValid){return BadRequest(ModelState);}
+            var g = await db.Gabs.FindAsync(id);
+            if (g == null) { return NotFound(); }
+            if (g.User.Pseudo != User.Identity.Name) { return Unauthorized(); }
+
+            try
+            {
+                g.Message = gab.Content;
+                g.ModificationDate = DateTime.Now;
+                await db.SaveChangesAsync();
+                return Ok(g.ToGabDetailModel());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+        /// <summary>
+        /// modify a gab
+        /// </summary>
+        /// <param name="id">gab id</param>
+        /// <param name="gab">gab new values</param>
+        /// <returns></returns>
+        [HttpDelete]
+        [Route("Gabs/{id}")]
+        [Authorize]
+        [ResponseType(typeof(GabDetailModel))]
+        public async Task<IHttpActionResult> RemoveGab([FromUri] int id)
+        {
+            //check values
+            var g = await db.Gabs.FindAsync(id);
+            if (g == null) { return NotFound(); }
+            if (g.User.Pseudo != User.Identity.Name) { return Unauthorized(); }
+
+            try
+            {
+                db.Gabs.Remove(g);
+                await db.SaveChangesAsync();
+                return Ok(new MsgModel("Removed."));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

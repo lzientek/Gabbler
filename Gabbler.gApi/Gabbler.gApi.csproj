@@ -146,9 +146,11 @@
     <Compile Include="Helpers\Auth\IdentityExtensions.cs" />
     <Compile Include="Helpers\Json\JsonUnixDateConverter.cs" />
     <Compile Include="Helpers\ModelExtensions\GabsExtensions.cs" />
+    <Compile Include="Models\Gabs\GabPostModel.cs" />
     <Compile Include="Models\Gabs\GabBasicModel.cs" />
     <Compile Include="Models\Gabs\GabDetailModel.cs" />
     <Compile Include="Models\Gabs\GabsList.cs" />
+    <Compile Include="Models\MsgModel.cs" />
     <Compile Include="Models\Users\UserBasicModel.cs" />
     <Compile Include="Models\Users\UserDetailModel.cs" />
     <Compile Include="Helpers\ModelExtensions\UserExtensions.cs" />

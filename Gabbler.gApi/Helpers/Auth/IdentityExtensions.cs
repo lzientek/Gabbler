@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.SqlClient;
-using System.Linq;
+﻿using System.Data.SqlClient;
 using System.Security.Principal;
 using System.Threading.Tasks;
-using System.Web;
 using Gabbler.Core;
 using Microsoft.AspNet.Identity.EntityFramework;
 

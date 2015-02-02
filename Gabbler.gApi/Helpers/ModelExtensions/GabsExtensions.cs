@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using Gabbler.Core;
 using Gabbler.gApi.Models.Gabs;
 
@@ -57,6 +55,15 @@ namespace Gabbler.gApi.Helpers.ModelExtensions
                 CreationDate = gab.CreationDate,
                 ModificationDate = gab.ModificationDate,
 
+            };
+        }
+
+        internal static Gab ToGab(this GabPostModel gab)
+        {
+            return new Gab()
+            {
+                CreationDate = DateTime.Now,
+                Message = gab.Content,
             };
         }
     }

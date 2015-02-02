@@ -2,7 +2,6 @@
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
@@ -63,13 +62,14 @@ namespace Gabbler.gApi.Controllers
                 db.Users.Add(u);
                 
                 db.SaveChanges();
+                return Created(string.Format("/Users/{0}", u.Id),u.ToUserBasicModel());
+
 
             }
             catch (Exception)
             {
-                BadRequest("Db error");
+                return BadRequest("Db error");
             }
-            return Ok();
         }
 
         /// <summary>
