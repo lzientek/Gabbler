@@ -31,8 +31,8 @@ namespace Gabbler.gApi.Helpers.ModelExtensions
                 NbGab = usr.Gabs.Count,
                 NbFollowers = usr.Followers.Count,
                 NbFollows = usr.Follows.Count,
-                BackgroundImagePath = usr.BackgroundImagePath,
-                ProfilImagePath = usr.ProfilePhotoPath,
+                BackgroundImagePath = usr.UserImage.BackgroundImage,
+                ProfilImagePath = usr.UserImage.ProfileImage,
                 CreationDate = usr.CreationDate,
                 ModificationDate = usr.ModificationDate,
 
@@ -47,7 +47,7 @@ namespace Gabbler.gApi.Helpers.ModelExtensions
                 Id = usr.Id,
                 Pseudo = usr.Pseudo,
                 NbFollowers = usr.Followers.Count,
-                ProfilImagePath = usr.ProfilePhotoPath,
+                ProfilImagePath = usr.UserImage.BackgroundImage,
             };
         }
 

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Model1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="gabblerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Comments">
           <Key>
             <PropertyRef Name="Id" />
@@ -42,6 +42,14 @@
           <Property Name="Id_User" Type="int" Nullable="false" />
           <Property Name="Id_Gab" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="UserImages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProfileImage" Type="nvarchar" MaxLength="200" />
+          <Property Name="BackgroundImage" Type="nvarchar" MaxLength="200" />
+        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="Id" />
@@ -54,8 +62,7 @@
           <Property Name="ConnectionId" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="CreationDate" Type="datetime" Nullable="false" />
           <Property Name="ModificationDate" Type="datetime" />
-          <Property Name="BackgroundImagePath" Type="nvarchar" MaxLength="180" />
-          <Property Name="ProfilePhotoPath" Type="nvarchar" MaxLength="180" />
+          <Property Name="UserImage_id" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Comments_Gabs">
           <End Role="Gabs" Type="Self.Gabs" Multiplicity="1" />
@@ -69,7 +76,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Comments_Users">
+        <Association Name="FK_Comments_User">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
           <ReferentialConstraint>
@@ -81,19 +88,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Follows_Users">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="Follows" Type="Self.Follows" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Follows">
-              <PropertyRef Name="Id_User" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Follows_Users1">
+        <Association Name="FK_Follows_ToFollowers">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="Follows" Type="Self.Follows" Multiplicity="*" />
           <ReferentialConstraint>
@@ -105,7 +100,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Gabs_Users">
+        <Association Name="FK_Follows_ToFollows">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Follows" Type="Self.Follows" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Follows">
+              <PropertyRef Name="Id_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gabs_ToUsers">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="Gabs" Type="Self.Gabs" Multiplicity="*" />
           <ReferentialConstraint>
@@ -129,7 +136,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Likes_Users">
+        <Association Name="FK_Likes_ToUsers">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="Likes" Type="Self.Likes" Multiplicity="*" />
           <ReferentialConstraint>
@@ -141,29 +148,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Model1StoreContainer">
+        <Association Name="FK_Users_ToImages">
+          <End Role="UserImages" Type="Self.UserImages" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserImages">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="UserImage_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="gabblerModelStoreContainer">
           <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Follows" EntityType="Self.Follows" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gabs" EntityType="Self.Gabs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Likes" EntityType="Self.Likes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserImages" EntityType="Self.UserImages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Comments_Gabs" Association="Self.FK_Comments_Gabs">
             <End Role="Gabs" EntitySet="Gabs" />
             <End Role="Comments" EntitySet="Comments" />
           </AssociationSet>
-          <AssociationSet Name="FK_Comments_Users" Association="Self.FK_Comments_Users">
+          <AssociationSet Name="FK_Comments_User" Association="Self.FK_Comments_User">
             <End Role="Users" EntitySet="Users" />
             <End Role="Comments" EntitySet="Comments" />
           </AssociationSet>
-          <AssociationSet Name="FK_Follows_Users" Association="Self.FK_Follows_Users">
+          <AssociationSet Name="FK_Follows_ToFollowers" Association="Self.FK_Follows_ToFollowers">
             <End Role="Users" EntitySet="Users" />
             <End Role="Follows" EntitySet="Follows" />
           </AssociationSet>
-          <AssociationSet Name="FK_Follows_Users1" Association="Self.FK_Follows_Users1">
+          <AssociationSet Name="FK_Follows_ToFollows" Association="Self.FK_Follows_ToFollows">
             <End Role="Users" EntitySet="Users" />
             <End Role="Follows" EntitySet="Follows" />
           </AssociationSet>
-          <AssociationSet Name="FK_Gabs_Users" Association="Self.FK_Gabs_Users">
+          <AssociationSet Name="FK_Gabs_ToUsers" Association="Self.FK_Gabs_ToUsers">
             <End Role="Users" EntitySet="Users" />
             <End Role="Gabs" EntitySet="Gabs" />
           </AssociationSet>
@@ -171,50 +191,19 @@
             <End Role="Gabs" EntitySet="Gabs" />
             <End Role="Likes" EntitySet="Likes" />
           </AssociationSet>
-          <AssociationSet Name="FK_Likes_Users" Association="Self.FK_Likes_Users">
+          <AssociationSet Name="FK_Likes_ToUsers" Association="Self.FK_Likes_ToUsers">
             <End Role="Users" EntitySet="Users" />
             <End Role="Likes" EntitySet="Likes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_ToImages" Association="Self.FK_Users_ToImages">
+            <End Role="UserImages" EntitySet="UserImages" />
+            <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
-        <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Comments" EntityType="Model1.Comment" />
-          <EntitySet Name="Follows" EntityType="Model1.Follow" />
-          <EntitySet Name="Gabs" EntityType="Model1.Gab" />
-          <EntitySet Name="Likes" EntityType="Model1.Like" />
-          <AssociationSet Name="FK_Comments_Gabs" Association="Model1.FK_Comments_Gabs">
-            <End Role="Gab" EntitySet="Gabs" />
-            <End Role="Comment" EntitySet="Comments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Likes_Gabs" Association="Model1.FK_Likes_Gabs">
-            <End Role="Gab" EntitySet="Gabs" />
-            <End Role="Like" EntitySet="Likes" />
-          </AssociationSet>
-          <EntitySet Name="Users" EntityType="Model1.User" />
-          <AssociationSet Name="FK_Comments_Users" Association="Model1.FK_Comments_Users">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Comment" EntitySet="Comments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Follows_Users" Association="Model1.FK_Follows_Users">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Follow" EntitySet="Follows" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Follows_Users1" Association="Model1.FK_Follows_Users1">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Follow" EntitySet="Follows" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Gabs_Users" Association="Model1.FK_Gabs_Users">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Gab" EntitySet="Gabs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Likes_Users" Association="Model1.FK_Likes_Users">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Like" EntitySet="Likes" />
-          </AssociationSet>
-        </EntityContainer>
+      <Schema Namespace="gabblerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Comment">
           <Key>
             <PropertyRef Name="Id" />
@@ -222,11 +211,11 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Id_Gab" Type="Int32" Nullable="false" />
           <Property Name="Id_User" Type="Int32" Nullable="false" />
-          <Property Name="Message" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ModificationDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Gab" Relationship="Model1.FK_Comments_Gabs" FromRole="Comment" ToRole="Gab" />
-          <NavigationProperty Name="User" Relationship="Model1.FK_Comments_Users" FromRole="Comment" ToRole="User" />
+          <NavigationProperty Name="Gab" Relationship="Self.FK_Comments_Gabs" FromRole="Comments" ToRole="Gabs" />
+          <NavigationProperty Name="User" Relationship="gabblerModel.FK_Comments_User" FromRole="Comment" ToRole="User" />
         </EntityType>
         <EntityType Name="Follow">
           <Key>
@@ -235,21 +224,21 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Id_Follower" Type="Int32" Nullable="false" />
           <Property Name="Id_User" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="Model1.FK_Follows_Users" FromRole="Follow" ToRole="User" />
-          <NavigationProperty Name="Follower" Relationship="Model1.FK_Follows_Users1" FromRole="Follow" ToRole="User" />
-          </EntityType>
+          <NavigationProperty Name="Follower" Relationship="gabblerModel.FK_Follows_ToFollowers" FromRole="Follow" ToRole="User" />
+          <NavigationProperty Name="User" Relationship="gabblerModel.FK_Follows_ToFollows" FromRole="Follow" ToRole="User" />
+        </EntityType>
         <EntityType Name="Gab">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Id_Author" Type="Int32" Nullable="false" />
-          <Property Name="Message" Type="String" Nullable="false" MaxLength="255" FixedLength="true" Unicode="true" />
+          <Property Name="Message" Type="String" MaxLength="255" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ModificationDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Comments" Relationship="Model1.FK_Comments_Gabs" FromRole="Gab" ToRole="Comment" />
-          <NavigationProperty Name="Likes" Relationship="Model1.FK_Likes_Gabs" FromRole="Gab" ToRole="Like" />
-          <NavigationProperty Name="User" Relationship="Model1.FK_Gabs_Users" FromRole="Gab" ToRole="User" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK_Comments_Gabs" FromRole="Gabs" ToRole="Comments" />
+          <NavigationProperty Name="Likes" Relationship="Self.FK_Likes_Gabs" FromRole="Gabs" ToRole="Likes" />
+          <NavigationProperty Name="User" Relationship="gabblerModel.FK_Gabs_ToUsers" FromRole="Gab" ToRole="User" />
         </EntityType>
         <EntityType Name="Like">
           <Key>
@@ -258,56 +247,96 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Id_User" Type="Int32" Nullable="false" />
           <Property Name="Id_Gab" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Gab" Relationship="Model1.FK_Likes_Gabs" FromRole="Like" ToRole="Gab" />
-          <NavigationProperty Name="User" Relationship="Model1.FK_Likes_Users" FromRole="Like" ToRole="User" />
+          <NavigationProperty Name="Gab" Relationship="Self.FK_Likes_Gabs" FromRole="Likes" ToRole="Gabs" />
+          <NavigationProperty Name="User" Relationship="gabblerModel.FK_Likes_ToUsers" FromRole="Like" ToRole="User" />
         </EntityType>
-        <Association Name="FK_Comments_Gabs">
-          <End Type="Model1.Gab" Role="Gab" Multiplicity="1" />
-          <End Type="Model1.Comment" Role="Comment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Gab">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Comment">
-              <PropertyRef Name="Id_Gab" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Likes_Gabs">
-          <End Type="Model1.Gab" Role="Gab" Multiplicity="1" />
-          <End Type="Model1.Like" Role="Like" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Gab">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Like">
-              <PropertyRef Name="Id_Gab" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Pseudo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="LastName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Mail" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="ConnectionId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Pseudo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Mail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ConnectionId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ModificationDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Comments" Relationship="Model1.FK_Comments_Users" FromRole="User" ToRole="Comment" />
-          <NavigationProperty Name="Follows" Relationship="Model1.FK_Follows_Users" FromRole="User" ToRole="Follow" />
-          <NavigationProperty Name="Followers" Relationship="Model1.FK_Follows_Users1" FromRole="User" ToRole="Follow" />
-          <NavigationProperty Name="Gabs" Relationship="Model1.FK_Gabs_Users" FromRole="User" ToRole="Gab" />
-          <NavigationProperty Name="Likes" Relationship="Model1.FK_Likes_Users" FromRole="User" ToRole="Like" />
-          <Property Name="BackgroundImagePath" Type="String" MaxLength="180" FixedLength="false" Unicode="true" />
-          <Property Name="ProfilePhotoPath" Type="String" MaxLength="180" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Comments" Relationship="gabblerModel.FK_Comments_User" FromRole="User" ToRole="Comment" />
+          <NavigationProperty Name="Follows" Relationship="gabblerModel.FK_Follows_ToFollowers" FromRole="User" ToRole="Follow" />
+          <NavigationProperty Name="Followers" Relationship="gabblerModel.FK_Follows_ToFollows" FromRole="User" ToRole="Follow" />
+          <NavigationProperty Name="Gabs" Relationship="gabblerModel.FK_Gabs_ToUsers" FromRole="User" ToRole="Gab" />
+          <NavigationProperty Name="Likes" Relationship="gabblerModel.FK_Likes_ToUsers" FromRole="User" ToRole="Like" />
+          <Property Name="UserImage_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UserImage" Relationship="gabblerModel.FK_Users_ToImages" FromRole="User" ToRole="UserImage" />
         </EntityType>
-        <Association Name="FK_Comments_Users">
-          <End Type="Model1.User" Role="User" Multiplicity="1" />
-          <End Type="Model1.Comment" Role="Comment" Multiplicity="*" />
+        <Association Name="FK_Comments_Gabs">
+          <End Role="Gabs" Type="Self.Gab" Multiplicity="1" />
+          <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gabs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="Id_Gab" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Likes_Gabs">
+          <End Role="Gabs" Type="Self.Gab" Multiplicity="1" />
+          <End Role="Likes" Type="Self.Like" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gabs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Likes">
+              <PropertyRef Name="Id_Gab" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="gabblerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Comments" EntityType="Self.Comment" />
+          <EntitySet Name="Follows" EntityType="Self.Follow" />
+          <EntitySet Name="Gabs" EntityType="Self.Gab" />
+          <EntitySet Name="Likes" EntityType="Self.Like" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Comments_Gabs" Association="Self.FK_Comments_Gabs">
+            <End Role="Gabs" EntitySet="Gabs" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Likes_Gabs" Association="Self.FK_Likes_Gabs">
+            <End Role="Gabs" EntitySet="Gabs" />
+            <End Role="Likes" EntitySet="Likes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_User" Association="gabblerModel.FK_Comments_User">
+            <End EntitySet="Users" Role="User" />
+            <End EntitySet="Comments" Role="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Follows_ToFollowers" Association="gabblerModel.FK_Follows_ToFollowers">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Follow" EntitySet="Follows" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Follows_ToFollows" Association="gabblerModel.FK_Follows_ToFollows">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Follow" EntitySet="Follows" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gabs_ToUsers" Association="gabblerModel.FK_Gabs_ToUsers">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Gab" EntitySet="Gabs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Likes_ToUsers" Association="gabblerModel.FK_Likes_ToUsers">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Like" EntitySet="Likes" />
+          </AssociationSet>
+          <EntitySet Name="UserImages" EntityType="gabblerModel.UserImage" />
+          <AssociationSet Name="FK_Users_ToImages" Association="gabblerModel.FK_Users_ToImages">
+            <End Role="UserImage" EntitySet="UserImages" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_Comments_User">
+          <End Type="gabblerModel.User" Multiplicity="1" Role="User" />
+          <End Type="gabblerModel.Comment" Multiplicity="*" Role="Comment" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="Id" />
@@ -317,21 +346,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Follows_Users">
-          <End Type="Model1.User" Role="User" Multiplicity="1" />
-          <End Type="Model1.Follow" Role="Follow" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Follow">
-              <PropertyRef Name="Id_User" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Follows_Users1">
-          <End Type="Model1.User" Role="User" Multiplicity="1" />
-          <End Type="Model1.Follow" Role="Follow" Multiplicity="*" />
+        <Association Name="FK_Follows_ToFollowers">
+          <End Type="gabblerModel.User" Role="User" Multiplicity="1" />
+          <End Type="gabblerModel.Follow" Role="Follow" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="Id" />
@@ -341,9 +358,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Gabs_Users">
-          <End Type="Model1.User" Role="User" Multiplicity="1" />
-          <End Type="Model1.Gab" Role="Gab" Multiplicity="*" />
+        <Association Name="FK_Follows_ToFollows">
+          <End Type="gabblerModel.User" Role="User" Multiplicity="1" />
+          <End Type="gabblerModel.Follow" Role="Follow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Follow">
+              <PropertyRef Name="Id_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gabs_ToUsers">
+          <End Type="gabblerModel.User" Role="User" Multiplicity="1" />
+          <End Type="gabblerModel.Gab" Role="Gab" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="Id" />
@@ -353,9 +382,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Likes_Users">
-          <End Type="Model1.User" Role="User" Multiplicity="1" />
-          <End Type="Model1.Like" Role="Like" Multiplicity="*" />
+        <Association Name="FK_Likes_ToUsers">
+          <End Type="gabblerModel.User" Role="User" Multiplicity="1" />
+          <End Type="gabblerModel.Like" Role="Like" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="Id" />
@@ -365,67 +394,94 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="UserImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProfileImage" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="BackgroundImage" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="gabblerModel.FK_Users_ToImages" FromRole="UserImage" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Users_ToImages">
+          <End Type="gabblerModel.UserImage" Role="UserImage" Multiplicity="1" />
+          <End Type="gabblerModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserImage">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="UserImage_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
-        <Alias Key="Model" Value="Model1" />
-        <Alias Key="Target" Value="Model1.Store" />
-        <EntityContainerMapping CdmEntityContainer="Model1Container" StorageEntityContainer="Model1StoreContainer">
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="gabblerModelStoreContainer" CdmEntityContainer="gabblerEntities">
           <EntitySetMapping Name="Comments">
-            <EntityTypeMapping TypeName="Model1.Comment">
+            <EntityTypeMapping TypeName="gabblerModel.Comment">
               <MappingFragment StoreEntitySet="Comments">
-                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
-                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
-                <ScalarProperty Name="Message" ColumnName="Message" />
-                <ScalarProperty Name="Id_User" ColumnName="Id_User" />
-                <ScalarProperty Name="Id_Gab" ColumnName="Id_Gab" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Id_Gab" ColumnName="Id_Gab" />
+                <ScalarProperty Name="Id_User" ColumnName="Id_User" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Follows">
-            <EntityTypeMapping TypeName="Model1.Follow">
+            <EntityTypeMapping TypeName="gabblerModel.Follow">
               <MappingFragment StoreEntitySet="Follows">
-                <ScalarProperty Name="Id_User" ColumnName="Id_User" />
-                <ScalarProperty Name="Id_Follower" ColumnName="Id_Follower" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Id_Follower" ColumnName="Id_Follower" />
+                <ScalarProperty Name="Id_User" ColumnName="Id_User" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Gabs">
-            <EntityTypeMapping TypeName="Model1.Gab">
+            <EntityTypeMapping TypeName="gabblerModel.Gab">
               <MappingFragment StoreEntitySet="Gabs">
-                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
-                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
-                <ScalarProperty Name="Message" ColumnName="Message" />
-                <ScalarProperty Name="Id_Author" ColumnName="Id_Author" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Id_Author" ColumnName="Id_Author" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Likes">
-            <EntityTypeMapping TypeName="Model1.Like">
+            <EntityTypeMapping TypeName="gabblerModel.Like">
               <MappingFragment StoreEntitySet="Likes">
-                <ScalarProperty Name="Id_Gab" ColumnName="Id_Gab" />
-                <ScalarProperty Name="Id_User" ColumnName="Id_User" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Id_User" ColumnName="Id_User" />
+                <ScalarProperty Name="Id_Gab" ColumnName="Id_Gab" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="Model1.User">
+            <EntityTypeMapping TypeName="gabblerModel.User">
               <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="ProfilePhotoPath" ColumnName="ProfilePhotoPath" />
-                <ScalarProperty Name="BackgroundImagePath" ColumnName="BackgroundImagePath" />
-                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
-                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
-                <ScalarProperty Name="ConnectionId" ColumnName="ConnectionId" />
-                <ScalarProperty Name="Mail" ColumnName="Mail" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="UserImage_id" ColumnName="UserImage_id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Pseudo" ColumnName="Pseudo" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="ConnectionId" ColumnName="ConnectionId" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+                </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserImages">
+            <EntityTypeMapping TypeName="gabblerModel.UserImage">
+              <MappingFragment StoreEntitySet="UserImages">
+                <ScalarProperty Name="BackgroundImage" ColumnName="BackgroundImage" />
+                <ScalarProperty Name="ProfileImage" ColumnName="ProfileImage" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -435,37 +491,22 @@
     </edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
-  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
-    <edmx:Connection>
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
       </DesignerInfoPropertySet>
-    </edmx:Connection>
-    <edmx:Options>
+    </Connection>
+    <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
-        <DesignerProperty Name="UseLegacyProvider" Value="False" />
       </DesignerInfoPropertySet>
-    </edmx:Options>
+    </Options>
     <!-- Diagram content (shape and connector positions) -->
-    <edmx:Diagrams>
-      <Diagram DiagramId="27031e21bac44a6fb91b90d6357bea1c" Name="Diagram1" ZoomLevel="139">
-        <EntityTypeShape EntityType="Model1.Comment" Width="1.5" PointX="5.25" PointY="6.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model1.Follow" Width="1.5" PointX="3.625" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model1.Gab" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model1.Like" Width="1.5" PointX="5.25" PointY="9.75" IsExpanded="true" />
-        <AssociationConnector Association="Model1.FK_Comments_Gabs" ManuallyRouted="false" />
-        <AssociationConnector Association="Model1.FK_Likes_Gabs" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="Model1.User" Width="1.5" PointX="0.5" PointY="4.625" />
-        <AssociationConnector Association="Model1.FK_Comments_Users" />
-        <AssociationConnector Association="Model1.FK_Follows_Users" />
-        <AssociationConnector Association="Model1.FK_Follows_Users1" />
-        <AssociationConnector Association="Model1.FK_Gabs_Users" />
-        <AssociationConnector Association="Model1.FK_Likes_Users" />
-      </Diagram>
-    </edmx:Diagrams>
-  </edmx:Designer>
+    <Diagrams></Diagrams>
+  </Designer>
 </edmx:Edmx>

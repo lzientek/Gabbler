@@ -13,10 +13,10 @@ namespace Gabbler.Core
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Model1Container : DbContext
+    public partial class gabblerEntities : DbContext
     {
-        public Model1Container()
-            : base("name=Model1Container")
+        public gabblerEntities()
+            : base("name=gabblerEntities")
         {
         }
     
@@ -30,5 +30,6 @@ namespace Gabbler.Core
         public virtual DbSet<Gab> Gabs { get; set; }
         public virtual DbSet<Like> Likes { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<UserImage> UserImages { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Gabbler.Core
 {
-    public class DbEntities : Model1Container
+    public class DbEntities : gabblerEntities
     {
     }
 }

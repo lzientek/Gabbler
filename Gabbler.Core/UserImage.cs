@@ -12,13 +12,17 @@ namespace Gabbler.Core
     using System;
     using System.Collections.Generic;
     
-    public partial class Follow
+    public partial class UserImage
     {
-        public int Id { get; set; }
-        public int Id_Follower { get; set; }
-        public int Id_User { get; set; }
+        public UserImage()
+        {
+            this.Users = new HashSet<User>();
+        }
     
-        public virtual User Follower { get; set; }
-        public virtual User User { get; set; }
+        public int Id { get; set; }
+        public string ProfileImage { get; set; }
+        public string BackgroundImage { get; set; }
+    
+        public virtual ICollection<User> Users { get; set; }
     }
 }

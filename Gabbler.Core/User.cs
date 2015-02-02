@@ -31,13 +31,13 @@ namespace Gabbler.Core
         public string ConnectionId { get; set; }
         public System.DateTime CreationDate { get; set; }
         public Nullable<System.DateTime> ModificationDate { get; set; }
-        public string BackgroundImagePath { get; set; }
-        public string ProfilePhotoPath { get; set; }
+        public int UserImage_id { get; set; }
     
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<Follow> Follows { get; set; }
         public virtual ICollection<Follow> Followers { get; set; }
         public virtual ICollection<Gab> Gabs { get; set; }
         public virtual ICollection<Like> Likes { get; set; }
+        public virtual UserImage UserImage { get; set; }
     }
 }

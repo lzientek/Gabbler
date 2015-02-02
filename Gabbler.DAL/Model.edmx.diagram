@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a68210d3a5304a2a9a28bf25a87909a0" Name="Diagram1">
+        <EntityTypeShape EntityType="gabblerModel.Comment" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="gabblerModel.Follow" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="gabblerModel.Gab" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="gabblerModel.Like" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="gabblerModel.User" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="gabblerModel.FK_Comments_Gabs" ManuallyRouted="false" />
+        <AssociationConnector Association="gabblerModel.FK_Likes_Gabs" ManuallyRouted="false" />
+        <AssociationConnector ManuallyRouted="true" Association="gabblerModel.FK_Comments_User">
+          <ConnectorPoint PointX="5.75" PointY="3.7499999999999996" />
+          <ConnectorPoint PointX="5.375" PointY="3.375" />
+          <ConnectorPoint PointX="5.0625" PointY="3.3749999999999996" />
+          <ConnectorPoint PointX="4.8958333333333339" PointY="3.375" />
+          <ConnectorPoint PointX="4.875" PointY="3.375" />
+          <ConnectorPoint PointX="4.875" PointY="3.5077115885416665" />
+          <ConnectorPoint PointX="4.8958333333333339" PointY="3.5077115885416661" />
+          <ConnectorPoint PointX="5.0625" PointY="3.5077115885416665" />
+          <ConnectorPoint PointX="5.3802083333333339" PointY="3.5077115885416665" />
+          <ConnectorPoint PointX="5.3802083333333339" PointY="4.0571907552083335" />
+          <ConnectorPoint PointX="3.0833333333333339" PointY="4.0571907552083335" />
+          <ConnectorPoint PointX="2.7083333333333339" PointY="3.8059407552083333" />
+          <ConnectorPoint PointX="4.979166666666667" PointY="3.8059407552083333" />
+          <ConnectorPoint PointX="4.979166666666667" PointY="3.216044921875" />
+          <ConnectorPoint PointX="4.62890625" PointY="3.216044921875" />
+          <ConnectorPoint PointX="4.62890625" PointY="3.6821907552083331" />
+          <ConnectorPoint PointX="4.5" PointY="3.6821907552083331" />
+        </AssociationConnector>
+        <AssociationConnector Association="gabblerModel.FK_Follows_ToFollowers" />
+        <AssociationConnector Association="gabblerModel.FK_Follows_ToFollows" />
+        <AssociationConnector Association="gabblerModel.FK_Gabs_ToUsers" />
+        <AssociationConnector Association="gabblerModel.FK_Likes_ToUsers" />
+        <EntityTypeShape EntityType="gabblerModel.UserImage" Width="1.5" PointX="8.125" PointY="4.75" />
+        <AssociationConnector Association="gabblerModel.FK_Users_ToImages" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

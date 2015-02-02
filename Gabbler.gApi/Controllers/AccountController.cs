@@ -59,7 +59,9 @@ namespace Gabbler.gApi.Controllers
                 var u = userModel.ToUser();
                 u.ConnectionId = usr.Id;
                 u.CreationDate = DateTime.Now;
+                u.UserImage = new UserImage();
                 db.Users.Add(u);
+                
                 db.SaveChanges();
 
             }
@@ -89,7 +91,7 @@ namespace Gabbler.gApi.Controllers
                     var newFile = UploadFile(httpRequest, "Background", usr.Id, ".jpg", ".png");
                     if (newFile != string.Empty)
                     {
-                        usr.BackgroundImagePath = newFile;
+                        usr.UserImage.BackgroundImage = newFile;
                         usr.ModificationDate = DateTime.Now;
                         db.SaveChanges();
                     }
@@ -122,7 +124,7 @@ namespace Gabbler.gApi.Controllers
                     if (!string.IsNullOrWhiteSpace(newFile))
                     {
                         usr.ModificationDate = DateTime.Now;
-                        usr.ProfilePhotoPath = newFile;
+                        usr.UserImage.ProfileImage = newFile;
                         db.SaveChanges();
                     }
                 }
@@ -163,7 +165,6 @@ namespace Gabbler.gApi.Controllers
                     usr.LastName = user.LastName;
                 }
                 usr.ModificationDate = DateTime.Now;
-                usr.BackgroundImagePath = "lucas";
                 db.SaveChanges();
             }
             catch (Exception ex)
