@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Description;
 using Gabbler.Core;
 using Gabbler.gApi.Helpers;
 using Gabbler.gApi.Helpers.Auth;
+using Gabbler.gApi.Helpers.ModelExtensions;
+using Gabbler.gApi.Models.Users;
 
 namespace Gabbler.gApi.Controllers
 {
@@ -12,6 +16,26 @@ namespace Gabbler.gApi.Controllers
     {
         private DbEntities db = new DbEntities();
         private AuthRepository rp = new AuthRepository();
+        [HttpGet]
+        [Route("Gabs/{id}/Likes")]
+        [ResponseType(typeof(IEnumerable<UserBasicModel>))]
+        [Authorize]
+        public async Task<IHttpActionResult> GetUsersThatLike([FromUri] int id)
+        {
+            var gab = await db.Gabs.FindAsync(id);
+            if (gab == null) { return NotFound(); }
+            var usr = await User.GetActualUser(rp, db);
+            try
+            {
+                var users = gab.Likes.Select(l=>l.User);
+                return Ok(users.ToUserBasicModel());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
 
         [HttpPost]
         [Route("Gabs/{id}/Like")]

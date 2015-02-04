@@ -124,7 +124,7 @@ namespace Gabbler.gApi.Controllers
         public async Task<IHttpActionResult> PutGab([FromUri] int id, [FromBody] GabPostModel gab)
         {
             //check values
-            if (!ModelState.IsValid){return BadRequest(ModelState);}
+            if (!ModelState.IsValid) { return BadRequest(ModelState); }
             var g = await db.Gabs.FindAsync(id);
             if (g == null) { return NotFound(); }
             if (g.User.Pseudo != User.Identity.Name) { return Unauthorized(); }
@@ -172,7 +172,35 @@ namespace Gabbler.gApi.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("Gabs/TimeLine")]
+        [Authorize]
+        [ResponseType(typeof(GabsList))]
+        public async Task<IHttpActionResult> GetTimeLineGabs()
+        {
+            return await GetTimeLineGabs(0);
+        }
 
-      
+        [HttpGet]
+        [Route("Gabs/TimeLine/{startGab}")]
+        [Authorize]
+        [ResponseType(typeof(GabsList))]
+        public async Task<IHttpActionResult> GetTimeLineGabs([FromUri] int startGab)
+        {
+            try
+            {
+                var usr = await User.GetActualUser(rp, db);
+
+                //Todo: je sais pas si c'est vivable faut faire des stress test
+                var follows = usr.Follows.Select(f => f.Id_User).ToList();
+                follows.Add(usr.Id);//on s'ajoute soit meme
+                var gabs = db.Gabs.Where(g => follows.Contains(g.Id_Author));
+                return Ok(gabs.OrderByDescending(g => g.CreationDate).ToList().ToGabsList(startGab, NbOfGabsPerPage));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
