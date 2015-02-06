@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiReader", "ApiReader\ApiR
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiReader.Core", "ApiReader.Core\ApiReader.Core.csproj", "{790AA725-E079-43B0-97AF-F140824C8AD2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gabbler.Web", "Gabbler.Web\Gabbler.Web.csproj", "{543C2197-9BF7-4E88-89A3-A7932D412C6A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{790AA725-E079-43B0-97AF-F140824C8AD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{790AA725-E079-43B0-97AF-F140824C8AD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{790AA725-E079-43B0-97AF-F140824C8AD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{543C2197-9BF7-4E88-89A3-A7932D412C6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{543C2197-9BF7-4E88-89A3-A7932D412C6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{543C2197-9BF7-4E88-89A3-A7932D412C6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{543C2197-9BF7-4E88-89A3-A7932D412C6A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -191,7 +191,6 @@ namespace Gabbler.gApi.Controllers
             {
                 var usr = await User.GetActualUser(rp, db);
 
-                //Todo: je sais pas si c'est vivable faut faire des stress test
                 var follows = usr.Follows.Select(f => f.Id_User).ToList();
                 follows.Add(usr.Id);//on s'ajoute soit meme
                 var gabs = db.Gabs.Where(g => follows.Contains(g.Id_Author));
