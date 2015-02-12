@@ -20,11 +20,15 @@ namespace App.Gabbler.Web
 
             bundles.Add(new ScriptBundle("~/js/app").Include(
                 "~/scripts/vendor/angular-ui-router.js",
+                "~/scripts/vendor/angular-local-storage.js",
+                "~/scripts/app.js",
                 "~/scripts/filters.js",
-                "~/scripts/services.js",
+                "~/scripts/services/services.js",
+                "~/scripts/services/authService.js",
                 "~/scripts/directives.js",
-                "~/scripts/controllers.js",
-                "~/scripts/app.js"));
+                "~/scripts/controllers/homeControllers.js",
+                "~/scripts/controllers/userControllers.js"
+                ));
         }
     }
 }

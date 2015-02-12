@@ -1,5 +1,5 @@
-﻿/// <reference path="_references.js" />
-/// <reference path="controllers.js" />
+﻿/// <reference path="../_references.js" />
+/// <reference path="homeControllers.js" />
 
 'use strict';
 
@@ -33,6 +33,7 @@ describe('Controllers: AboutCtrl', function () {
     });
 });
 
+
 describe('Controllers: LoginCtrl', function () {
     var $scope, ctrl;
 
@@ -48,6 +49,7 @@ describe('Controllers: LoginCtrl', function () {
     });
 });
 
+// 404 controller
 describe('Controllers: Error404Ctrl', function () {
     var $scope, ctrl;
 

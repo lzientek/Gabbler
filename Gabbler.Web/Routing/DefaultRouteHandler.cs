@@ -43,8 +43,8 @@ namespace App.Gabbler.Web.Routing
 
             if (handler == null)
             {
-                requestContext.RouteData.DataTokens.Add("templateUrl", "/views/404");
-                handler = WebPageHttpHandler.CreateFromVirtualPath("~/views/404.cshtml");
+                requestContext.RouteData.DataTokens.Add("templateUrl", "/views/Error/404");
+                handler = WebPageHttpHandler.CreateFromVirtualPath("~/views/Error/404.cshtml");
             }
             else
             {

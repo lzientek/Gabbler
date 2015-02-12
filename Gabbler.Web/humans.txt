@@ -3,7 +3,10 @@
 
 # TEAM
 
-    <name> -- <role> -- <twitter>
+    lucas zientek -- lead dev -- @lucas42_
+    jérémy sachs -- It tech -- 
+    adrien burlot -- lead IT tech --
+    arnaud schmitter -- dev -- 
 
 # THANKS
 
@@ -13,3 +16,4 @@
 
     HTML5, CSS3
     AngularJS, jQuery, Bootstrap
+    C sharp .NET, asp.NET WebApi

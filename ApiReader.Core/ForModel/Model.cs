@@ -21,9 +21,7 @@ namespace ApiReader.Core
         }
 
 
-
-
-        public void ExtractProperties()
+        private void ExtractProperties()
         {
             foreach (var ligne in FileContent.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
             {

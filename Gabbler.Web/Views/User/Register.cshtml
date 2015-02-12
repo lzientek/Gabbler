@@ -1,0 +1,36 @@
+﻿@{
+    PageData["title"] = "Gabbler - Sign Up";
+}
+<div class="row">
+    <form class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4" >
+        <h2 class="text-center">Sign Up</h2>
+         <div ng-hide="message == ''" class="alert alert-danger">
+        {{message}}
+    </div>
+        <div class="form-box">
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="registration.Mail" placeholder="Email" required />
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="registration.Pseudo" placeholder="Pseudo" maxlength="100" required />
+            </div>
+            
+            
+            <div class="form-group">
+                <input type="password" class="form-control" ng-model="registration.password" placeholder="Password" required />
+            </div>
+            
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="registration.FirstName" placeholder="first name" maxlength="100" required />
+            </div>
+            
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="registration.LastName" placeholder="last name" maxlength="100" required />
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-primary btn-block" type="submit" ng-click="signUp()" >Register</button>
+            </div>
+        </div>
+    </form>
+</div>
