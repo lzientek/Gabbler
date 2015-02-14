@@ -1,8 +1,6 @@
 ﻿'use strict';
 app.factory('authService', ['$http', '$q', 'localStorageService', function ($http, $q, localStorageService) {
 
-    //todo : configurer votre IIS pour que ca marche !
-    var serviceBase = 'http://api.gabbler.com/';
     var authServiceFactory = {};
 
     var _authentication = {

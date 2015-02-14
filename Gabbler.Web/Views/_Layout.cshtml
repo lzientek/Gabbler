@@ -14,7 +14,8 @@
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <header class="navbar navbar-inverse" role="banner" ng-if=" !layout ">@* The 'layout' property is set inside the app.run(..) method on '$stateChangeSuccess' *@
+    <header class="navbar navbar-inverse" role="banner" ng-controller="IndexCtrl as index" ng-if=" !layout ">
+        @* The 'layout' property is set inside the app.run(..) method on '$stateChangeSuccess' *@
         <div class="container">
             <div class="navbar-header">
                 <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".spa-navbar-collapse">
@@ -34,7 +35,7 @@
                         <a href="./contacts">Contacts</a>
                     </li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
+                <ul ng-hide="authentication.isAuth" class="nav navbar-nav navbar-right">
                     <li>
                         <a href="./login">Sign In</a>
                     </li>
@@ -42,11 +43,17 @@
                         <a href="./register">Sign Up</a>
                     </li>
                 </ul>
+                <div ng-show="authentication.isAuth" class="nav navbar-nav navbar-right">
+                    <img height="50" ng-src="{{apiUrl}}{{actualUser.ProfilImagePath}}" />
+
+                    <a class="text-info" href="./User/edit">{{actualUser.Pseudo}}</a>
+
+                </div>
             </nav>
         </div>
     </header>
 
-    <div id="ui-view" class="container" ui-view data-tmpl-url="@Request.RequestContext.RouteData.DataTokens["templateUrl"]">
+    <div id="ui-view" class="container" ui-view >
         @RenderBody()
     </div>
 

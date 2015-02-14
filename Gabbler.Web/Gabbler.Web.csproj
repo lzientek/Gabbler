@@ -113,13 +113,22 @@
       <DependentUpon>app.less</DependentUpon>
     </Content>
     <Content Include="Content\app.less" />
+    <Content Include="Content\Perso.css">
+      <DependentUpon>Perso.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Perso.min.css">
+      <DependentUpon>Perso.css</DependentUpon>
+    </Content>
     <Content Include="Content\variables.less" />
     <Content Include="Global.asax" />
+    <Content Include="Images\UserProfile.png" />
     <Content Include="Scripts\controllers\homeControllers.js" />
     <Content Include="Scripts\controllers\controllers.spec.js">
       <DependentUpon>homeControllers.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\controllers\indexController.js" />
     <Content Include="Scripts\controllers\userControllers.js" />
+    <Content Include="Scripts\services\authInterceptorService.js" />
     <Content Include="Scripts\services\authService.js" />
     <Content Include="Scripts\directives.js" />
     <Content Include="Scripts\directives.spec.js">
@@ -129,10 +138,12 @@
     <Content Include="Scripts\filters.spec.js">
       <DependentUpon>filters.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\services\gabService.js" />
     <Content Include="Scripts\services\services.js" />
     <Content Include="Scripts\services\services.spec.js">
       <DependentUpon>services.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\services\userServices.js" />
     <Content Include="Scripts\vendor\angular-csp.css" />
     <Content Include="Scripts\vendor\angular-local-storage.js" />
     <Content Include="Scripts\vendor\angular-ui-router.js" />
@@ -462,6 +473,10 @@
     <Content Include="Content\bootstrap\bootstrap.css.map">
       <DependentUpon>bootstrap.css</DependentUpon>
     </Content>
+    <Content Include="Content\Perso.less" />
+    <Content Include="Content\Perso.css.map">
+      <DependentUpon>Perso.css</DependentUpon>
+    </Content>
     <None Include="Scripts\vendor\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\vendor\jquery-2.0.3.js" />
     <Content Include="Scripts\vendor\jquery-2.0.3.min.js" />
@@ -504,7 +519,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Images\" />
     <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>

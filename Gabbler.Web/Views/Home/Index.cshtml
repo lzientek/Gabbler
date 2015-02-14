@@ -1,5 +1,23 @@
 ﻿@{
-    PageData["title"] = "AngularJS SPA Template for Visual Studio";
+    PageData["title"] = "Gabbler";
 }
-<h2>Welcome!</h2>
-<p>This is just a demo page.</p>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2 gab" ng-repeat="gab in gabs.Gabs">
+        <div class="pull-left">
+            
+            <img class="gab-profil-img" ng-src="{{apiUrl}}{{gab.User.ProfilImagePath}}" fallback-src="~/Images/UserProfile.png" />
+        </div>
+        <div class="col-md-push-8">
+            <a>{{gab.User.Pseudo}}</a>
+            -
+            <span>{{gab.CreationDate*1000 | date:'dd-MM-yy hh:mm:ss'}}</span>
+        </div>
+        <div class="pull-left">
+            <p>{{gab.Content}}</p>
+        </div>
+    </div>
+
+</div>
+<div class="row">
+    <button class="btn btn-info" ng-click="getMoreGabs()" ng-hide="gabs.isAllShow">voir plus</button>
+</div>

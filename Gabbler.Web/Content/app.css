@@ -250,6 +250,18 @@ a.list-group-item-danger.active:focus {
 .popover {
   color: #2c3e50;
 }
+.gab {
+  background-color: #ffffff;
+  border-radius: 2px;
+  margin: 5px;
+}
+.gab-profil-img {
+  height: 50px;
+  width: 50px;
+  border-radius: 25px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
 /*! normalize.css v2.1.3 | MIT License | git.io/normalize */
 article,
 aside,
@@ -511,7 +523,7 @@ body {
   font-size: 17px;
   line-height: 1.42857143;
   color: #2c3e50;
-  background-color: #ffffff;
+  background-color: #ecf0f1;
 }
 input,
 button,
@@ -549,7 +561,7 @@ img {
 .img-thumbnail {
   padding: 4px;
   line-height: 1.42857143;
-  background-color: #ffffff;
+  background-color: #ecf0f1;
   border: 1px solid #ecf0f1;
   border-radius: 4px;
   -webkit-transition: all 0.2s ease-in-out;
@@ -1643,7 +1655,7 @@ th {
   border-top: 2px solid #ecf0f1;
 }
 .table .table {
-  background-color: #ffffff;
+  background-color: #ecf0f1;
 }
 .table-condensed > thead > tr > th,
 .table-condensed > tbody > tr > th,
@@ -3689,7 +3701,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus {
   color: #2c3e50;
-  background-color: #ffffff;
+  background-color: #ecf0f1;
   border: 1px solid #ecf0f1;
   border-bottom-color: transparent;
   cursor: default;
@@ -3735,7 +3747,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
   .nav-tabs.nav-justified > .active > a,
   .nav-tabs.nav-justified > .active > a:hover,
   .nav-tabs.nav-justified > .active > a:focus {
-    border-bottom-color: #ffffff;
+    border-bottom-color: #ecf0f1;
   }
 }
 .nav-pills > li {
@@ -3803,7 +3815,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
   .nav-tabs-justified > .active > a,
   .nav-tabs-justified > .active > a:hover,
   .nav-tabs-justified > .active > a:focus {
-    border-bottom-color: #ffffff;
+    border-bottom-color: #ecf0f1;
   }
 }
 .tab-content > .tab-pane {
@@ -4627,7 +4639,7 @@ a.list-group-item.active > .badge,
   padding: 4px;
   margin-bottom: 24px;
   line-height: 1.42857143;
-  background-color: #ffffff;
+  background-color: #ecf0f1;
   border: 1px solid #ecf0f1;
   border-radius: 4px;
   -webkit-transition: all 0.2s ease-in-out;
