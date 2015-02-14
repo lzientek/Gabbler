@@ -1,7 +1,7 @@
 using System;
 using System.Web.Mvc;
 
-namespace App.Gabbler.Web.Controllers
+namespace BillManager.Web.Controllers
 {
     public class JasmineController : Controller
     {
