@@ -1,23 +1,9 @@
 ﻿@{
     PageData["title"] = "Gabbler";
 }
-<div class="row">
-    <div class="col-md-8 col-md-offset-2 gab" ng-repeat="gab in gabs.Gabs">
-        <div class="pull-left">
-            
-            <img class="gab-profil-img" ng-src="{{apiUrl}}{{gab.User.ProfilImagePath}}" fallback-src="~/Images/UserProfile.png" />
-        </div>
-        <div class="col-md-push-8">
-            <a>{{gab.User.Pseudo}}</a>
-            -
-            <span>{{gab.CreationDate*1000 | date:'dd-MM-yy hh:mm:ss'}}</span>
-        </div>
-        <div class="pull-left">
-            <p>{{gab.Content}}</p>
-        </div>
-    </div>
 
-</div>
+@RenderPage("../Shared/_PartialGab.cshtml") 
+
 <div class="row">
     <button class="btn btn-info" ng-click="getMoreGabs()" ng-hide="gabs.isAllShow">voir plus</button>
 </div>

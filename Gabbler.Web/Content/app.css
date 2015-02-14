@@ -261,6 +261,28 @@ a.list-group-item-danger.active:focus {
   border-radius: 25px;
   margin-top: 15px;
   margin-bottom: 15px;
+  margin-right: 0;
+}
+.profil-img {
+  height: 50px;
+  width: 50px;
+  border-radius: 25px;
+  margin: 5px;
+}
+.gab-content {
+  margin-top: 15px;
+  margin-bottom: 1px;
+}
+.gab-com-like .nav-pills > li {
+  margin-left: 15px !important;
+  list-style: none;
+}
+.gab-com-like .nav-pills > ul {
+  list-style: none;
+}
+.gab-com-like {
+  padding-top: 10px;
+  margin-bottom: 4px;
 }
 /*! normalize.css v2.1.3 | MIT License | git.io/normalize */
 article,
@@ -4564,9 +4586,9 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 .badge {
   display: inline-block;
-  min-width: 10px;
+  min-width: 8px;
   padding: 3px 7px;
-  font-size: 15px;
+  font-size: 11px;
   font-weight: bold;
   color: #ffffff;
   line-height: 1;
@@ -4574,7 +4596,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
   white-space: nowrap;
   text-align: center;
   background-color: #2c3e50;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 .badge:empty {
   display: none;

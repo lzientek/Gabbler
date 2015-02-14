@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Gabbler.Core;
 using Gabbler.gApi.Models.Gabs;
 
@@ -40,6 +41,8 @@ namespace Gabbler.gApi.Helpers.ModelExtensions
                 NbOfComments = gab.Comments.Count,
                 Id = gab.Id,
                 User = gab.User.ToUserBasicModel(),
+                Likes = gab.Likes.Select(l => l.User.Pseudo).ToArray(),
+
                 CreationDate = gab.CreationDate
             };
         }
@@ -54,7 +57,7 @@ namespace Gabbler.gApi.Helpers.ModelExtensions
                 User = gab.User.ToUserBasicModel(),
                 CreationDate = gab.CreationDate,
                 ModificationDate = gab.ModificationDate,
-
+                Likes = gab.Likes.Select(l=>l.User.Pseudo).ToArray(),
             };
         }
 

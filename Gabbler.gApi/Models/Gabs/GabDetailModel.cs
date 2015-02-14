@@ -18,5 +18,6 @@ namespace Gabbler.gApi.Models.Gabs
         public int NbOfLikes { get; set; }
         public int NbOfComments { get; set; }
         public UserBasicModel User { get; set; }
+        public string[] Likes { get; set; }
     }
 }

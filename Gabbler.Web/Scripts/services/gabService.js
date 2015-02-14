@@ -15,10 +15,25 @@ app.factory('gabService', ['$http', function ($http) {
             return results;
         });
     }
-
+    var _likeGab = function (gabId) {
+        return $http.post(serviceBase + 'Gabs/' + gabId + '/Like').success(function (results) {
+            return results;
+        }).error(function(err) {
+            return err;
+        });
+    }
+    var _unLikeGab = function (gabId) {
+        return $http.delete(serviceBase + 'Gabs/' + gabId + '/Like').success(function (results) {
+            return results;
+        }).error(function (err) {
+            return err;
+        });
+    }
 
     gabServiceFactory.getAllGabs = _getAllGabs;
     gabServiceFactory.getMoreGabs = _getMoreGabs;
+    gabServiceFactory.likeGab = _likeGab;
+    gabServiceFactory.unLikeGab = _unLikeGab;
 
     return gabServiceFactory;
 

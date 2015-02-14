@@ -45,6 +45,10 @@ namespace Gabbler.gApi.Controllers
             var gab = await db.Gabs.FindAsync(id);
             if (gab == null) { return NotFound(); }
             var usr = await User.GetActualUser(rp, db);
+            if (gab.Likes.Any(l => l.Id_User == usr.Id))
+            {
+                return BadRequest("Already liked!");
+            }
             try
             {
                 gab.Likes.Add(new Like() { User = usr });
@@ -58,7 +62,7 @@ namespace Gabbler.gApi.Controllers
         }
 
         [HttpDelete]
-        [Route("Gabs/{id}/UnLike")]
+        [Route("Gabs/{id}/Like")]
         [Authorize]
         public async Task<IHttpActionResult> UnLikeAGab([FromUri] int id)
         {

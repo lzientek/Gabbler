@@ -6,4 +6,10 @@ angular.module('app.filters', [])
         return function (text) {
             return String(text).replace(/\%VERSION\%/mg, version);
         }
-    }]);
+    }])
+
+.filter('join', ['version', function (version) {
+    return function (array) {
+        return array.join(",<br/>");
+    }
+}]);

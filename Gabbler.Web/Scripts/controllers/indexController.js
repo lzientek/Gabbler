@@ -2,22 +2,23 @@
 
     // Path: /
     .controller('IndexCtrl', [
-        '$scope', '$location', '$window', 'authService','userServices',
-        function ($scope, $location, $window, authService, userServices) {
-
-            userServices.getActualUser().then(function(result) {
-                $scope.actualUser = result.data;
-            });
-
-
-            $scope.logOut = function() {
-                authService.logOut();
-                $location.path('/home');
+        '$scope','$rootScope', '$location', '$window', 'authService', 'userServices',
+        function ($scope, $rootScope, $location, $window, authService, userServices) {
+            if (authService.authentication.isAuth) {
+                userServices.getActualUser().then(function (result) {
+                    $scope.actualUser = result.data;
+                });
             }
-            
-            
-            $scope.authentication = authService.authentication;
 
-            
+
+            $scope.logOut = function () {
+                authService.logOut();
+                $location.path('/login');
+            }
+
+
+            $rootScope.authentication = authService.authentication;
+
+
         }
     ]);

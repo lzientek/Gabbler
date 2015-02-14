@@ -70,6 +70,10 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
 
 .run(['authService', function (authService) {
     authService.fillAuthData();
+    $("body").tooltip({
+        selector: '[data-toggle="tooltip"]',
+        html: true
+    });
 }])
 
 .config(function ($httpProvider) {

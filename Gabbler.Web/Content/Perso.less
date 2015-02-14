@@ -1,6 +1,6 @@
 ﻿
 
-.gab{
+.gab {
     background-color: @gab-bg-color;
     border-radius: @gab-border-radius;
     margin: 5px;
@@ -9,10 +9,34 @@
 
 @gab-profilImg-size: 50px;
 @gab-profilImg-borderRad: @gab-profilImg-size/2;
-.gab-profil-img{
+@gab-top-margin : 15px;
+.gab-profil-img {
     height: @gab-profilImg-size;
     width: @gab-profilImg-size;
     border-radius: @gab-profilImg-borderRad;
-    margin-top:15px;
-    margin-bottom:15px;
+    margin-top: @gab-top-margin;
+    margin-bottom: @gab-top-margin;
+    margin-right: 0;
+}
+
+.profil-img {
+    height: @gab-profilImg-size;
+    width: @gab-profilImg-size;
+    border-radius: @gab-profilImg-borderRad;
+    margin: 5px;
+}
+.gab-content{
+    margin-top:@gab-top-margin;
+    margin-bottom:1px;
+}
+.gab-com-like .nav-pills > li{
+    margin-left:15px !important;
+    list-style:none;
+}
+.gab-com-like .nav-pills > ul{
+    list-style:none;
+}
+.gab-com-like{
+    padding-top:10px;
+    margin-bottom:4px;
 }
