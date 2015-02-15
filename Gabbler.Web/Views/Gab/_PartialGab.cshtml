@@ -1,45 +1,45 @@
 ﻿<div class="row">
     <div class="col-md-8 col-md-offset-2 gab" ng-repeat="gab in gabs.Gabs">
-        <div class="pull-left">
 
-            <img class="gab-profil-img" ng-src="{{apiUrl}}{{gab.User.ProfilImagePath}}" fallback-src="~/Images/UserProfile.png" />
-        </div>
-        <div class="col-md-9">
-            <p class="gab-content">{{gab.Content}}</p>
-        </div>
-        <div class="col-md-6">
-            <a href="#">{{gab.User.Pseudo}}</a>
-            -
-            <span class="small">{{gab.CreationDate*1000 | date:'dd/MM/yy hh:mm:ss'}}</span>
-        </div>
-        <div class="pull-right gab-com-like">
+            <div class="pull-left">
 
-            <ul class=" nav-pills small" role="tablist">
-                <li role="presentation">
-                    <a href="#" ng-show="gab.isLiked" ng-disabled="!authentication.isAuth"
-                       ng-click="unLikeGab(gab)"
-                       data-toggle="tooltip" data-placement="top" title="{{gab.Likes | limitTo:2 | join}}">
-                        Unlike
-                        <span class="badge">{{gab.NbOfLikes}}</span>
-                    </a>
-                    <a href="#" ng-hide="gab.isLiked" ng-disabled="!authentication.isAuth"
-                       ng-click="likeGab(gab)"
-                       data-toggle="tooltip" data-placement="top" title="{{gab.Likes | limitTo:2 | join}}">
-                        Like
-                        <span class="badge">{{gab.NbOfLikes}}</span>
-                    </a>
-                </li>
-                <li role="presentation">
-                    <a href="#" ng-click="getComments(gab.Id)">
-                        Comments <span class="badge">{{gab.NbOfComments}}</span>
-                    </a>
-                </li>
-                <li ng-show="gab.User.Pseudo == authentication.userName" role="presentation">
-                    <a href="#">Edit</a>
-                </li>
-            </ul>
-        </div>
+                <img class="gab-profil-img" ng-src="{{apiUrl}}{{gab.User.ProfilImagePath}}" fallback-src="~/Images/UserProfile.png" />
+            </div>
+            <div class="col-md-9">
+                <p class="gab-content">{{gab.Content}}</p>
+            </div>
+            <div class="col-md-6">
+                <a href="#">{{gab.User.Pseudo}}</a>
+                -
+                <span class="small">{{gab.CreationDate*1000 | date:'dd/MM/yy hh:mm:ss'}}</span>
+            </div>
+            <div class="pull-right gab-com-like">
 
+                <ul class=" nav-pills small" role="tablist">
+                    <li role="presentation">
+                        <a href="#" ng-show="gab.isLiked" ng-disabled="!authentication.isAuth"
+                           ng-click="unLikeGab(gab)"
+                           data-toggle="tooltip" data-placement="top" title="{{gab.Likes | limitTo:2 | join}}">
+                            Unlike
+                            <span class="badge">{{gab.NbOfLikes}}</span>
+                        </a>
+                        <a href="#" ng-hide="gab.isLiked" ng-disabled="!authentication.isAuth"
+                           ng-click="likeGab(gab)"
+                           data-toggle="tooltip" data-placement="top" title="{{gab.Likes | limitTo:2 | join}}">
+                            Like
+                            <span class="badge">{{gab.NbOfLikes}}</span>
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#" ng-click="getComments(gab.Id)">
+                            Comments <span class="badge">{{gab.NbOfComments}}</span>
+                        </a>
+                    </li>
+                    <li ng-show="gab.User.Pseudo == authentication.userName" role="presentation">
+                        <a href="#">Edit</a>
+                    </li>
+                </ul>
+            </div>
         <gab-comments ng-show="gab.showComment" ng-controller="CommentCtrl"></gab-comments>
 
     </div>

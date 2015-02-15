@@ -81,6 +81,10 @@ angular.module('app.gabControllers', [])
                 var i = 0;
                 for (i = 0; i < $scope.gabs.Gabs.length; i++) {
                     if ($scope.gabs.Gabs[i].Id == gabId) {
+                        //if already load do nothing
+                        if ($scope.gabs.Gabs[i].showComment) {
+                            return;
+                        }
                         $scope.gabs.Gabs[i].showComment = true;
                         break;
                     }

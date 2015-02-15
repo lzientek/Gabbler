@@ -294,6 +294,9 @@ a.list-group-item-danger.active:focus {
 .comment-form .profil-img {
   margin-left: 0;
 }
+.border-bottom {
+  border-bottom: 1px solid #ecf0f1;
+}
 /*! normalize.css v2.1.3 | MIT License | git.io/normalize */
 article,
 aside,
