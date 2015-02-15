@@ -10,6 +10,8 @@
 @gab-profilImg-size: 50px;
 @gab-profilImg-borderRad: @gab-profilImg-size/2;
 @gab-top-margin : 15px;
+@comment-form-height :60px;
+@comment-form-input-margin :(@comment-form-height - @input-height-small)/2;
 .gab-profil-img {
     height: @gab-profilImg-size;
     width: @gab-profilImg-size;
@@ -39,4 +41,14 @@
 .gab-com-like{
     padding-top:10px;
     margin-bottom:4px;
+}
+.comment-form{
+    height:60px;
+}
+.comment-form form{
+    margin-top: @comment-form-input-margin;
+    margin-bottom: @comment-form-input-margin;
+}
+.comment-form .profil-img {
+    margin-left: 0;
 }

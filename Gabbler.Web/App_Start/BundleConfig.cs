@@ -30,6 +30,7 @@ namespace App.Gabbler.Web
                 "~/scripts/services/authInterceptorService.js",
                 "~/scripts/directives.js",
                 "~/scripts/controllers/indexController.js",
+                "~/scripts/controllers/gabControllers.js",
                 "~/scripts/controllers/homeControllers.js",
                 "~/scripts/controllers/userControllers.js"
                 ));

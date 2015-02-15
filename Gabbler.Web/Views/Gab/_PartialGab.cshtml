@@ -12,7 +12,7 @@
             -
             <span class="small">{{gab.CreationDate*1000 | date:'dd/MM/yy hh:mm:ss'}}</span>
         </div>
-        <div ng-show="authentication.isAuth" class="pull-right gab-com-like">
+        <div class="pull-right gab-com-like">
 
             <ul class=" nav-pills small" role="tablist">
                 <li role="presentation">
@@ -29,10 +29,18 @@
                         <span class="badge">{{gab.NbOfLikes}}</span>
                     </a>
                 </li>
-                <li role="presentation"><a href="#">Comments <span class="badge">{{gab.NbOfComments}}</span></a></li>
-                <li ng-show="gab.User.Pseudo == authentication.userName" role="presentation"><a href="#">Edit</a></li>
+                <li role="presentation">
+                    <a href="#" ng-click="getComments(gab.Id)">
+                        Comments <span class="badge">{{gab.NbOfComments}}</span>
+                    </a>
+                </li>
+                <li ng-show="gab.User.Pseudo == authentication.userName" role="presentation">
+                    <a href="#">Edit</a>
+                </li>
             </ul>
         </div>
-    </div>
 
+        <gab-comments ng-show="gab.showComment" ng-controller="CommentCtrl"></gab-comments>
+
+    </div>
 </div>

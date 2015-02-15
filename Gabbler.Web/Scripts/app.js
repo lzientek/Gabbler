@@ -3,7 +3,8 @@ var serviceBase = 'http://api.gabbler.com/';
 
 // Declares how the application should be bootstrapped. See: http://docs.angularjs.org/guide/module
 var app = angular.module('app', [
-    'ui.router', 'app.filters', 'app.services', 'app.directives', 'LocalStorageModule', 'app.indexController', 'app.homeControllers', 'app.userControllers'
+    'ui.router', 'app.filters', 'app.services', 'app.directives', 'LocalStorageModule',
+    'app.indexController', 'app.homeControllers', 'app.gabControllers', 'app.userControllers'
 ]);
 
 // Gets executed during the provider registrations and configuration phase. Only providers and constants can be

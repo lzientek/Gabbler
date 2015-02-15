@@ -19,6 +19,7 @@ app.factory('authInterceptorService', ['$q', '$location', 'localStorageService',
     //erreur redirection login
     var _responseError = function (rejection) {
         if (rejection.status === 401) {
+            localStorageService.remove('authorizationData');
             $location.path('/login');
         }
         return $q.reject(rejection);

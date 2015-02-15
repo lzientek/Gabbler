@@ -6,19 +6,16 @@
         function ($scope, $rootScope, $location, $window, authService, userServices) {
             if (authService.authentication.isAuth) {
                 userServices.getActualUser().then(function (result) {
-                    $scope.actualUser = result.data;
+                    $rootScope.actualUser = result.data;
                 });
             }
-
 
             $scope.logOut = function () {
                 authService.logOut();
                 $location.path('/login');
             }
 
-
             $rootScope.authentication = authService.authentication;
-
 
         }
     ]);

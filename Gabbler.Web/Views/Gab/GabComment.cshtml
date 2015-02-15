@@ -1,0 +1,40 @@
+﻿<div class="row">
+    <div class="col-md-11 col-md-offset-1" ng-show="gab.comments.NbOfShownComments < gab.comments.TotalComments">
+        <a href="#" ng-click="getMoreComments(gab.Id)">
+            <span class="small">[{{gab.comments.NbOfShownComments}}/{{gab.comments.TotalComments}}]</span>
+            Show more comments...
+        </a>
+    </div>
+
+    <div class="col-md-11 col-md-offset-1 comments" ng-repeat="comment in gab.comments.Comments">
+        <div class="pull-left">
+
+            <img class="gab-profil-img" ng-src="{{apiUrl}}{{comment.User.ProfilImagePath}}" fallback-src="~/Images/UserProfile.png" />
+        </div>
+        <div class="col-md-9">
+            <p class="gab-content">{{comment.Message}}</p>
+        </div>
+        <div class="col-md-6">
+            <a href="#">{{comment.User.Pseudo}}</a>
+            -
+            <span class="small">{{comment.CreationDate*1000 | date:'dd/MM/yy hh:mm:ss'}}</span>
+        </div>
+    </div>
+
+</div>
+@*start of the submit form*@
+<div class="row" ng-show="authentication.isAuth">
+    <div class="col-md-11 col-md-offset-1 comment-form">
+        <div class="pull-left">
+            <img class="profil-img" ng-src="{{apiUrl}}{{actualUser.ProfilImagePath}}" fallback-src="~/Images/UserProfile.png" />
+        </div>
+        <form class="col-md-10">
+            <div class="col-md-9">
+                <input type="text" class="form-control input-sm" ng-model="newComment.Message" placeholder="Comment" required />
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-primary btn-sm" type="submit" ng-click="addComment(gab.Id)">Comment</button>
+            </div>
+        </form>
+    </div>
+</div>

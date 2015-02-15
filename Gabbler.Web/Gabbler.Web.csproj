@@ -100,10 +100,8 @@
     <Content Include="Content\variables.less" />
     <Content Include="Global.asax" />
     <Content Include="Images\UserProfile.png" />
+    <Content Include="Scripts\controllers\gabControllers.js" />
     <Content Include="Scripts\controllers\homeControllers.js" />
-    <Content Include="Scripts\controllers\controllers.spec.js">
-      <DependentUpon>homeControllers.js</DependentUpon>
-    </Content>
     <Content Include="Scripts\controllers\indexController.js" />
     <Content Include="Scripts\controllers\userControllers.js" />
     <Content Include="Scripts\services\authInterceptorService.js" />
@@ -235,7 +233,8 @@
     <Content Include="Views\_PageStart.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
-    <Content Include="Views\Shared\_PartialGab.cshtml" />
+    <Content Include="Views\Gab\_PartialGab.cshtml" />
+    <Content Include="Views\Gab\GabComment.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -253,7 +252,9 @@
     <Compile Include="Routing\DefaultRouteHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Shared\" />
+  </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
