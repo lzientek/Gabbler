@@ -1,0 +1,17 @@
+﻿
+@*start of the submit form*@
+<div class="row" ng-show="authentication.isAuth">
+    <div class="col-md-11 col-md-offset-2 ">
+        <form class="col-md-10 gab-form">
+            <div class="pull-left">
+                <img class="profil-img" ng-src="{{apiUrl}}{{actualUser.ProfilImagePath}}" fallback-src="~/Images/UserProfile.png" />
+            </div>
+            <div class="col-md-7">
+                <input type="text" class="form-control " ng-model="newGab.Content" placeholder="Gab" required />
+            </div>
+            <div class="col-md-2">
+                <input type="submit" class="btn btn-primary " ng-click="addGab()" value="Gab it!" />
+            </div>
+        </form>
+    </div>
+</div>

@@ -49,10 +49,17 @@ app.factory('gabService', ['$http', function ($http) {
             return err;
         });
     }
-
+    var _addGab = function ( gab) {
+        return $http.post(serviceBase + 'Gabs/' , gab).success(function (results) {
+            return results;
+        }).error(function (err) {
+            return err;
+        });
+    }
     gabServiceFactory.getAllGabs = _getAllGabs;
     gabServiceFactory.getGabComments = _getGabComments;
     gabServiceFactory.getGabMoreComments = _getGabMoreComments;
+    gabServiceFactory.addGab = _addGab;
     gabServiceFactory.addComment = _addComment;
     gabServiceFactory.getMoreGabs = _getMoreGabs;
     gabServiceFactory.likeGab = _likeGab;

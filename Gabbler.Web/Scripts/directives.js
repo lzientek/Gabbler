@@ -14,6 +14,18 @@ angular.module('app.directives', [])
             templateUrl: '/views/Gab/GabComment',
         };
     })
+    .directive('gabEdit', function () {
+        return {
+            restrict: 'E',
+            templateUrl: '/views/Gab/GabEditForm',
+        };
+    })
+    .directive('gabForm', function () {
+        return {
+            restrict: 'E',
+            templateUrl: '/views/Gab/GabPostForm',
+        };
+    })
     .directive('fallbackSrc', function () {
         return {
             link: function (scope, element, attrs) {

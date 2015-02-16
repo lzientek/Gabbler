@@ -1,5 +1,12 @@
 ﻿'use strict';
-
+function getGabIndex($scope, gabId) {
+    for (var i = 0; i < $scope.gabs.Gabs.length; i++) {
+        if ($scope.gabs.Gabs[i].Id == gab.Id) {
+            return i;
+        }
+    }
+    return -1;
+}
 // Google Analytics Collection APIs Reference:
 // https://developers.google.com/analytics/devguides/collection/analyticsjs/
 
@@ -44,16 +51,34 @@ angular.module('app.gabControllers', [])
                 });
             }
 
+            $scope.editGab = function (gabId) {
+                //var i = getGabIndex($scope, gabId);
+                //todo: insérer le formulaire 
+                //ou une popup
+            }
+
+            $scope.newGab = { Content: "" };
+            $scope.addGab = function () {
+                var content = $scope.newGab.newGab;
+                $scope.newGab.newGab.Content = ""; //reset the field value
+
+                gabService.addGab(content)
+                    .success(function (result) {
+                    for (var i = $scope.gabs.Gabs.length - 1; i >= 0; i--) {
+                        $scope.gabs.Gabs[i + 1] = $scope.gabs.Gabs[i];
+                    }
+                    $scope.gabs.Gabs[0] = result;
+                    }).error(function (error) {
+                        $scope.newGab.newGab = content;
+                    alert(error.Message);
+                });
+            }
             // like a gab
             $scope.likeGab = function (gab) {
                 gabService.likeGab(gab.Id).success(function (result) {
-                    for (var i = 0; i < $scope.gabs.Gabs.length; i++) {
-                        if ($scope.gabs.Gabs[i].Id == gab.Id) {
-                            $scope.gabs.Gabs[i].NbOfLikes += 1;
-                            $scope.gabs.Gabs[i].isLiked = true;
-                            break;
-                        }
-                    }
+                    var i = getGabIndex($scope, gab.Id);
+                    $scope.gabs.Gabs[i].NbOfLikes += 1;
+                    $scope.gabs.Gabs[i].isLiked = true;
 
                 }).error(function (error) {
                     alert(error.Message);
@@ -63,13 +88,10 @@ angular.module('app.gabControllers', [])
             //unlike a gab
             $scope.unLikeGab = function (gab) {
                 gabService.unLikeGab(gab.Id).success(function (result) {
-                    for (var i = 0; i < $scope.gabs.Gabs.length; i++) {
-                        if ($scope.gabs.Gabs[i].Id == gab.Id) {
-                            $scope.gabs.Gabs[i].NbOfLikes -= 1;
-                            $scope.gabs.Gabs[i].isLiked = false;
-                            break;
-                        }
-                    }
+                    var i = getGabIndex($scope, gab.Id);
+                    $scope.gabs.Gabs[i].NbOfLikes -= 1;
+                    $scope.gabs.Gabs[i].isLiked = false;
+
 
                 }).error(function (error) {
                     alert(error.Message);
@@ -112,13 +134,9 @@ angular.module('app.gabControllers', [])
 
             //load more comments
             $scope.getMoreComments = function (gabId) {
-                var i;
-                for (i = 0; i < $scope.gabs.Gabs.length; i++) {
-                    if ($scope.gabs.Gabs[i].Id == gabId) {
-                        $scope.gabs.Gabs[i].showComment = true;
-                        break;
-                    }
-                }
+                var i = getGabIndex($scope, gab.Id);
+                $scope.gabs.Gabs[i].showComment = true;
+
                 gabService.getGabMoreComments(gabId, $scope.gabs.Gabs[i].comments.NbOfShownComments)
                     .then(function (result) {
                         //get gab
@@ -134,16 +152,12 @@ angular.module('app.gabControllers', [])
             $scope.newComment = { Message: "" };
             $scope.addComment = function (gabId) {
                 gabService.addComment(gabId, $scope.newComment).success(function (result) {
-                    for (var i = 0; i < $scope.gabs.Gabs.length; i++) {
-                        if ($scope.gabs.Gabs[i].Id == gabId) {
-                            $scope.gabs.Gabs[i].showComment = true;
-                            $scope.gabs.Gabs[i].NbOfComments++;
+                    var i = getGabIndex($scope, gab.Id);
+                    $scope.gabs.Gabs[i].showComment = true;
+                    $scope.gabs.Gabs[i].NbOfComments++;
 
-                            $scope.gabs.Gabs[i].comments.Comments.push(result);
+                    $scope.gabs.Gabs[i].comments.Comments.push(result);
 
-                            break;
-                        }
-                    }
                 }).error(function (error) {
                     alert(error.Message);
                 });

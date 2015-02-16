@@ -1,4 +1,7 @@
 ﻿<div class="row">
+    <gab-form ng-show="authentication.isAuth"></gab-form>
+</div>
+<div class="row">
     <div class="col-md-8 col-md-offset-2 gab" ng-repeat="gab in gabs.Gabs">
 
             <div class="pull-left">
@@ -6,7 +9,7 @@
                 <img class="gab-profil-img" ng-src="{{apiUrl}}{{gab.User.ProfilImagePath}}" fallback-src="~/Images/UserProfile.png" />
             </div>
             <div class="col-md-9">
-                <p class="gab-content">{{gab.Content}}</p>
+                <p class="gab-content" id="gabContent{{gab.Id}}">{{gab.Content}}</p>
             </div>
             <div class="col-md-6">
                 <a href="#">{{gab.User.Pseudo}}</a>
@@ -36,7 +39,7 @@
                         </a>
                     </li>
                     <li ng-show="gab.User.Pseudo == authentication.userName" role="presentation">
-                        <a href="#">Edit</a>
+                        <a href="#" ng-click="editGab(gab.Id)">Edit</a>
                     </li>
                 </ul>
             </div>

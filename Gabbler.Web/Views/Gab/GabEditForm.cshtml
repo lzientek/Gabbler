@@ -1,0 +1,14 @@
+﻿
+@*start of the submit form*@
+<div class="row" ng-show="authentication.isAuth">
+    <div class="col-md-11 col-md-offset-1 comment-form">
+        <form class="col-md-10">
+            <div class="col-md-9">
+                <input type="text" class="form-control input-sm" ng-model="gab.Content" placeholder="Gab" required />
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-primary btn-sm" type="submit" ng-click="addComment(gab.Id)">Modify</button>
+            </div>
+        </form>
+    </div>
+</div>
