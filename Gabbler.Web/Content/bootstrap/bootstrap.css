@@ -453,28 +453,28 @@ cite {
   color: #3071a9;
 }
 .text-warning {
-  color: #8a6d3b;
+  color: #f0ad4e;
 }
 .text-warning:hover {
-  color: #66512c;
+  color: #ec971f;
 }
 .text-danger {
-  color: #a94442;
+  color: #d9534f;
 }
 .text-danger:hover {
-  color: #843534;
+  color: #c9302c;
 }
 .text-success {
-  color: #3c763d;
+  color: #5cb85c;
 }
 .text-success:hover {
-  color: #2b542c;
+  color: #449d44;
 }
 .text-info {
-  color: #31708f;
+  color: #5bc0de;
 }
 .text-info:hover {
-  color: #245269;
+  color: #31b0d5;
 }
 .text-left {
   text-align: left;

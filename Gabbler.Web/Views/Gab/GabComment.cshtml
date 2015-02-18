@@ -32,7 +32,7 @@
                 <input type="text" class="form-control input-sm" ng-model="newComment.Message" placeholder="Comment" required />
             </div>
             <div class="col-md-3">
-                <button class="btn btn-primary btn-sm" type="submit" ng-click="addComment(gab.Id)">Comment</button>
+                <button class="btn btn-primary btn-sm" type="submit" ng-disabled="!newComment.isSend" ng-click="addComment(gab.Id)">Comment</button>
             </div>
         </form>
     </div>

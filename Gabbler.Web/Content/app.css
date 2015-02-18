@@ -24,23 +24,23 @@
 }
 .text-primary,
 .text-primary:hover {
-  color: #2c3e50;
+  color: #2c3e50 !important;
 }
 .text-success,
 .text-success:hover {
-  color: #18bc9c;
+  color: #18bc9c !important;
 }
 .text-danger,
 .text-danger:hover {
-  color: #e74c3c;
+  color: #e74c3c !important;
 }
 .text-warning,
 .text-warning:hover {
-  color: #f39c12;
+  color: #f39c12 !important;
 }
 .text-info,
 .text-info:hover {
-  color: #3498db;
+  color: #3498db !important;
 }
 table a:not(.btn),
 .table a:not(.btn) {
@@ -756,28 +756,28 @@ cite {
   color: #1a242f;
 }
 .text-warning {
-  color: #ffffff;
+  color: #f39c12;
 }
 .text-warning:hover {
-  color: #e6e6e6;
+  color: #c87f0a;
 }
 .text-danger {
-  color: #ffffff;
+  color: #e74c3c;
 }
 .text-danger:hover {
-  color: #e6e6e6;
+  color: #d62c1a;
 }
 .text-success {
-  color: #ffffff;
+  color: #18bc9c;
 }
 .text-success:hover {
-  color: #e6e6e6;
+  color: #128f76;
 }
 .text-info {
-  color: #ffffff;
+  color: #3498db;
 }
 .text-info:hover {
-  color: #e6e6e6;
+  color: #217dbb;
 }
 .text-left {
   text-align: left;

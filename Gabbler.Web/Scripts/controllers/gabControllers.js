@@ -59,8 +59,8 @@ angular.module('app.gabControllers', [])
 
             $scope.newGab = { Content: "" };
             $scope.addGab = function () {
-                var content = $scope.newGab.newGab;
-                $scope.newGab.newGab.Content = ""; //reset the field value
+                var content = $scope.newGab;
+                $scope.newGab.Content = ""; //reset the field value
 
                 gabService.addGab(content)
                     .success(function (result) {
@@ -148,18 +148,22 @@ angular.module('app.gabControllers', [])
             }
 
 
-            //ajout des commentaires
-            $scope.newComment = { Message: "" };
+            //add a new comment
+            $scope.newComment = { Message: "",isSend:false };
             $scope.addComment = function (gabId) {
+                $scope.newComment.isSend = true;
                 gabService.addComment(gabId, $scope.newComment).success(function (result) {
+                    $scope.newComment.isSend = false;
+                    $scope.newComment.Message = "";
                     var i = getGabIndex($scope, gabId);
                     $scope.gabs.Gabs[i].showComment = true;
                     $scope.gabs.Gabs[i].NbOfComments++;
-
                     $scope.gabs.Gabs[i].comments.Comments.push(result);
 
                 }).error(function (error) {
                     alert(error.Message);
+                    $scope.newComment.isSend = false;
+
                 });
             }
 
