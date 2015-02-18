@@ -1,7 +1,7 @@
 ﻿'use strict';
 function getGabIndex($scope, gabId) {
     for (var i = 0; i < $scope.gabs.Gabs.length; i++) {
-        if ($scope.gabs.Gabs[i].Id == gab.Id) {
+        if ($scope.gabs.Gabs[i].Id == gabId) {
             return i;
         }
     }
@@ -64,14 +64,14 @@ angular.module('app.gabControllers', [])
 
                 gabService.addGab(content)
                     .success(function (result) {
-                    for (var i = $scope.gabs.Gabs.length - 1; i >= 0; i--) {
-                        $scope.gabs.Gabs[i + 1] = $scope.gabs.Gabs[i];
-                    }
-                    $scope.gabs.Gabs[0] = result;
+                        for (var i = $scope.gabs.Gabs.length - 1; i >= 0; i--) {
+                            $scope.gabs.Gabs[i + 1] = $scope.gabs.Gabs[i];
+                        }
+                        $scope.gabs.Gabs[0] = result;
                     }).error(function (error) {
                         $scope.newGab.newGab = content;
-                    alert(error.Message);
-                });
+                        alert(error.Message);
+                    });
             }
             // like a gab
             $scope.likeGab = function (gab) {
@@ -134,7 +134,7 @@ angular.module('app.gabControllers', [])
 
             //load more comments
             $scope.getMoreComments = function (gabId) {
-                var i = getGabIndex($scope, gab.Id);
+                var i = getGabIndex($scope, gabId);
                 $scope.gabs.Gabs[i].showComment = true;
 
                 gabService.getGabMoreComments(gabId, $scope.gabs.Gabs[i].comments.NbOfShownComments)
@@ -152,7 +152,7 @@ angular.module('app.gabControllers', [])
             $scope.newComment = { Message: "" };
             $scope.addComment = function (gabId) {
                 gabService.addComment(gabId, $scope.newComment).success(function (result) {
-                    var i = getGabIndex($scope, gab.Id);
+                    var i = getGabIndex($scope, gabId);
                     $scope.gabs.Gabs[i].showComment = true;
                     $scope.gabs.Gabs[i].NbOfComments++;
 
