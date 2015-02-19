@@ -58,9 +58,10 @@ angular.module('app.gabControllers', [])
             }
 
             $scope.newGab = { Content: "" };
-            $scope.addGab = function () {
+            $scope.addGab = function (form) {
                 var content = $scope.newGab;
                 $scope.newGab.Content = ""; //reset the field value
+                form.$setPristine();
 
                 gabService.addGab(content)
                     .success(function (result) {
@@ -149,21 +150,22 @@ angular.module('app.gabControllers', [])
 
 
             //add a new comment
-            $scope.newComment = { Message: "",isSend:false };
-            $scope.addComment = function (gabId) {
-                $scope.newComment.isSend = true;
+            $scope.newComment = { Message: ""};
+            $scope.addComment = function (gabId,form) {
                 gabService.addComment(gabId, $scope.newComment).success(function (result) {
-                    $scope.newComment.isSend = false;
                     $scope.newComment.Message = "";
+                    form.$setPristine();
                     var i = getGabIndex($scope, gabId);
+
+                    //increment des variable et ajout du comment
                     $scope.gabs.Gabs[i].showComment = true;
                     $scope.gabs.Gabs[i].NbOfComments++;
+                    $scope.gabs.Gabs[i].comments.TotalComments++;
+                    $scope.gabs.Gabs[i].comments.NbOfShownComments++;
                     $scope.gabs.Gabs[i].comments.Comments.push(result);
 
                 }).error(function (error) {
                     alert(error.Message);
-                    $scope.newComment.isSend = false;
-
                 });
             }
 

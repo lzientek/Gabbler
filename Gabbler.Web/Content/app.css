@@ -285,7 +285,7 @@ a.list-group-item-danger.active:focus {
   margin-bottom: 4px;
 }
 .comment-form {
-  height: 60px;
+  min-height: 60px;
 }
 .comment-form form {
   margin-top: 12px;

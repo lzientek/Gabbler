@@ -10,12 +10,14 @@
                 <div class="col-md-12" ng-show="gabform.$submitted || !gabform.gab.$pristine">
                     <div ng-show="gabform.gab.$error.required" class="text-danger">The gab can not be empty!</div>
                     <div ng-show="gabform.gab.$error.maxlength" class="text-danger">The gab is to long!</div>
-                    <div ng-show="!gabform.gab.$error.maxlength && !gabform.gab.$error.required" class="text-info">{{newGab.Content.length}} / 255</div>
+                    <div ng-show="!gabform.gab.$error.maxlength && !gabform.gab.$error.required" class="text-info">
+                        {{newGab.Content.length}} / 255
+                    </div>
                 </div>
 
             </div>
             <div class="col-md-2">
-                <input type="submit" class="btn btn-primary " ng-click="addGab()" value="Gab it!" />
+                <input type="submit" class="btn btn-primary " ng-disabled="!gabform.$valid" ng-click="addGab(gabform)" value="Gab it!" />
             </div>
         </form>
     </div>

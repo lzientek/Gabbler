@@ -27,12 +27,16 @@
         <div class="pull-left">
             <img class="profil-img" ng-src="{{apiUrl}}{{actualUser.ProfilImagePath}}" fallback-src="~/Images/UserProfile.png" />
         </div>
-        <form class="col-md-10">
+        <form class="col-md-10" name="commentgabform">
             <div class="col-md-9">
-                <input type="text" class="form-control input-sm" ng-model="newComment.Message" placeholder="Comment" required />
+                <input type="text" class="form-control input-sm" name="comment" ng-model="newComment.Message" ng-maxlength=255 placeholder="Comment" required />
             </div>
             <div class="col-md-3">
-                <button class="btn btn-primary btn-sm" type="submit" ng-disabled="!newComment.isSend" ng-click="addComment(gab.Id)">Comment</button>
+                <button class="btn btn-primary btn-sm" type="submit" ng-disabled="!commentgabform.$valid" ng-click="addComment(gab.Id,commentgabform)">Comment</button>
+            </div>
+            <div class="col-md-12" ng-show="commentgabform.$submitted || !commentgabform.comment.$pristine">
+                <div ng-show="commentgabform.comment.$error.required" class="text-danger">Your comment can not be empty!</div>
+                <div ng-show="commentgabform.comment.$error.maxlength" class="text-danger">The comment is to long!</div>
             </div>
         </form>
     </div>
