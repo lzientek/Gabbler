@@ -59,7 +59,7 @@ angular.module('app.gabControllers', [])
 
             $scope.newGab = { Content: "" };
             $scope.addGab = function (form) {
-                var content = $scope.newGab;
+                var content = { Content: $scope.newGab.Content };
                 $scope.newGab.Content = ""; //reset the field value
                 form.$setPristine();
 
@@ -150,8 +150,8 @@ angular.module('app.gabControllers', [])
 
 
             //add a new comment
-            $scope.newComment = { Message: ""};
-            $scope.addComment = function (gabId,form) {
+            $scope.newComment = { Message: "" };
+            $scope.addComment = function (gabId, form) {
                 gabService.addComment(gabId, $scope.newComment).success(function (result) {
                     $scope.newComment.Message = "";
                     form.$setPristine();
