@@ -235,8 +235,8 @@
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\Gab\_PartialGab.cshtml" />
     <Content Include="Views\Gab\GabComment.cshtml" />
-    <Content Include="Views\Gab\GabEditForm.cshtml" />
     <Content Include="Views\Gab\GabPostForm.cshtml" />
+    <Content Include="Views\Gab\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

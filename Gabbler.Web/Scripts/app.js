@@ -21,6 +21,12 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
             controller: 'HomeCtrl'
 
         })
+        .state('editGab', {
+            url: '/gab/edit/:gabId',
+            templateUrl: '/views/Gab/edit',
+            controller: 'EditGabCtrl'
+
+        })
         .state('about', {
             url: '/about',
             templateUrl: '/views/Home/about',

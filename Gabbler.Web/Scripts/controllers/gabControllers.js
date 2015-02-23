@@ -51,11 +51,6 @@ angular.module('app.gabControllers', [])
                 });
             }
 
-            $scope.editGab = function (gabId) {
-                //var i = getGabIndex($scope, gabId);
-                //todo: insérer le formulaire 
-                //ou une popup
-            }
 
             $scope.newGab = { Content: "" };
             $scope.addGab = function (form) {
@@ -128,6 +123,26 @@ angular.module('app.gabControllers', [])
         }
     ])
 
+    .controller('EditGabCtrl', ['$scope', '$stateParams', '$window', '$rootScope', 'gabService',
+        function ($scope, $stateProvider, $window, $rootScope, gabService) {
+            //get the gab
+            gabService.getGab($stateProvider.gabId).then(function (result) {
+                $scope.gab = result.data;
+            });
+
+
+            //edit the gab
+
+            $scope.edit = function() {
+                var editgab = { Content: $scope.gab.Content };
+                gabService.editGab($stateProvider.gabId, editgab).success(function (result) {
+                    $scope.gab = result;
+                }).error(function(error) {
+                    alert(error.Message);
+                });
+            }
+
+        }])
 
     .controller('CommentCtrl', [
         '$scope', '$location', '$window', '$rootScope', 'gabService',

@@ -9,20 +9,25 @@ app.factory('gabService', ['$http', function ($http) {
             return results;
         });
     };
+    var _getGab = function (gabId) {
 
-    var _getMoreGabs = function(startGab) {
-        return $http.get(serviceBase + 'Gabs/Start/'+ startGab).then(function (results) {
+        return $http.get(serviceBase + 'gabs/' + gabId).then(function (results) {
+            return results;
+        });
+    };
+    var _getMoreGabs = function (startGab) {
+        return $http.get(serviceBase + 'Gabs/Start/' + startGab).then(function (results) {
             return results;
         });
     }
     var _getGabComments = function (gabId) {
-        return $http.get(serviceBase + 'Gabs/' + gabId + '/Comments' ).then(function (results) {
+        return $http.get(serviceBase + 'Gabs/' + gabId + '/Comments').then(function (results) {
             return results;
         });
     }
 
-    var _getGabMoreComments = function (gabId,start) {
-        return $http.get(serviceBase + 'Gabs/' + gabId + '/Comments/'+start).then(function (results) {
+    var _getGabMoreComments = function (gabId, start) {
+        return $http.get(serviceBase + 'Gabs/' + gabId + '/Comments/' + start).then(function (results) {
             return results;
         });
     }
@@ -30,7 +35,7 @@ app.factory('gabService', ['$http', function ($http) {
     var _likeGab = function (gabId) {
         return $http.post(serviceBase + 'Gabs/' + gabId + '/Like').success(function (results) {
             return results;
-        }).error(function(err) {
+        }).error(function (err) {
             return err;
         });
     }
@@ -42,26 +47,39 @@ app.factory('gabService', ['$http', function ($http) {
         });
     }
 
-    var _addComment=function(gabId,comment) {
+    var _addComment = function (gabId, comment) {
         return $http.post(serviceBase + 'Gabs/' + gabId + '/Comments', comment).success(function (results) {
             return results;
         }).error(function (err) {
             return err;
         });
     }
-    var _addGab = function ( gab) {
-        return $http.post(serviceBase + 'Gabs/' , gab).success(function (results) {
+    var _addGab = function (gab) {
+        return $http.post(serviceBase + 'Gabs/', gab).success(function (results) {
             return results;
         }).error(function (err) {
             return err;
         });
     }
+    var _editGab = function (gabId, gab) {
+        return $http.put(serviceBase + 'Gabs/' + gabId, gab).success(function (results) {
+            return results;
+        }).error(function (err) {
+            return err;
+        });
+    };
+
     gabServiceFactory.getAllGabs = _getAllGabs;
+    gabServiceFactory.getGab = _getGab;
     gabServiceFactory.getGabComments = _getGabComments;
     gabServiceFactory.getGabMoreComments = _getGabMoreComments;
+    gabServiceFactory.getMoreGabs = _getMoreGabs;
+
     gabServiceFactory.addGab = _addGab;
     gabServiceFactory.addComment = _addComment;
-    gabServiceFactory.getMoreGabs = _getMoreGabs;
+
+    gabServiceFactory.editGab = _editGab;
+
     gabServiceFactory.likeGab = _likeGab;
     gabServiceFactory.unLikeGab = _unLikeGab;
 
