@@ -37,7 +37,7 @@ namespace Gabbler.gApi.Helpers.ModelExtensions
             return new GabBasicModel()
             {
                 NbOfLikes = gab.Likes.Count,
-                Content = gab.Message,
+                Content = gab.Message.TrimEnd(),
                 NbOfComments = gab.Comments.Count,
                 Id = gab.Id,
                 User = gab.User.ToUserBasicModel(),
@@ -51,7 +51,7 @@ namespace Gabbler.gApi.Helpers.ModelExtensions
             return new GabDetailModel()
             {
                 NbOfLikes = gab.Likes.Count,
-                Content = gab.Message,
+                Content = gab.Message.TrimEnd(),
                 NbOfComments = gab.Comments.Count,
                 Id = gab.Id,
                 User = gab.User.ToUserBasicModel(),

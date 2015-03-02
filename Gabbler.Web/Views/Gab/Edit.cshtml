@@ -1,0 +1,41 @@
+﻿
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2 gab row">
+
+        <div class="col-xs-2">
+
+            <img class="gab-profil-img" ng-src="{{apiUrl}}{{gab.User.ProfilImagePath}}" fallback-src="~/Images/UserProfile.png"/>
+        </div>
+        <div class="col-xs-9">
+            <p class="gab-content">{{gab.Content}}</p>
+        </div>
+        <div class="col-xs-6">
+            <a href="#">{{gab.User.Pseudo}}</a>
+            -
+            <span class="small">{{gab.CreationDate*1000 | date:'dd/MM/yy hh:mm:ss'}}</span>
+        </div>
+    </div>
+</div>
+
+@*start of the submit form*@
+<div class="row" ng-show="authentication.isAuth">
+    <div class="col-lg-11 col-lg-offset-1 comment-form">
+        <form class="row" name="gabform">
+            <div class="col-xs-8">
+                <input type="text" name="gab" class="form-control" ng-model="gab.Content" placeholder="Gab" required ng-maxlength=255 />
+                <div class="col-md-12" ng-show="gabform.$submitted || !gabform.gab.$pristine">
+                    <div ng-show="gabform.gab.$error.required" class="text-danger">The gab can not be empty!</div>
+                    <div ng-show="gabform.gab.$error.maxlength" class="text-danger">The gab is to long!</div>
+                    <div ng-show="!gabform.gab.$error.maxlength && !gabform.gab.$error.required" class="text-info">
+                        {{gab.Content.length}} / 255
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-xs-3">
+                <button class="btn btn-primary " type="submit" ng-click="edit()">Modify</button>
+            </div>
+        </form>
+    </div>
+</div>

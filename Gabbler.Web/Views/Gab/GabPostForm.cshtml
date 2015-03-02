@@ -1,11 +1,11 @@
 ﻿@*start of the submit form*@
 <div class="row" ng-show="authentication.isAuth">
-    <div class="col-md-9 col-md-offset-2 ">
+    <div class="col-md-9 col-md-offset-2 row">
         <form class="col-md-12 gab-form" name="gabform" novalidate>
-            <div class="pull-left">
+            <div class="col-xs-2">
                 <img class="profil-img" ng-src="{{apiUrl}}{{actualUser.ProfilImagePath}}" fallback-src="~/Images/UserProfile.png" />
             </div>
-            <div class="col-md-8">
+            <div class="col-xs-8">
                 <input type="text" name="gab" class="form-control" ng-model="newGab.Content" placeholder="Gab" required ng-maxlength=255 />
                 <div class="col-md-12" ng-show="gabform.$submitted || !gabform.gab.$pristine">
                     <div ng-show="gabform.gab.$error.required" class="text-danger">The gab can not be empty!</div>
@@ -16,7 +16,7 @@
                 </div>
 
             </div>
-            <div class="col-md-2">
+            <div class="col-xs-2">
           
                 <input type="submit" class="btn btn-primary " ng-disabled="!gabform.$valid" ng-click="addGab(gabform)" value="Gab it!" />
             </div>

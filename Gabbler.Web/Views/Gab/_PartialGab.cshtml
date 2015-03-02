@@ -2,23 +2,23 @@
     <gab-form ng-show="authentication.isAuth"></gab-form>
 </div>
 <div class="row">
-    <div class="col-md-8 col-md-offset-2 gab" ng-repeat="gab in gabs.Gabs">
+    <div class="row col-md-8 col-md-offset-2 gab" ng-repeat="gab in gabs.Gabs">
 
-            <div class="pull-left">
+            <div class="col-xs-2">
 
                 <img class="gab-profil-img" ng-src="{{apiUrl}}{{gab.User.ProfilImagePath}}" fallback-src="~/Images/UserProfile.png" />
             </div>
-            <div class="col-md-9">
-                <p class="gab-content" id="gabContent{{gab.Id}}">{{gab.Content}}</p>
+            <div class="col-xs-9">
+                <p class="gab-content">{{gab.Content}}</p>
             </div>
-            <div class="col-md-6">
+            <div class="col-xs-5">
                 <a href="#">{{gab.User.Pseudo}}</a>
                 -
                 <span class="small">{{gab.CreationDate*1000 | date:'dd/MM/yy hh:mm:ss'}}</span>
             </div>
-            <div class="pull-right gab-com-like">
+            <div class="col-xs-5 gab-com-like">
 
-                <ul class=" nav-pills small" role="tablist">
+                <ul class=" nav-pills small pull-right" role="tablist">
                     <li role="presentation">
                         <a href="#" ng-show="gab.isLiked" ng-disabled="!authentication.isAuth"
                            ng-click="unLikeGab(gab)"

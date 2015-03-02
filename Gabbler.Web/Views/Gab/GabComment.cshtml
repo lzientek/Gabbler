@@ -1,21 +1,21 @@
 ﻿<div class="row border-bottom"></div>
-<div class="col-md-11 col-md-offset-1" ng-show="gab.comments.NbOfShownComments < gab.comments.TotalComments">
+<div class="col-xs-11 col-xs-offset-1" ng-show="gab.comments.NbOfShownComments < gab.comments.TotalComments">
     <a href="" ng-click="getMoreComments(gab.Id)">
         <span class="small">[{{gab.comments.NbOfShownComments}}/{{gab.comments.TotalComments}}]</span>
         Show more comments...
     </a>
 </div>
 
-<div class="col-md-11 col-md-offset-1 comments" ng-repeat="comment in gab.comments.Comments">
-    <div class="pull-left">
+<div class="col-xs-11 col-xs-offset-1 comments" ng-repeat="comment in gab.comments.Comments">
+    <div class="col-xs-2">
 
         <img class="gab-profil-img" ng-src="{{apiUrl}}{{comment.User.ProfilImagePath}}" fallback-src="~/Images/UserProfile.png" />
     </div>
-    <div class="col-md-9">
+    <div class="col-xs-9">
         <p class="gab-content">{{comment.Message}}</p>
     </div>
-    <div class="col-md-6">
-        <a href="#">{{comment.User.Pseudo}}</a>
+    <div class="col-xs-6">
+        <a href="" ng-href="User/{{comment.User.Id}}">{{comment.User.Pseudo}}</a>
         -
         <span class="small">{{comment.CreationDate*1000 | date:'dd/MM/yy hh:mm:ss'}}</span>
     </div>
@@ -23,18 +23,18 @@
 
 @*start of the submit form*@
 <div class="row" ng-show="authentication.isAuth">
-    <div class="col-md-11 col-md-offset-1 comment-form">
-        <div class="pull-left">
+    <div class="col-xs-11 col-md-offset-1 comment-form">
+        <div class="col-xs-2">
             <img class="profil-img" ng-src="{{apiUrl}}{{actualUser.ProfilImagePath}}" fallback-src="~/Images/UserProfile.png" />
         </div>
-        <form class="col-md-10" name="commentgabform">
-            <div class="col-md-9">
+        <form class="col-xs-10" name="commentgabform">
+            <div class="col-xs-9">
                 <input type="text" class="form-control input-sm" name="comment" ng-model="newComment.Message" ng-maxlength=255 placeholder="Comment" required />
             </div>
-            <div class="col-md-3">
+            <div class="col-xs-3">
                 <button class="btn btn-primary btn-sm" type="submit" ng-disabled="!commentgabform.$valid" ng-click="addComment(gab.Id,commentgabform)">Comment</button>
             </div>
-            <div class="col-md-12" ng-show="commentgabform.$submitted || !commentgabform.comment.$pristine">
+            <div class="col-xs-12" ng-show="commentgabform.$submitted || !commentgabform.comment.$pristine">
                 <div ng-show="commentgabform.comment.$error.required" class="text-danger">Your comment can not be empty!</div>
                 <div ng-show="commentgabform.comment.$error.maxlength" class="text-danger">The comment is to long!</div>
             </div>
