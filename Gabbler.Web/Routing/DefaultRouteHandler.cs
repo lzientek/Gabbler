@@ -24,7 +24,7 @@ namespace App.Gabbler.Web.Routing
 
             if (filePath == "~/")
             {
-                filePath = "~/views/index.cshtml";
+                filePath = "~/views/Home/Index.cshtml";
             }
             else
             {

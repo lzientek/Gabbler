@@ -11,19 +11,19 @@ angular.module('app.directives', [])
     .directive('gabComments', function() {
         return {
             restrict: 'E',
-            templateUrl: '/views/Gab/GabComment',
+            templateUrl: '/views/Gab/GabComment'
         };
     })
     .directive('gabEdit', function () {
         return {
             restrict: 'E',
-            templateUrl: '/views/Gab/GabEditForm',
+            templateUrl: '/views/Gab/GabEditForm'
         };
     })
     .directive('gabForm', function () {
         return {
             restrict: 'E',
-            templateUrl: '/views/Gab/GabPostForm',
+            templateUrl: '/views/Gab/GabPostForm'
         };
     })
     .directive('fallbackSrc', function () {

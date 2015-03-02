@@ -14,38 +14,36 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
     // UI States, URL Routing & Mapping. For more info see: https://github.com/angular-ui/ui-router
     // ------------------------------------------------------------------------------------------------------------
 
-    $stateProvider
-        .state('home', {
-            url: '/',
-            templateUrl: '/views/Home/index',
-            controller: 'HomeCtrl'
+        $stateProvider
+            .state('home', {
+                url: '/',
+                templateUrl: '/views/Home/index',
+                controller: 'HomeCtrl'
 
-        })
-        .state('editGab', {
-            url: '/gab/edit/:gabId',
-            templateUrl: '/views/Gab/edit',
-            controller: 'EditGabCtrl'
+            })
+            .state('editGab', {
+                url: '/gab/edit/:gabId',
+                templateUrl: '/views/Gab/edit',
+                controller: 'EditGabCtrl'
 
-        })
-        .state('about', {
-            url: '/about',
-            templateUrl: '/views/Home/about',
-            controller: 'AboutCtrl'
-        })
-        .state('login', {
-            url: '/login',
-            layout: 'basic',
-            templateUrl: '/views/User/login',
-            controller: 'LoginCtrl'
-        })
-        .state('register', {
-            url: '/register',
-            layout: 'basic',
-            templateUrl: '/views/User/register',
-            controller: 'RegisterCtrl'
-        })
+            })
+            .state('about', {
+                url: '/about',
+                templateUrl: '/views/Home/about',
+                controller: 'AboutCtrl'
+            })
+            .state('login', {
+                url: '/login',
+                templateUrl: '/views/User/login',
+                controller: 'LoginCtrl'
+            })
+            .state('register', {
+                url: '/register',
+                templateUrl: '/views/User/register',
+                controller: 'RegisterCtrl'
+            })
         .state('otherwise', {
-            url: '*path',
+            url: '*',
             templateUrl: '/views/Error/404',
             controller: 'Error404Ctrl'
         });
@@ -56,7 +54,8 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
 
 // Gets executed after the injector is created and are used to kickstart the application. Only instances and constants
 // can be injected here. This is to prevent further system configuration during application run time.
-.run(['$templateCache', '$rootScope', '$state', '$stateParams', function ($templateCache, $rootScope, $state, $stateParams) {
+.run(['$templateCache', '$rootScope', '$state', '$stateParams',
+    function ($templateCache, $rootScope, $state, $stateParams) {
 
     // <ui-view> contains a pre-rendered template for the current view
     // caching it will prevent a round-trip to a server at the first page load
