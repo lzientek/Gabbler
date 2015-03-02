@@ -43,7 +43,7 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
                 controller: 'RegisterCtrl'
             })
         .state('otherwise', {
-            url: '*',
+            url: '*path',
             templateUrl: '/views/Error/404',
             controller: 'Error404Ctrl'
         });
