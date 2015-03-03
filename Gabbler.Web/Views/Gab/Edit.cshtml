@@ -20,9 +20,9 @@
 
 @*start of the submit form*@
 <div class="row" ng-show="authentication.isAuth">
-    <div class="col-lg-11 col-lg-offset-1 comment-form">
+    <div class="col-lg-10 col-lg-offset-2 comment-form">
         <form class="row" name="gabform">
-            <div class="col-xs-8">
+            <div class="col-xs-7">
                 <input type="text" name="gab" class="form-control" ng-model="gab.Content" placeholder="Gab" required ng-maxlength=255 />
                 <div class="col-md-12" ng-show="gabform.$submitted || !gabform.gab.$pristine">
                     <div ng-show="gabform.gab.$error.required" class="text-danger">The gab can not be empty!</div>
@@ -33,8 +33,11 @@
                 </div>
 
             </div>
-            <div class="col-xs-3">
+            <div class="col-xs-4">
                 <button class="btn btn-primary " type="submit" ng-click="edit()">Modify</button>
+                <button class="btn btn-danger " type="button" ng-click="delete()">Delete</button>
+                <button class="btn btn-default " type="button" onclick="history.back()" >go back</button>
+                
             </div>
         </form>
     </div>

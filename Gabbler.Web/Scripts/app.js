@@ -42,6 +42,11 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
                 templateUrl: '/views/User/register',
                 controller: 'RegisterCtrl'
             })
+            .state('userGab', {
+                url: '/Gab/User/:userId',
+                templateUrl: '/views/User/UserGabs',
+                controller: 'UserGabCtrl'
+            })
         .state('otherwise', {
             url: '*path',
             templateUrl: '/views/Error/404',
@@ -67,6 +72,7 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
     $rootScope.$stateParams = $stateParams;
     $rootScope.apiUrl = serviceBase;
     $rootScope.$on('$stateChangeSuccess', function (event, toState) {
+        $('body').css("background-image", "");
 
         // Sets the layout name, which can be used to display different layouts (header, footer etc.)
         // based on which page the user is located

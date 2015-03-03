@@ -127,7 +127,7 @@ namespace Gabbler.gApi.Controllers
             if (!ModelState.IsValid) { return BadRequest(ModelState); }
             var g = await db.Gabs.FindAsync(id);
             if (g == null) { return NotFound(); }
-            if (g.User.Pseudo != User.Identity.Name) { return Unauthorized(); }
+            if (g.User.Pseudo != User.Identity.Name) { return BadRequest("Not authorized!"); }
 
             try
             {
@@ -158,7 +158,7 @@ namespace Gabbler.gApi.Controllers
             //check values
             var g = await db.Gabs.FindAsync(id);
             if (g == null) { return NotFound(); }
-            if (g.User.Pseudo != User.Identity.Name) { return Unauthorized(); }
+            if (g.User.Pseudo != User.Identity.Name) { return BadRequest("Not authorized!"); }
 
             try
             {

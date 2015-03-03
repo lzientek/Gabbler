@@ -1,0 +1,11 @@
+﻿
+
+@RenderPage("User.cshtml")
+<div class="usergabform" ng-show="user.Id == actualUser.Id">
+    @RenderPage("../Gab/GabPostForm.cshtml")
+</div>
+@RenderPage("../Gab/Gabs.cshtml")
+
+<div class="row">
+    <button class="btn btn-info" ng-click="getMoreGabs()" ng-hide="gabs.isAllShow">voir plus</button>
+</div>

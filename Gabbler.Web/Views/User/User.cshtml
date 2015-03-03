@@ -1,0 +1,17 @@
+﻿<div class="row">
+    <div class="user col-md-8 col-md-offset-2">
+        <div class="col-md-3">
+            <img class="profil-img" ng-src="{{apiUrl}}{{user.ProfilImagePath}}" fallback-src="~/Images/UserProfile.png" />
+        </div>
+        <div class="col-md-7">
+            <h3>{{user.Pseudo}}</h3>
+            <p>{{user.FirstName}} {{user.LastName}}</p>
+            <ul>
+                <li>{{user.NbGab}} Gabs</li>
+                <li>{{user.NbFollowers}} Followers</li>
+                <li>{{user.NbFollows}} Follows</li>
+            </ul>
+            <p class="small">On gabbler since : {{user.CreationDate*1000 | date:'dd/MM/yy'}}</p>
+        </div>
+    </div>
+</div>

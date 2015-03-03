@@ -1,22 +1,21 @@
-﻿<div class="row">
-    <gab-form ng-show="authentication.isAuth"></gab-form>
-</div>
+﻿
 <div class="row">
     <div class="row col-md-8 col-md-offset-2 gab" ng-repeat="gab in gabs.Gabs">
 
-            <div class="col-xs-2">
+        <div class="col-xs-2">
 
-                <img class="gab-profil-img" ng-src="{{apiUrl}}{{gab.User.ProfilImagePath}}" fallback-src="~/Images/UserProfile.png" />
-            </div>
-            <div class="col-xs-9">
-                <p class="gab-content">{{gab.Content}}</p>
-            </div>
-            <div class="col-xs-5">
-                <a href="#">{{gab.User.Pseudo}}</a>
+            <img class="gab-profil-img" ng-src="{{apiUrl}}{{gab.User.ProfilImagePath}}" fallback-src="~/Images/UserProfile.png" />
+        </div>
+        <div class="col-xs-9">
+            <p class="gab-content">{{gab.Content}}</p>
+        </div>
+        <div class="col-xs-12">
+            <div class="col-md-6">
+                <a href="" ng-href="/Gab/User/{{gab.User.Id}}">{{gab.User.Pseudo}}</a>
                 -
                 <span class="small">{{gab.CreationDate*1000 | date:'dd/MM/yy hh:mm:ss'}}</span>
             </div>
-            <div class="col-xs-5 gab-com-like">
+            <div class="col-md-6 gab-com-like" ng-controller="likeCommentCtrl">
 
                 <ul class=" nav-pills small pull-right" role="tablist">
                     <li role="presentation">
@@ -43,6 +42,8 @@
                     </li>
                 </ul>
             </div>
+
+        </div>
         <gab-comments ng-show="gab.showComment" ng-controller="CommentCtrl"></gab-comments>
 
     </div>

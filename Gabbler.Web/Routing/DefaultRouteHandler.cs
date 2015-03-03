@@ -24,7 +24,7 @@ namespace App.Gabbler.Web.Routing
 
             if (filePath == "~/")
             {
-                filePath = "~/views/Home/Index.cshtml";
+                filePath = "~/views/Home/Loading.cshtml";
             }
             else
             {
@@ -43,8 +43,8 @@ namespace App.Gabbler.Web.Routing
 
             if (handler == null)
             {
-                requestContext.RouteData.DataTokens.Add("templateUrl", "/views/Error/404");
-                handler = WebPageHttpHandler.CreateFromVirtualPath("~/views/Error/404.cshtml");
+                //requestContext.RouteData.DataTokens.Add("templateUrl", "/views/Error/404");
+                handler = WebPageHttpHandler.CreateFromVirtualPath("~/views/Home/Loading.cshtml");
             }
             else
             {

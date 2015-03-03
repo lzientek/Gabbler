@@ -9,17 +9,33 @@ app.factory('gabService', ['$http', function ($http) {
             return results;
         });
     };
+
+    var _getAllUserGabs = function (userId) {
+
+        return $http.get(serviceBase + 'Users/'+userId+'/gabs').then(function (results) {
+            return results;
+        });
+    };
+
     var _getGab = function (gabId) {
 
         return $http.get(serviceBase + 'gabs/' + gabId).then(function (results) {
             return results;
         });
     };
+
     var _getMoreGabs = function (startGab) {
         return $http.get(serviceBase + 'Gabs/Start/' + startGab).then(function (results) {
             return results;
         });
     }
+
+    var _getMoreUserGabs = function (userId,startGab) {
+        return $http.get(serviceBase + 'Users/' + userId + '/gabs/' + startGab).then(function (results) {
+            return results;
+        });
+    }
+
     var _getGabComments = function (gabId) {
         return $http.get(serviceBase + 'Gabs/' + gabId + '/Comments').then(function (results) {
             return results;
@@ -68,17 +84,27 @@ app.factory('gabService', ['$http', function ($http) {
             return err;
         });
     };
+    var _deleteGab = function (gabId) {
+        return $http.delete(serviceBase + 'Gabs/' + gabId).success(function (results) {
+            return results;
+        }).error(function (err) {
+            return err;
+        });
+    };
 
     gabServiceFactory.getAllGabs = _getAllGabs;
+    gabServiceFactory.getAllUserGabs = _getAllUserGabs;
     gabServiceFactory.getGab = _getGab;
     gabServiceFactory.getGabComments = _getGabComments;
     gabServiceFactory.getGabMoreComments = _getGabMoreComments;
     gabServiceFactory.getMoreGabs = _getMoreGabs;
+    gabServiceFactory.getMoreUserGabs = _getMoreUserGabs;
 
     gabServiceFactory.addGab = _addGab;
     gabServiceFactory.addComment = _addComment;
 
     gabServiceFactory.editGab = _editGab;
+    gabServiceFactory.deleteGab = _deleteGab;
 
     gabServiceFactory.likeGab = _likeGab;
     gabServiceFactory.unLikeGab = _unLikeGab;

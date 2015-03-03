@@ -21,7 +21,6 @@ namespace Gabbler.gApi.Controllers
 
         [HttpGet]
         [Route("Users/{id}")]
-        [Authorize]
         [ResponseType(typeof(UserDetailModel))]
         public async Task<IHttpActionResult> GetUser([FromUri]int id)
         {
@@ -31,7 +30,6 @@ namespace Gabbler.gApi.Controllers
 
         [HttpGet]
         [Route("Users/{id}/Follows")]
-        [Authorize]
         [ResponseType(typeof(IEnumerable<UserBasicModel>))]
         public async Task<IHttpActionResult> GetFollows([FromUri]int id)
         {
@@ -41,7 +39,6 @@ namespace Gabbler.gApi.Controllers
 
         [HttpGet]
         [Route("Users/{id}/Followers")]
-        [Authorize]
         [ResponseType(typeof(IEnumerable<UserBasicModel>))]
         public async Task<IHttpActionResult> GetFollowers([FromUri]int id)
         {

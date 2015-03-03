@@ -233,10 +233,13 @@
     <Content Include="Views\_PageStart.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
-    <Content Include="Views\Gab\_PartialGab.cshtml" />
+    <Content Include="Views\Gab\Gabs.cshtml" />
     <Content Include="Views\Gab\GabComment.cshtml" />
     <Content Include="Views\Gab\GabPostForm.cshtml" />
     <Content Include="Views\Gab\Edit.cshtml" />
+    <Content Include="Views\Home\Loading.cshtml" />
+    <Content Include="Views\User\UserGabs.cshtml" />
+    <Content Include="Views\User\User.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

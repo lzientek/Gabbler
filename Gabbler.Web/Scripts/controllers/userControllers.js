@@ -4,8 +4,8 @@ angular.module('app.userControllers', [])
 
 // Path: /login
     .controller('LoginCtrl', [
-        '$scope', '$location', '$window', 'authService',
-        function ($scope, $location, $window,authService) {
+        '$scope', '$rootScope', '$location', '$window', 'authService', 'userServices',
+        function ($scope,$rootScope, $location, $window, authService, userServices) {
 
             $scope.$root.title = 'Gabbler - Sign In';
             $scope.loginData = {
@@ -20,7 +20,9 @@ angular.module('app.userControllers', [])
                 authService.login($scope.loginData).then(function (response) {
                     // TODO: right path
                     $location.path('/');
-
+                    userServices.getActualUser().then(function (result) {
+                        $rootScope.actualUser = result.data;
+                    });
                 },
                  function (err) {
                      $scope.message = err.error_description;

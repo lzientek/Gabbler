@@ -1,8 +1,11 @@
 ﻿@{
     PageData["title"] = "Gabbler";
 }
+<div class="row">
+    <gab-form ng-show="authentication.isAuth"></gab-form>
+</div>
 
-@RenderPage("../Gab/_PartialGab.cshtml") 
+@RenderPage("../Gab/Gabs.cshtml") 
 
 <div class="row">
     <button class="btn btn-info" ng-click="getMoreGabs()" ng-hide="gabs.isAllShow">voir plus</button>

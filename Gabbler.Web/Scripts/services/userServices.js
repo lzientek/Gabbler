@@ -8,9 +8,16 @@ app.factory('userServices', ['$http', function ($http) {
             return results;
         });
     };
+    
+    var _getUserById = function (userId) {
 
+        return $http.get(serviceBase + 'Users/'+userId).then(function (results) {
+            return results;
+        });
+    };
 
     usrServiceFactory.getActualUser = _getActualUser;
+    usrServiceFactory.getUserById = _getUserById;
 
     return usrServiceFactory;
 
