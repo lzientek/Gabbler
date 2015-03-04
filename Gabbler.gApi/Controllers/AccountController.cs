@@ -88,12 +88,13 @@ namespace Gabbler.gApi.Controllers
             {
                 try
                 {
-                    var newFile = UploadFile(httpRequest, "Background", usr.Id, ".jpg", ".png");
+                    var newFile = UploadFile(httpRequest, "Background", usr.Id, ".jpg", ".jpeg", ".png");
                     if (newFile != string.Empty)
                     {
                         usr.UserImage.BackgroundImage = newFile;
                         usr.ModificationDate = DateTime.Now;
                         db.SaveChanges();
+                        return Ok(new { path = newFile });
                     }
                 }
                 catch (Exception ex)
@@ -101,7 +102,8 @@ namespace Gabbler.gApi.Controllers
                     return BadRequest(ex.Message);
                 }
             }
-            return new StatusCodeResult(HttpStatusCode.Created, this);
+            return BadRequest("Uncatch error");
+
         }
 
         /// <summary>
@@ -120,20 +122,22 @@ namespace Gabbler.gApi.Controllers
             {
                 try
                 {
-                    var newFile = UploadFile(httpRequest, "ProfileImg", usr.Id, ".jpg", ".png");
+                    var newFile = UploadFile(httpRequest, "ProfileImg", usr.Id, ".jpg",".jpeg", ".png");
                     if (!string.IsNullOrWhiteSpace(newFile))
                     {
                         usr.ModificationDate = DateTime.Now;
                         usr.UserImage.ProfileImage = newFile;
                         db.SaveChanges();
-                    }
+                        return Ok(new { path = newFile });
+                        }
                 }
                 catch (Exception ex)
                 {
                     return BadRequest(ex.Message);
                 }
             }
-            return new StatusCodeResult(HttpStatusCode.Created, this);
+            return BadRequest("Uncatch error");
+
         }
 
 
@@ -229,17 +233,19 @@ namespace Gabbler.gApi.Controllers
             if (postedFile != null && postedFile.ContentLength > 0)
             {
                 string extension = Path.GetExtension(postedFile.FileName);
-                if (validExtension.Length != 0 && !validExtension.Contains(extension))
+                if (validExtension.Length != 0 && !validExtension.Contains(extension.ToLower()))
                 {
                     throw new BadImageFormatException(string.Format("Extension du fichier non valide. ({0})", string.Join(", ", validExtension)), fileName);
                 }
-                string path = string.Format("{0}/{1}{2}{3}", HttpContext.Current.Server.MapPath(FileSaveLocation), fileName, id, extension);
+                string newFileName = string.Format("{0}{1}_{2}{3}", fileName, id, DateTime.Now.Ticks, extension);
+
+                string path = string.Format("{0}/{1}", HttpContext.Current.Server.MapPath(FileSaveLocation), newFileName);
                 if (File.Exists(path))
                 {
                     File.Delete(path);
                 }
                 postedFile.SaveAs(path);
-                return string.Format("{0}/{1}{2}{3}", "/UserFiles", fileName, id, extension); ;
+                return string.Format("{0}/{1}", "/UserFiles", newFileName);
             }
             return string.Empty;
         }

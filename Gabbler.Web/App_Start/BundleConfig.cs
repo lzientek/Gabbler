@@ -21,6 +21,7 @@ namespace App.Gabbler.Web
             bundles.Add(new ScriptBundle("~/js/app").Include(
                 "~/scripts/vendor/angular-ui-router.js",
                 "~/scripts/vendor/angular-local-storage.js",
+                "~/scripts/vendor/angular-file-upload.min.js",
                 "~/scripts/app.js",
                 "~/scripts/filters.js",
                 "~/scripts/services/services.js",

@@ -100,10 +100,20 @@
     <Content Include="Content\variables.less" />
     <Content Include="Global.asax" />
     <Content Include="Images\UserProfile.png" />
+    <Content Include="Scripts\vendor\angular-file-upload-all.js" />
+    <Content Include="Scripts\vendor\angular-file-upload-all.min.js" />
+    <Content Include="Scripts\vendor\angular-file-upload-shim.js" />
+    <Content Include="Scripts\vendor\angular-file-upload-shim.min.js" />
+    <Content Include="Scripts\vendor\angular-file-upload.js" />
+    <Content Include="Scripts\vendor\angular-file-upload.min.js" />
     <Content Include="Scripts\controllers\gabControllers.js" />
     <Content Include="Scripts\controllers\homeControllers.js" />
     <Content Include="Scripts\controllers\indexController.js" />
     <Content Include="Scripts\controllers\userControllers.js" />
+    <Content Include="Scripts\vendor\FileAPI.flash.swf" />
+    <Content Include="Scripts\vendor\FileAPI.min.js" />
+    <Content Include="Scripts\vendor\ng-file-upload-all.js" />
+    <Content Include="Scripts\vendor\ng-file-upload-all.min.js" />
     <Content Include="Scripts\services\authInterceptorService.js" />
     <Content Include="Scripts\services\authService.js" />
     <Content Include="Scripts\directives.js" />
@@ -240,6 +250,7 @@
     <Content Include="Views\Home\Loading.cshtml" />
     <Content Include="Views\User\UserGabs.cshtml" />
     <Content Include="Views\User\User.cshtml" />
+    <Content Include="Views\User\UserEdit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

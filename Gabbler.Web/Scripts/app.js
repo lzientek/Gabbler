@@ -4,6 +4,7 @@ var serviceBase = 'http://api.gabbler.com/';
 // Declares how the application should be bootstrapped. See: http://docs.angularjs.org/guide/module
 var app = angular.module('app', [
     'ui.router', 'app.filters', 'app.services', 'app.directives', 'LocalStorageModule',
+    'angularFileUpload',
     'app.indexController', 'app.homeControllers', 'app.gabControllers', 'app.userControllers'
 ]);
 
@@ -46,6 +47,11 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
                 url: '/Gab/User/:userId',
                 templateUrl: '/views/User/UserGabs',
                 controller: 'UserGabCtrl'
+            })
+            .state('editUser', {
+                url: '/User/Edit/:userId',
+                templateUrl: '/views/User/UserEdit',
+                controller: 'UserEditCtrl'
             })
         .state('otherwise', {
             url: '*path',

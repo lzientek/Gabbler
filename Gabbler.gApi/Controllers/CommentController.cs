@@ -13,7 +13,8 @@ namespace Gabbler.gApi.Controllers
 {
     public class CommentController : ApiController
     {
-        public const int MaxComment = 2;
+        public const int MaxCommentFirst = 2;
+        public const int MaxComment = 10;
 
 
         private DbEntities db = new DbEntities();
@@ -24,7 +25,9 @@ namespace Gabbler.gApi.Controllers
         [ResponseType(typeof (CommentList))]
         public async Task<IHttpActionResult> CommentsFromGab([FromUri] int id)
         {
-            return await CommentsFromGab(id, 0);
+            var gab = await db.Gabs.FindAsync(id);
+            if (gab == null) { return NotFound(); }
+            return Ok(gab.Comments.OrderByDescending(c => c.Id).ToList().ToCommentsList(0, MaxCommentFirst));
         }
 
         [HttpGet]

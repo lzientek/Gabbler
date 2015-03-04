@@ -16,8 +16,18 @@ app.factory('userServices', ['$http', function ($http) {
         });
     };
 
+    var _editUser = function(data) {
+        return $http.put(serviceBase + 'Account/Me',data).success(function (results) {
+            return results;
+        }).error(function(error) {
+            return error;
+        });
+    }
+
     usrServiceFactory.getActualUser = _getActualUser;
     usrServiceFactory.getUserById = _getUserById;
+
+    usrServiceFactory.editUser = _editUser;
 
     return usrServiceFactory;
 

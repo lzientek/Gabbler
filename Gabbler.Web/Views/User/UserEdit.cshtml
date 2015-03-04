@@ -1,0 +1,91 @@
+﻿
+
+
+
+<div class="row user-edit">
+    <div class="user col-md-8 col-md-offset-2">
+        <form class="col-md-12" novalidate>
+
+            <div class="col-md-3">
+                <img class="profil-img" ng-src="{{apiUrl}}{{user.ProfilImagePath}}" fallback-src="~/Images/UserProfile.png" />
+            </div>
+            <div class="col-md-7">
+                <h3>{{user.Pseudo}}</h3>
+                <p>
+                    <input type="text" class="form-control input-sm" ng-model="user.FirstName" placeholder="first name" maxlength="100" required />
+                </p>
+                <p>
+                    <input type="text" class="form-control input-sm" ng-model="user.LastName" placeholder="first name" maxlength="100" required />
+                </p>
+                <p>
+                    <input type="text" class="form-control input-sm" ng-model="user.Mail" placeholder="Email" required />
+                </p>
+                <div ng-show="message" class="alert alert-danger">
+                    {{message}}
+                </div>
+                <button class="btn btn-primary btn-block" type="submit" ng-click="edit()">Modify</button>
+
+            </div>
+        </form>
+
+
+        @*profil image upload*@
+        <div class="col-md-offset-3 col-md-9 uploader" ng-controller="UploadProfilCtrl">
+
+            <div ng-file-drop ng-model="files" class="drop-box"
+                 drag-over-class="dragover"
+                 accept=".jpg,.png">
+                <div class="input-group">
+                    <span class="input-group-addon">Drop new profile image</span>
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" ng-file-select accept=".jpg,.png" ng-file-change="upload($files)">
+                            Choose a image
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-9">
+
+                <div class="progress " ng-show="profilPourcent">
+                    <div class="progress-bar progress-bar-success" id="progressbarProfil" role="progressbar" aria-valuenow="{{profilPourcent}}" aria-valuemin="0" aria-valuemax="100">
+                        {{profilPourcent}}%
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @*background upload*@
+        <div class="col-md-offset-3 col-md-9 uploader" ng-controller="UploadBackgroundCtrl">
+
+            <div ng-file-drop ng-model="files" class="drop-box"
+                 drag-over-class="dragover"
+                 ng-file-change="upload($files)"
+                 accept=".jpg,.png">
+                <div class="input-group">
+                    <span class="input-group-addon" hide-on-drop-not-available="true">Drop new background image</span>
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" ng-file-select accept=".jpg,.png" ng-file-change="upload($files)">
+                            Choose a image
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="progress " ng-show="backPourcent">
+                    <div class="progress-bar progress-bar-success" id="progressbarBack" role="progressbar" aria-valuenow="{{backPourcent}}" aria-valuemin="0" aria-valuemax="100">
+                        {{backPourcent}}%
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+

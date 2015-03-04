@@ -17,7 +17,7 @@ namespace Gabbler.gApi.Controllers
         private DbEntities db = new DbEntities();
         private AuthRepository rp = new AuthRepository();
 
-        private const int NbOfGabsPerPage = 2;
+        private const int NbOfGabsPerPage = 6;
 
         /// <summary>
         /// get a gab by id
@@ -162,6 +162,8 @@ namespace Gabbler.gApi.Controllers
 
             try
             {
+                db.Comments.RemoveRange(g.Comments);
+                db.Likes.RemoveRange(g.Likes);
                 db.Gabs.Remove(g);
                 await db.SaveChangesAsync();
                 return Ok(new MsgModel("Removed."));

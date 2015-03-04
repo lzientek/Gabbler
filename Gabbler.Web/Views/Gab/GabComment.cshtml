@@ -27,7 +27,7 @@
         <div class="col-xs-2">
             <img class="profil-img" ng-src="{{apiUrl}}{{actualUser.ProfilImagePath}}" fallback-src="~/Images/UserProfile.png" />
         </div>
-        <form class="col-xs-10" name="commentgabform">
+        <form class="col-xs-10" name="commentgabform" novalidate>
             <div class="col-xs-9">
                 <input type="text" class="form-control input-sm" name="comment" ng-model="newComment.Message" ng-maxlength=255 placeholder="Comment" required />
             </div>
