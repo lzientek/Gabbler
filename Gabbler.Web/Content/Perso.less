@@ -90,3 +90,55 @@
 #ui-view{
     padding-bottom:50px;
 }
+
+/*Popup JS style*/
+.popup{
+    position:fixed;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+
+    background-color:rgba(30, 30, 30, 0.70);
+}
+.popup .dialog{
+    position:relative;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:150px;
+    min-height:150px;
+    width:330px;
+    background-color:#fff;
+}
+.dialog-success{
+    border-top:solid 9px @brand-success;
+}
+
+.dialog-danger{
+    border-top:solid 9px @brand-danger;
+}
+.dialog-warning{
+    border-top:solid 9px @brand-warning;
+}
+.dialog-info{
+    border-top:solid 9px @brand-info;
+}
+.popup .dialog p{
+    margin:13px;
+    margin-left:20px;
+    padding-bottom:70px;
+    font-size:18pt;
+}
+
+.popup-btns{
+    position:absolute;
+    bottom:10px;
+    right:17px;
+}
+
+.popup .dialog .popup-ok,
+.popup .dialog .popup-cancel{
+    position:relative;
+    float:right;
+    margin-left:10px;
+}

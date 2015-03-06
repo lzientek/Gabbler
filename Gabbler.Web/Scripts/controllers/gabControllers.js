@@ -73,7 +73,7 @@ angular.module('app.gabControllers', [])
 
                     }).error(function (error) {
                         $scope.newGab.newGab = content;
-                        alert(error.Message);
+                        alert(error.Message,'danger');
                     });
             }
 
@@ -152,7 +152,7 @@ angular.module('app.gabControllers', [])
 
                     }).error(function (error) {
                         $scope.newGab.newGab = content;
-                        alert(error.Message);
+                        alert(error.Message,'danger');
                     });
             }
 
@@ -181,17 +181,19 @@ angular.module('app.gabControllers', [])
                     $scope.gab = result;
                     alert('saved');
                 }).error(function (error) {
-                    alert(error.Message);
+                    alert(error.Message,'danger');
                 });
             }
 
             //delete a gab
-            $scope.delete = function() {
-                gabService.deleteGab($scope.gab.Id).success(function(result) {
-                    alert("deleted");
-                    history.back();
-                }).error(function(error) {
-                    alert(error.Message);
+            $scope.delete = function () {
+                valid("Do you want to delete this gab?", "danger", function() {
+                    gabService.deleteGab($scope.gab.Id).success(function(result) {
+                        alert("Deleted!");
+                        history.back();
+                    }).error(function(error) {
+                        alert(error.Message, 'danger');
+                    });
                 });
             }
         }])
@@ -208,7 +210,7 @@ angular.module('app.gabControllers', [])
                     $scope.gabs.Gabs[i].isLiked = true;
 
                 }).error(function (error) {
-                    alert(error.Message);
+                    alert(error.Message,'danger');
                 });
             }
 
@@ -221,7 +223,7 @@ angular.module('app.gabControllers', [])
 
 
                 }).error(function (error) {
-                    alert(error.Message);
+                    alert(error.Message,'danger');
                 });
             }
 
@@ -283,7 +285,7 @@ angular.module('app.gabControllers', [])
                     $scope.gabs.Gabs[i].comments.Comments.push(result);
 
                 }).error(function (error) {
-                    alert(error.Message);
+                    alert(error.Message,'danger');
                 });
             }
 

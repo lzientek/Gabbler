@@ -98,7 +98,7 @@ angular.module('app.userControllers', [])
                     $scope.user = result;
                     alert("saved");
                 }).error(function(error) {
-                    alert(error.Message);
+                    alert(error.Message,'danger');
                 });
             }
 

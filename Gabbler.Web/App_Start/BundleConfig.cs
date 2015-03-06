@@ -1,8 +1,3 @@
-// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="BundleConfig.cs" company="">
-//   Copyright © 2015 
-// </copyright>
-// --------------------------------------------------------------------------------------------------------------------
 
 namespace App.Gabbler.Web
 {
@@ -33,7 +28,8 @@ namespace App.Gabbler.Web
                 "~/scripts/controllers/indexController.js",
                 "~/scripts/controllers/gabControllers.js",
                 "~/scripts/controllers/homeControllers.js",
-                "~/scripts/controllers/userControllers.js"
+                "~/scripts/controllers/userControllers.js",
+                "~/scripts/PopupJS.min.js"
                 ));
         }
     }
