@@ -252,7 +252,6 @@
     <Content Include="Views\User\UserGabs.cshtml" />
     <Content Include="Views\User\User.cshtml" />
     <Content Include="Views\User\UserEdit.cshtml" />
-    <Content Include="Views\Home\TimeLine.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

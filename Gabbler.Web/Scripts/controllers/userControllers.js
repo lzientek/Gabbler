@@ -18,7 +18,8 @@ angular.module('app.userControllers', [])
 
             $scope.login = function () {
                 authService.login($scope.loginData).then(function (response) {
-                    $location.path('/TimeLine');
+                    // TODO: right path
+                    $location.path('/');
                     userServices.getActualUser().then(function (result) {
                         $rootScope.actualUser = result.data;
                     });

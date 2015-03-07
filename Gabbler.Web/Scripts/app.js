@@ -53,11 +53,6 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
                 templateUrl: '/views/User/UserEdit',
                 controller: 'UserEditCtrl'
             })
-            .state('TimeLine', {
-                url: '/TimeLine',
-                templateUrl: '/views/Home/TimeLine',
-                controller: 'TimeLineCtrl'
-            })
         .state('otherwise', {
             url: '*path',
             templateUrl: '/views/Error/404',
