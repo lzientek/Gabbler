@@ -8,6 +8,7 @@ using Gabbler.gApi.Helpers;
 using Gabbler.gApi.Helpers.Auth;
 using Gabbler.gApi.Helpers.ModelExtensions;
 using Gabbler.gApi.Models;
+using Gabbler.gApi.Models.Search;
 using Gabbler.gApi.Models.Gabs;
 
 namespace Gabbler.gApi.Controllers
@@ -203,5 +204,7 @@ namespace Gabbler.gApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+    
     }
 }

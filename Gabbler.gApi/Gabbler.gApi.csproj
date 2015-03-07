@@ -142,6 +142,7 @@
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\GabController.cs" />
     <Compile Include="Controllers\LikeController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Helpers\Auth\AuthContext.cs" />
     <Compile Include="Helpers\Auth\AuthRepository.cs" />
@@ -157,6 +158,7 @@
     <Compile Include="Models\Gabs\GabDetailModel.cs" />
     <Compile Include="Models\Gabs\GabsList.cs" />
     <Compile Include="Models\MsgModel.cs" />
+    <Compile Include="Models\Search\SearchListModel.cs" />
     <Compile Include="Models\Users\UserBasicModel.cs" />
     <Compile Include="Models\Users\UserDetailModel.cs" />
     <Compile Include="Helpers\ModelExtensions\UserExtensions.cs" />
