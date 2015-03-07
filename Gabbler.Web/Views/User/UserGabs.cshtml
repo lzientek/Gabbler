@@ -2,7 +2,7 @@
 
 @RenderPage("User.cshtml")
 <div class="usergabform" ng-show="user.Id == actualUser.Id">
-    @RenderPage("../Gab/GabPostForm.cshtml")
+    <gab-form ng-show="authentication.isAuth"></gab-form>
 </div>
 @RenderPage("../Gab/Gabs.cshtml")
 

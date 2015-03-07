@@ -85,7 +85,72 @@ angular.module('app.gabControllers', [])
         }
     ])
 
+         // Path: /
+    .controller('TimeLineCtrl', [
+        '$scope', '$location', '$window', '$rootScope', 'gabService',
+        function ($scope, $location, $window, $rootScope, gabService) {
 
+
+            //get gabs
+            gabService.getTimeLineGabs().then(function (result) {
+                $scope.gabs = result.data;
+
+                //add isLiked
+                for (var i = 0; i < $scope.gabs.Gabs.length; i++) {
+                    $scope.gabs.Gabs[i].isLiked = $scope.gabs.Gabs[i].Likes.indexOf($rootScope.authentication.userName) != -1;
+                    $scope.gabs.Gabs[i].showComment = false;
+                }
+                $scope.gabs.isAllShow = result.data.NbOfShownGabs >= result.data.TotalGabs;
+                $('[data-toggle="tooltip"]').tooltip();
+
+            });
+
+            //get more gabs
+            $scope.getMoreGabs = function () {
+                $scope.gabs.isAllShow = true;
+                gabService.getMoreTimeLineGabs($scope.gabs.NbOfShownGabs).then(function (result) {
+                    //add gabs to the list
+                    $scope.gabs.StartGab = result.data.StartGab;
+                    $scope.gabs.NbOfShownGabs += result.data.NbOfShownGabs;
+
+                    //add the isLiked
+                    for (var i = 0; i < result.data.Gabs.length; i++) {
+                        result.data.Gabs[i].isLiked = result.data.Gabs[i].Likes.indexOf($rootScope.authentication.userName) != -1;
+                        result.data.Gabs[i].showComment = false;
+                    }
+
+                    Array.prototype.push.apply($scope.gabs.Gabs, result.data.Gabs);
+                    $scope.gabs.isAllShow = $scope.gabs.NbOfShownGabs >= result.data.TotalGabs;
+
+                });
+            }
+
+            $scope.newGab = { Content: "" };
+            $scope.addGab = function () {
+                var content = { Content: $scope.newGab.Content };
+                $scope.newGab.Content = ""; //reset the field value
+                gabService.addGab(content)
+                    .success(function (result) {
+                        for (var i = $scope.gabs.Gabs.length - 1; i >= 0; i--) {
+                            $scope.gabs.Gabs[i + 1] = $scope.gabs.Gabs[i];
+                        }
+                        $scope.gabs.Gabs[0] = result;
+                        $scope.gabs.NbOfShownGabs++;
+                        $scope.gabform.$setPristine();
+
+                    }).error(function (error) {
+                        $scope.newGab.newGab = content;
+                        alert(error.Message, 'danger');
+                    });
+            }
+
+            //page vars
+            $scope.$root.title = 'My TimeLine - gabbler';
+            $scope.$on('$viewContentLoaded', function () {
+                $window.ga('send', 'pageview', { 'page': $location.path(), 'title': $scope.$root.title });
+            });
+        }
+    ])
 
     .controller('UserGabCtrl', [
         '$scope', '$location', '$stateParams', '$window', '$rootScope', 'gabService', 'userServices',

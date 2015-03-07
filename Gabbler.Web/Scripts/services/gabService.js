@@ -91,6 +91,17 @@ app.factory('gabService', ['$http', function ($http) {
             return err;
         });
     };
+    var _getTimeLineGabs = function () {
+        return $http.get(serviceBase + 'Gabs/TimeLine').then(function (results) {
+            return results;
+        });
+
+    }
+    var _getMoreTimeLineGabs = function (startGab) {
+        return $http.get(serviceBase + 'Gabs/TimeLine/' + startGab).then(function (results) {
+            return results;
+        });
+    }
 
     gabServiceFactory.getAllGabs = _getAllGabs;
     gabServiceFactory.getAllUserGabs = _getAllUserGabs;
@@ -99,7 +110,8 @@ app.factory('gabService', ['$http', function ($http) {
     gabServiceFactory.getGabMoreComments = _getGabMoreComments;
     gabServiceFactory.getMoreGabs = _getMoreGabs;
     gabServiceFactory.getMoreUserGabs = _getMoreUserGabs;
-
+    gabServiceFactory.getTimeLineGabs = _getTimeLineGabs;
+    gabServiceFactory.getMoreTimeLineGabs = _getMoreTimeLineGabs;
     gabServiceFactory.addGab = _addGab;
     gabServiceFactory.addComment = _addComment;
 
