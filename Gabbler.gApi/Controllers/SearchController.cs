@@ -24,7 +24,7 @@ namespace Gabbler.gApi.Controllers
         {
             try
             {
-                var userSearchs = db.Users.Where(x => x.LastName.Contains(text)).ToList();
+                var userSearchs = db.Users.Where(x => x.LastName.Contains(text) || x.FirstName.Contains(text) || x.Pseudo.Contains(text).ToList();
                 var gabSearchs = db.Gabs.Where(x => x.Message.Contains(text)).ToList();
 
                 SearchListModel searchResult = new SearchListModel();
