@@ -32,8 +32,6 @@ namespace Gabbler.gApi.Helpers.ModelExtensions
             return gabList;
         }
 
-
-
         internal static GabBasicModel ToGabBasicModel(this Gab gab)
         {
             return new GabBasicModel()
