@@ -1,9 +1,12 @@
-﻿
+﻿@{
+    PageData["title"] = "My TimeLine";
+}
 
-@RenderPage("User.cshtml")
-<div class="usergabform" ng-show="user.Id == actualUser.Id">
+<h2>Timeline</h2>
+<div class="row">
     <gab-form ng-show="authentication.isAuth"></gab-form>
 </div>
+
 @RenderPage("../Gab/Gabs.cshtml")
 
 <div class="row">

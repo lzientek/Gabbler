@@ -55,6 +55,7 @@ app.factory('gabService', ['$http', function ($http) {
             return err;
         });
     }
+
     var _unLikeGab = function (gabId) {
         return $http.delete(serviceBase + 'Gabs/' + gabId + '/Like').success(function (results) {
             return results;
@@ -70,6 +71,7 @@ app.factory('gabService', ['$http', function ($http) {
             return err;
         });
     }
+
     var _addGab = function (gab) {
         return $http.post(serviceBase + 'Gabs/', gab).success(function (results) {
             return results;
@@ -77,6 +79,7 @@ app.factory('gabService', ['$http', function ($http) {
             return err;
         });
     }
+
     var _editGab = function (gabId, gab) {
         return $http.put(serviceBase + 'Gabs/' + gabId, gab).success(function (results) {
             return results;
@@ -84,6 +87,7 @@ app.factory('gabService', ['$http', function ($http) {
             return err;
         });
     };
+
     var _deleteGab = function (gabId) {
         return $http.delete(serviceBase + 'Gabs/' + gabId).success(function (results) {
             return results;
@@ -92,9 +96,25 @@ app.factory('gabService', ['$http', function ($http) {
         });
     };
 
+    var _getTimeLineGabs = function() {
+        return $http.get(serviceBase + 'Gabs/TimeLine').then(function (results) {
+            return results;
+        });
+
+    }
+    var _getMoreTimeLineGabs = function (startGab) {
+        return $http.get(serviceBase + 'Gabs/TimeLine/'+startGab).then(function (results) {
+            return results;
+        });
+    }
+
+
+
     gabServiceFactory.getAllGabs = _getAllGabs;
     gabServiceFactory.getAllUserGabs = _getAllUserGabs;
     gabServiceFactory.getGab = _getGab;
+    gabServiceFactory.getTimeLineGabs = _getTimeLineGabs;
+    gabServiceFactory.getMoreTimeLineGabs = _getMoreTimeLineGabs;
     gabServiceFactory.getGabComments = _getGabComments;
     gabServiceFactory.getGabMoreComments = _getGabMoreComments;
     gabServiceFactory.getMoreGabs = _getMoreGabs;
