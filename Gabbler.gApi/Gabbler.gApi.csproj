@@ -142,6 +142,8 @@
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\GabController.cs" />
     <Compile Include="Controllers\LikeController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Models\Search\SearchListModel.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Helpers\Auth\AuthContext.cs" />
     <Compile Include="Helpers\Auth\AuthRepository.cs" />
