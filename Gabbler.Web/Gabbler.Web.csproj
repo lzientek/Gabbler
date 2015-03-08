@@ -104,6 +104,7 @@
     <Content Include="Scripts\PopupJS.min.js">
       <DependentUpon>PopupJS.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\services\searchService.js" />
     <Content Include="Scripts\vendor\angular-file-upload-all.js" />
     <Content Include="Scripts\vendor\angular-file-upload-all.min.js" />
     <Content Include="Scripts\vendor\angular-file-upload-shim.js" />
@@ -252,6 +253,7 @@
     <Content Include="Views\User\UserGabs.cshtml" />
     <Content Include="Views\User\User.cshtml" />
     <Content Include="Views\User\UserEdit.cshtml" />
+    <Content Include="Views\Search\SmallSearchForm.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

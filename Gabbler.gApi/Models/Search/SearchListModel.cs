@@ -9,8 +9,10 @@ namespace Gabbler.gApi.Models.Search
 {
     public class SearchListModel
     {
+        public int NbResultUser { get; set; }
+        public int NbResultGabs { get; set; }
         public IEnumerable<UserBasicModel> ListOfUser { get; set; }
-        public GabsList ListOfGab { get; set; }
+        public IEnumerable<GabBasicModel> ListOfGab { get; set; }
 
 
 

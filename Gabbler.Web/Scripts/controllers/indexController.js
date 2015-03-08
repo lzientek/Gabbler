@@ -18,4 +18,16 @@
             $rootScope.authentication = authService.authentication;
 
         }
+    ])
+    .controller('SearchCtrl', [
+        '$scope', 'searchService', 
+        function ($scope,searchService) {
+            $scope.searchVal = "";
+            $scope.result = { NbResultUser: 0, NbResultGab: 0, ListOfUser: [], ListOfGab: [] };
+            $scope.search = function() {
+                searchService.getBasicSearch($scope.searchVal).then(function(res) {
+                    $scope.result = res.data;
+                });
+            };
+        }
     ]);

@@ -269,6 +269,12 @@ a.list-group-item-danger.active:focus {
   border-radius: 25px;
   margin: 5px;
 }
+.profil-img-sm {
+  height: 33.33333333px;
+  width: 33.33333333px;
+  border-radius: 16.66666667px;
+  margin: 2px;
+}
 .user .profil-img {
   height: 125px;
   width: 125px;
@@ -381,6 +387,31 @@ a.list-group-item-danger.active:focus {
   position: relative;
   float: right;
   margin-left: 10px;
+}
+.search-form .dropdown-menu {
+  border-radius: 0;
+  border-color: #18bc9c;
+  min-width: 450px;
+  overflow-wrap: break-word;
+  overflow: hidden;
+}
+.top-search {
+  background-color: #18bc9c;
+  color: #fff;
+  margin-bottom: 3px;
+  margin-top: 4px;
+}
+.top-search a,
+.top-search a:hover {
+  color: #fff;
+}
+.search-form h4 {
+  margin-top: 2px;
+  padding: 0;
+  margin-left: 3px;
+}
+.search-result:hover {
+  background-color: #ecf0f1;
 }
 /*! normalize.css v2.1.3 | MIT License | git.io/normalize */
 article,

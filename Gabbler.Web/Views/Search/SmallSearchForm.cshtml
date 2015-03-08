@@ -1,0 +1,40 @@
+﻿<form class="navbar-form navbar-left search-form" name="searchForm" role="search" ng-controller="SearchCtrl">
+    <div class="dropdown" ng-class="{open: searchVal}">
+        <div class="form-group">
+            <input ng-model="searchVal" name="searchTxt" type="text" class="form-control" ng-change="search()" placeholder="Search">
+        </div>
+        <div class="dropdown-menu">
+            <div class="col-md-12">
+                <p>Search : {{searchVal}}</p>
+            </div>
+            @* result users *@
+            <div class="col-md-12" ng-show="result.NbResultUser>0">
+                <div class="row top-search">
+                    Users ~ {{result.NbResultUser}} Resultats
+                    <a class="pull-right" href="" ng-href="/search/{{searchVal}}">show more...</a>
+                </div>
+                <div class="row search-result" ng-repeat="resultUsr in result.ListOfUser">
+                    <div class="col-md-2">
+                        <img class="profil-img-sm" fallback-src="~/Images/UserProfile.png" ng-src="{{apiUrl}}{{resultUsr.ProfilImagePath}}" />
+                    </div>
+                    <div class="col-md-6">
+                        <h4>{{resultUsr.Pseudo}}</h4>
+                    </div>
+                    <div class="col-md-4">
+                        <button class="btn btn-primary btn-sm pull-right">Follow ({{resultUsr.NbFollowers}})</button>
+                    </div>
+                </div>
+            </div>
+            @* result gabs *@
+            <div class="col-md-12" ng-show="result.NbResultGabs>0">
+                <div class="row top-search">Gabs ~ 
+                    {{result.NbResultGabs}} Resultats
+                    <a class="pull-right" href="" ng-href="/search/{{searchVal}}">show more...</a>
+                </div>
+                <div class="row" ng-repeat="resultGab in result.ListOfGab">
+                    <p>{{resultGab.Content}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -22,7 +22,12 @@
     border-radius: @gab-profilImg-borderRad;
     margin: 5px;
 }
-
+.profil-img-sm {
+    height: @gab-profilImg-size /1.5;
+    width: @gab-profilImg-size /1.5;
+    border-radius: @gab-profilImg-borderRad/1.5;
+    margin: 2px;
+}
 .user .profil-img {
     height: @gab-profilImg-size *2.5;
     width: @gab-profilImg-size *2.5;
@@ -141,4 +146,28 @@
     position:relative;
     float:right;
     margin-left:10px;
+}
+.search-form .dropdown-menu{
+    border-radius:0;
+    border-color:@brand-success;
+    min-width:450px;
+    overflow-wrap:break-word;
+    overflow:hidden;
+}
+.top-search{
+    background-color: @brand-success;
+    color:#fff;
+    margin-bottom:3px;
+    margin-top:4px;
+}
+.top-search a,.top-search a:hover{
+    color:#fff;
+}
+.search-form h4{
+    margin-top:2px;
+    padding:0;
+    margin-left:3px;
+}
+.search-result:hover{
+    background-color:@body-bg;
 }
