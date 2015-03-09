@@ -48,7 +48,7 @@ angular.module('app.gabControllers', [])
 
                     //add the isLiked
                     for (var i = 0; i < result.data.Gabs.length; i++) {
-                        result.data.Gabs[i].isLiked = result.data.Gabs[i].Likes.indexOf($rootScope.authentication.userName) != -1;
+                        result.data.Gabs[i].isLiked = result.data.Gabs[i].Likes.indexOf($rootScope.authentication.userName) !== -1;
                         result.data.Gabs[i].showComment = false;
                     }
 
@@ -73,7 +73,7 @@ angular.module('app.gabControllers', [])
 
                     }).error(function (error) {
                         $scope.newGab.newGab = content;
-                        alert(error.Message,'danger');
+                        alert(error.Message, 'danger');
                     });
             }
 
@@ -217,7 +217,7 @@ angular.module('app.gabControllers', [])
 
                     }).error(function (error) {
                         $scope.newGab.newGab = content;
-                        alert(error.Message,'danger');
+                        alert(error.Message, 'danger');
                     });
             }
 
@@ -230,6 +230,48 @@ angular.module('app.gabControllers', [])
             });
         }
     ])
+
+    .controller('GabIdCtrl', ['$scope', '$rootScope', '$stateParams', 'gabService',
+        function ($scope,$rootScope, $stateProvider, gabService) {
+
+            //get the gab
+            gabService.getGab($stateProvider.gabId).then(function (result) {
+                $scope.gab = result.data;
+                $scope.gab.isLiked = $scope.gab.Likes.indexOf($rootScope.authentication.userName) !== -1;
+                $scope.gab.showComment = true;
+
+                gabService.getGabComments($scope.gab.Id).then(function (result) {
+                    //get gab
+                    result.data.Comments = result.data.Comments.reverse();
+                    $scope.gab.comments = result.data;
+                });
+            });
+
+            // like a gab
+            $scope.likeGab = function (gab) {
+                gabService.likeGab(gab.Id).success(function (result) {
+                    $scope.gab.NbOfLikes += 1;
+                    $scope.gab.isLiked = true;
+
+                }).error(function (error) {
+                    alert(error.Message, 'danger');
+                });
+            }
+
+            //unlike a gab
+            $scope.unLikeGab = function (gab) {
+                gabService.unLikeGab(gab.Id).success(function (result) {
+                    var i = getGabIndex($scope, gab.Id);
+                    $scope.gab.NbOfLikes -= 1;
+                    $scope.gab.isLiked = false;
+
+
+                }).error(function (error) {
+                    alert(error.Message, 'danger');
+                });
+            }
+
+        }])
 
     //edit controller
     .controller('EditGabCtrl', ['$scope', '$stateParams', '$window', '$rootScope', 'gabService',
@@ -246,17 +288,17 @@ angular.module('app.gabControllers', [])
                     $scope.gab = result;
                     alert('saved');
                 }).error(function (error) {
-                    alert(error.Message,'danger');
+                    alert(error.Message, 'danger');
                 });
             }
 
             //delete a gab
             $scope.delete = function () {
-                valid("Do you want to delete this gab?", "danger", function() {
-                    gabService.deleteGab($scope.gab.Id).success(function(result) {
+                valid("Do you want to delete this gab?", "danger", function () {
+                    gabService.deleteGab($scope.gab.Id).success(function (result) {
                         alert("Deleted!");
                         history.back();
-                    }).error(function(error) {
+                    }).error(function (error) {
                         alert(error.Message, 'danger');
                     });
                 });
@@ -275,7 +317,7 @@ angular.module('app.gabControllers', [])
                     $scope.gabs.Gabs[i].isLiked = true;
 
                 }).error(function (error) {
-                    alert(error.Message,'danger');
+                    alert(error.Message, 'danger');
                 });
             }
 
@@ -288,7 +330,7 @@ angular.module('app.gabControllers', [])
 
 
                 }).error(function (error) {
-                    alert(error.Message,'danger');
+                    alert(error.Message, 'danger');
                 });
             }
 
@@ -340,17 +382,24 @@ angular.module('app.gabControllers', [])
                 gabService.addComment(gabId, $scope.newComment).success(function (result) {
                     $scope.newComment.Message = "";
                     form.$setPristine();
-                    var i = getGabIndex($scope, gabId);
-
-                    //increment des variable et ajout du comment
-                    $scope.gabs.Gabs[i].showComment = true;
-                    $scope.gabs.Gabs[i].NbOfComments++;
-                    $scope.gabs.Gabs[i].comments.TotalComments++;
-                    $scope.gabs.Gabs[i].comments.NbOfShownComments++;
-                    $scope.gabs.Gabs[i].comments.Comments.push(result);
+                    var gab;
+                    if ($scope.gabs !==undefined) {
+                        var i = getGabIndex($scope, gabId);
+                        gab =$scope.gabs.Gabs[i];
+                    }
+                    else if ($scope.gab !== undefined) {
+                        gab = $scope.gab;
+                    }
+                    if (gab != undefined) {
+                        gab.showComment = true;
+                        gab.NbOfComments++;
+                        gab.comments.TotalComments++;
+                        gab.comments.NbOfShownComments++;
+                        gab.comments.Comments.push(result);
+                    }
 
                 }).error(function (error) {
-                    alert(error.Message,'danger');
+                    alert(error.Message, 'danger');
                 });
             }
 

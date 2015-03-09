@@ -254,6 +254,7 @@
     <Content Include="Views\User\User.cshtml" />
     <Content Include="Views\User\UserEdit.cshtml" />
     <Content Include="Views\Search\SmallSearchForm.cshtml" />
+    <Content Include="Views\Gab\GabById.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

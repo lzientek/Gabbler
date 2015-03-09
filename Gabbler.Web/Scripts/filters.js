@@ -8,8 +8,19 @@ angular.module('app.filters', [])
         }
     }])
 
-.filter('join', ['version', function (version) {
+.filter('join',  function () {
     return function (array) {
+        if (!array)return null;
         return array.join(",<br/>");
     }
-}]);
+})
+.filter('substr',  function () {
+    return function (text) {
+        if (!text) return text;
+        if (text.length > 60) {
+            var smtxt = text.substring(0, 56) + " ...";
+            return smtxt;
+        }
+        return text;
+    }
+});

@@ -1,10 +1,10 @@
 ﻿
 <div class="row">
-    <div ng-dblclick="showGab(gab.Id)" class="row col-md-8 col-md-offset-2 gab" ng-repeat="gab in gabs.Gabs">
+    <div class="row col-md-8 col-md-offset-2 gab">
 
         <div class="col-xs-2">
 
-            <img ng-click="showUser(gab.User.Id)" class="gab-profil-img" ng-src="{{apiUrl}}{{gab.User.ProfilImagePath}}" fallback-src="~/Images/UserProfile.png" />
+            <img class="gab-profil-img" ng-src="{{apiUrl}}{{gab.User.ProfilImagePath}}" fallback-src="~/Images/UserProfile.png" />
         </div>
         <div class="col-xs-9">
             <p class="gab-content">{{gab.Content}}</p>
@@ -15,7 +15,7 @@
                 -
                 <span class="small">{{gab.CreationDate*1000 | date:'dd/MM/yy hh:mm:ss'}}</span>
             </div>
-            <div class="col-md-6 gab-com-like" ng-controller="likeCommentCtrl">
+            <div class="col-md-6 gab-com-like" >
 
                 <ul class=" nav-pills small pull-right" role="tablist">
                     <li role="presentation">
@@ -33,7 +33,7 @@
                         </a>
                     </li>
                     <li role="presentation">
-                        <a href="#" ng-click="getComments(gab.Id)">
+                        <a href="" >
                             Comments <span class="badge">{{gab.NbOfComments}}</span>
                         </a>
                     </li>
@@ -48,3 +48,4 @@
 
     </div>
 </div>
+
