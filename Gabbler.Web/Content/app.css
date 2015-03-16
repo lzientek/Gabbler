@@ -1,4 +1,4 @@
-﻿@import url(http://fonts.googleapis.com/css?family=Poiret+One);
+﻿@import url(http://fonts.googleapis.com/css?family=Open+Sans);
 @import url("//fonts.googleapis.com/css?family=Lato:400,700,400italic");
 .navbar {
   border-width: 0;
@@ -427,6 +427,10 @@ a.list-group-item-danger.active:focus {
 .search-result .btn {
   margin: 2px;
 }
+.user .btn {
+  margin-top: 23px;
+  margin-bottom: 13px;
+}
 /*! normalize.css v2.1.3 | MIT License | git.io/normalize */
 article,
 aside,
@@ -684,7 +688,7 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-family: 'Poiret One', cursive;
+  font-family: 'Open Sans', sans-serif;
   font-size: 17px;
   line-height: 1.42857143;
   color: #2c3e50;
@@ -766,7 +770,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: 'Poiret One', cursive;
+  font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   line-height: 1.1;
   color: inherit;

@@ -157,13 +157,43 @@ angular.module('app.gabControllers', [])
         function ($scope, $location, $stateParams, $window, $rootScope, gabService, userServices) {
 
             var id = $stateParams.userId;
+            $scope.isFollow = false;
+            
+            if ($rootScope.authentication.isAuth) {
+                userServices.isFollowingById(id).then(function (result) {
+                    $scope.isFollow = result.data;
+                });
+            }
 
             //get user
             userServices.getUserById(id).then(function (result) {
                 $scope.$root.title = result.data.Pseudo + ' - Gabbler';
                 $scope.user = result.data;
                 $('body').css("background-image", "url(" + serviceBase + $scope.user.BackgroundImagePath + ")");
+                
             });
+
+            $scope.follow = function () {
+                userServices.follow(id).success(function (result) {
+                    $scope.user.NbFollowers++;
+                    $scope.isFollow = true;
+
+                }).error(function (error) {
+                    $scope.searchVal = "";
+                    alert(error.Message);
+                });
+            }
+
+            $scope.unfollow = function () {
+                userServices.unFollow(id).success(function (result) {
+                    $scope.user.NbFollowers--;
+                    $scope.isFollow = false;
+
+                }).error(function (error) {
+                    $scope.searchVal = "";
+                    alert(error.Message);
+                });
+            }
 
             //get gabs
             gabService.getAllUserGabs(id).then(function (result) {

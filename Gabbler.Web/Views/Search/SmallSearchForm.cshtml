@@ -10,15 +10,16 @@
                     Users ~ {{result.NbResultUser}} Resultats
                     <a class="pull-right" href="" ng-href="/search/{{searchVal}}">show more...</a>
                 </div>
-                <div class="row search-result" ng-click="showUser(resultUsr.Id)" ng-repeat="resultUsr in result.ListOfUser">
-                    <div class="col-md-2">
+                <div class="row search-result" ng-repeat="resultUsr in result.ListOfUser">
+                    <div class="col-md-2" ng-click="showUser(resultUsr.Id)">
                         <img class="profil-img-sm" fallback-src="~/Images/UserProfile.png" ng-src="{{apiUrl}}{{resultUsr.ProfilImagePath}}" />
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6" ng-click="showUser(resultUsr.Id)">
                         <h4>{{resultUsr.Pseudo}}</h4>
                     </div>
                     <div class="col-md-4">
-                        <button class="btn btn-primary btn-sm pull-right">Follow ({{resultUsr.NbFollowers}})</button>
+                        <button ng-click="follow(resultUsr.Id)" ng-hide="isFollowing.indexOf(resultUsr.Id) != -1" class="btn btn-primary btn-sm pull-right">Follow ({{resultUsr.NbFollowers}})</button>
+                        <button ng-click="unfollow(resultUsr.Id)" ng-show="isFollowing.indexOf(resultUsr.Id) != -1" class="btn btn-primary btn-sm pull-right">UnFollow ({{resultUsr.NbFollowers}})</button>
                     </div>
                 </div>
             </div>

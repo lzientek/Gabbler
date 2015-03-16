@@ -13,8 +13,17 @@
             </ul>
             <p class="small">On gabbler since : {{user.CreationDate*1000 | date:'dd/MM/yy'}}</p>
         </div>
-        <div class="col-md-2">
-            <button class="btn btn-primary" ng-show="actualUser.isAuth && user.Pseudo != actualUser.Pseudo">Follow</button>
+        <div class="col-md-2" ng-show="authentication.isAuth && authentication.userName != user.Pseudo">
+            <button class="btn btn-primary"
+                    ng-click="follow()"
+                    ng-show="!isFollow">
+                Follow 
+            </button>
+            <button class="btn btn-primary"
+                    ng-click="unfollow()"
+                    ng-show="isFollow">
+                UnFollow
+            </button>
         </div>
     </div>
 </div>
