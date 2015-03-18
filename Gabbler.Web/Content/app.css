@@ -457,6 +457,9 @@ a.list-group-item-danger.active:focus {
   margin-left: -3px;
   cursor: default;
 }
+#searchTxt::-ms-clear {
+  display: none;
+}
 /*! normalize.css v2.1.3 | MIT License | git.io/normalize */
 article,
 aside,
