@@ -1,15 +1,39 @@
 ﻿<div class="row">
     <div class="user col-md-8 col-md-offset-2">
         <div class="col-md-3">
-            <img class="profil-img" ng-src="{{apiUrl}}{{user.ProfilImagePath}}" fallback-src="~/Images/UserProfile.png" />
+            <img class="profil-img" ng-src="{{apiUrl}}{{user.ProfilImagePath}}" 
+                 fallback-src="~/Images/UserProfile.png" />
         </div>
         <div class="col-md-7">
             <h3>{{user.Pseudo}}</h3>
             <p>{{user.FirstName}} {{user.LastName}}</p>
             <ul>
                 <li>{{user.NbGab}} Gabs</li>
-                <li>{{user.NbFollowers}} Followers</li>
-                <li>{{user.NbFollows}} Follows</li>
+                <li>
+                    {{user.NbFollowers}} Followers
+                    <ul>
+                        <li ng-repeat="follower in user.Followers">
+                            <img class="profil-img-sm" data-toggle="tooltip" data-placement="top" title="{{follower.Pseudo}}"
+                                 ng-click="showUser(follower.Id)"
+                                 ng-src="{{apiUrl}}{{follower.ProfilImagePath}}" fallback-src="~/Images/UserProfile.png"/>
+                        </li>
+                        <li ng-show="user.NbFollowers > 7" >
+                            <div class="more-pts" data-toggle="tooltip" data-placement="top"
+                                 data-original-title="{{user.NbFollowers - 7}} more">...</div>
+                        </li>
+                    </ul>
+                </li>
+                <li>{{user.NbFollows}} Follows <ul>
+                    <li ng-repeat="follow in user.Follows">
+                        <img class="profil-img-sm" data-toggle="tooltip" data-placement="top" title="{{follow.Pseudo}}"
+                             ng-click="showUser(follow.Id)"
+                             ng-src="{{apiUrl}}{{follow.ProfilImagePath}}" fallback-src="~/Images/UserProfile.png"/>
+                    </li>
+                </ul></li>
+                <li ng-show="user.Follows > 7" data-toggle="tooltip" data-placement="top" title="{{user.NbFollows - 7}} more">
+                    >
+                    <div class="more-pts">...</div>
+                </li>
             </ul>
             <p class="small">On gabbler since : {{user.CreationDate*1000 | date:'dd/MM/yy'}}</p>
         </div>

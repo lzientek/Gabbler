@@ -31,7 +31,7 @@
     .controller('SearchCtrl', [
         '$scope','$rootScope','$location', 'searchService', 'userServices',
         function ($scope, $rootScope, $location, searchService, userServices) {
-
+            
             
             $scope.searchVal = "";
             $scope.result = { NbResultUser: 0, NbResultGab: 0, ListOfUser: [], ListOfGab: [] };
@@ -46,11 +46,17 @@
                     for (var i = 0; i < $scope.result.ListOfUser.length; i++) {
                         arrayId.push($scope.result.ListOfUser[i].Id);
                     }
-                    userServices.isFollowing(arrayId).then(function(result) {
-                        $scope.isFollowing = result.data;
-                    });
+                    if (arrayId.length > 0 && $rootScope.authentication.isAuth) {
+                        userServices.isFollowing(arrayId).then(function(result) {
+                            $scope.isFollowing = result.data;
+                        });
+                    }
                 });
             };
+
+            $scope.close = function () {
+                $scope.searchVal = "";
+            }
 
             $scope.follow = function(userId) {
                 userServices.follow(userId).success(function(result) {
@@ -64,7 +70,7 @@
             $scope.unfollow = function (userId) {
                 userServices.unFollow(userId).success(function (result) {
 
-                    $scope.isFollowing.remove(userId);
+                    $scope.isFollowing = removeValueFromArray(userId, $scope.isFollowing);
                 }).error(function (error) {
                     $scope.searchVal = "";
                     alert(error.Message);

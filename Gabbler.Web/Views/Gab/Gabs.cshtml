@@ -4,7 +4,8 @@
 
         <div class="col-xs-2">
 
-            <img ng-click="showUser(gab.User.Id)" class="gab-profil-img" ng-src="{{apiUrl}}{{gab.User.ProfilImagePath}}" fallback-src="~/Images/UserProfile.png" />
+            <img ng-click="showUser(gab.User.Id)" class="gab-profil-img" 
+                 ng-src="{{apiUrl}}{{gab.User.ProfilImagePath}}" fallback-src="~/Images/UserProfile.png" />
         </div>
         <div class="col-xs-9">
             <p class="gab-content">{{gab.Content}}</p>
@@ -21,13 +22,13 @@
                     <li role="presentation">
                         <a href="#" ng-show="gab.isLiked" ng-disabled="!authentication.isAuth"
                            ng-click="unLikeGab(gab)"
-                           data-toggle="tooltip" data-placement="top" title="{{gab.Likes | limitTo:2 | join}}">
+                           data-toggle="tooltip" data-placement="top" title="{{gab.Likes | limitTo:5 | join}}">
                             Unlike
                             <span class="badge">{{gab.NbOfLikes}}</span>
                         </a>
                         <a href="#" ng-hide="gab.isLiked" ng-disabled="!authentication.isAuth"
                            ng-click="likeGab(gab)"
-                           data-toggle="tooltip" data-placement="top" title="{{gab.Likes | limitTo:2 | join}}">
+                           data-toggle="tooltip" data-placement="top" title="{{gab.Likes | limitTo:5 | join}}">
                             Like
                             <span class="badge">{{gab.NbOfLikes}}</span>
                         </a>

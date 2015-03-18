@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Gabbler.gApi.Helpers.Json;
 using Newtonsoft.Json;
 
@@ -31,5 +32,7 @@ namespace Gabbler.gApi.Models.Users
         public int NbFollowers { get; set; }
        
         public int NbFollows { get; set; }
+        public IEnumerable<UserBasicModel> Followers { get; set; }
+        public IEnumerable<UserBasicModel> Follows { get; set; }
     }
 }

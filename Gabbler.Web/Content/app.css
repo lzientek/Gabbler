@@ -431,6 +431,32 @@ a.list-group-item-danger.active:focus {
   margin-top: 23px;
   margin-bottom: 13px;
 }
+.user div ul li ul {
+  list-style: none;
+  padding-left: 0;
+}
+.user div ul li ul li {
+  display: inline-block;
+}
+.user div ul li ul li .profil-img-sm {
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
+}
+.more-pts {
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
+  color: #5c5c5c;
+  background-color: ActiveBorder;
+  text-align: center;
+  line-height: 35px;
+  font-weight: bolder;
+  margin: 2px;
+  margin-left: -3px;
+  cursor: default;
+}
 /*! normalize.css v2.1.3 | MIT License | git.io/normalize */
 article,
 aside,
