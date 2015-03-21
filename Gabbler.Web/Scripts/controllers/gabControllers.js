@@ -158,7 +158,7 @@ angular.module('app.gabControllers', [])
 
             var id = $stateParams.userId;
             $scope.isFollow = false;
-            
+
             if ($rootScope.authentication.isAuth) {
                 userServices.isFollowingById(id).then(function (result) {
                     $scope.isFollow = result.data;
@@ -170,7 +170,7 @@ angular.module('app.gabControllers', [])
                 $scope.$root.title = result.data.Pseudo + ' - Gabbler';
                 $scope.user = result.data;
                 $('body').css("background-image", "url(" + serviceBase + $scope.user.BackgroundImagePath + ")");
-                
+
             });
 
             $scope.follow = function () {
@@ -262,7 +262,7 @@ angular.module('app.gabControllers', [])
     ])
 
     .controller('GabIdCtrl', ['$scope', '$rootScope', '$stateParams', 'gabService',
-        function ($scope,$rootScope, $stateProvider, gabService) {
+        function ($scope, $rootScope, $stateProvider, gabService) {
 
             //get the gab
             gabService.getGab($stateProvider.gabId).then(function (result) {
@@ -291,10 +291,8 @@ angular.module('app.gabControllers', [])
             //unlike a gab
             $scope.unLikeGab = function (gab) {
                 gabService.unLikeGab(gab.Id).success(function (result) {
-                    var i = getGabIndex($scope, gab.Id);
                     $scope.gab.NbOfLikes -= 1;
                     $scope.gab.isLiked = false;
-
 
                 }).error(function (error) {
                     alert(error.Message, 'danger');
@@ -392,17 +390,29 @@ angular.module('app.gabControllers', [])
 
             //load more comments
             $scope.getMoreComments = function (gabId) {
-                var i = getGabIndex($scope, gabId);
-                $scope.gabs.Gabs[i].showComment = true;
+                if (!$scope.gab) {
 
-                gabService.getGabMoreComments(gabId, $scope.gabs.Gabs[i].comments.NbOfShownComments)
-                    .then(function (result) {
-                        //get gab
-                        $scope.gabs.Gabs[i].comments.NbOfShownComments += result.data.NbOfShownComments;
-                        var tab = $scope.gabs.Gabs[i].comments.Comments.reverse();
-                        Array.prototype.push.apply(tab, result.data.Comments);
-                        $scope.gabs.Gabs[i].comments.Comments = tab.reverse();
-                    });
+                    var i = getGabIndex($scope, gabId);
+                    $scope.gabs.Gabs[i].showComment = true;
+                    gabService.getGabMoreComments(gabId, $scope.gabs.Gabs[i].comments.NbOfShownComments)
+                        .then(function(result) {
+                            //get gab
+                            $scope.gabs.Gabs[i].comments.NbOfShownComments += result.data.NbOfShownComments;
+                            var tab = $scope.gabs.Gabs[i].comments.Comments.reverse();
+                            Array.prototype.push.apply(tab, result.data.Comments);
+                            $scope.gabs.Gabs[i].comments.Comments = tab.reverse();
+                        });
+                } else {
+                    gabService.getGabMoreComments(gabId, $scope.gab.comments.NbOfShownComments)
+                        .then(function (result) {
+                            //get gab
+                            $scope.gab.comments.NbOfShownComments += result.data.NbOfShownComments;
+                            var tab = $scope.gab.comments.Comments.reverse();
+                            Array.prototype.push.apply(tab, result.data.Comments);
+                            $scope.gab.comments.Comments = tab.reverse();
+                        });
+                }
+                
             }
 
 
@@ -413,9 +423,9 @@ angular.module('app.gabControllers', [])
                     $scope.newComment.Message = "";
                     form.$setPristine();
                     var gab;
-                    if ($scope.gabs !==undefined) {
+                    if ($scope.gabs !== undefined) {
                         var i = getGabIndex($scope, gabId);
-                        gab =$scope.gabs.Gabs[i];
+                        gab = $scope.gabs.Gabs[i];
                     }
                     else if ($scope.gab !== undefined) {
                         gab = $scope.gab;

@@ -21,13 +21,13 @@
                     <li role="presentation">
                         <a href="#" ng-show="gab.isLiked" ng-disabled="!authentication.isAuth"
                            ng-click="unLikeGab(gab)"
-                           data-toggle="tooltip" data-placement="top" title="{{gab.Likes | limitTo:2 | join}}">
+                           data-toggle="tooltip" data-placement="top" title="{{gab.Likes | limitTo:4 | join}}">
                             Unlike
                             <span class="badge">{{gab.NbOfLikes}}</span>
                         </a>
                         <a href="#" ng-hide="gab.isLiked" ng-disabled="!authentication.isAuth"
                            ng-click="likeGab(gab)"
-                           data-toggle="tooltip" data-placement="top" title="{{gab.Likes | limitTo:2 | join}}">
+                           data-toggle="tooltip" data-placement="top" title="{{gab.Likes | limitTo:4 | join}}">
                             Like
                             <span class="badge">{{gab.NbOfLikes}}</span>
                         </a>
