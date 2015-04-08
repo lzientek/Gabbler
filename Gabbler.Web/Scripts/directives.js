@@ -44,4 +44,5 @@ angular.module('app.directives', [])
             }
         }
 
-    });
+    })
+;

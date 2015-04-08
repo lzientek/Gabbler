@@ -14,7 +14,7 @@
     margin-top: @gab-top-margin;
     margin-bottom: @gab-top-margin;
     margin-right: 0;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 .profil-img {
@@ -23,12 +23,14 @@
     border-radius: @gab-profilImg-borderRad;
     margin: 5px;
 }
+
 .profil-img-sm {
     height: @gab-profilImg-size /1.5;
     width: @gab-profilImg-size /1.5;
     border-radius: @gab-profilImg-borderRad/1.5;
     margin: 2px;
 }
+
 .user .profil-img {
     height: @gab-profilImg-size *2.5;
     width: @gab-profilImg-size *2.5;
@@ -36,152 +38,218 @@
     margin: 10px;
 }
 
-.gab-content{
-    margin-top:@gab-top-margin;
-    margin-bottom:1px;
+.gab-content {
+    margin-top: @gab-top-margin;
+    margin-bottom: 1px;
 }
-.gab-com-like .nav-pills > li{
-    margin-left:15px !important;
-    list-style:none;
+
+.gab-com-like .nav-pills > li {
+    margin-left: 15px !important;
+    list-style: none;
 }
-.gab-com-like .nav-pills > ul{
-    list-style:none;
+
+.gab-com-like .nav-pills > ul {
+    list-style: none;
 }
-.gab-com-like{
+
+.gab-com-like {
     /*padding-top:10px;*/
-    margin-bottom:4px;
+    margin-bottom: 4px;
 }
-.comment-form{
-    min-height:60px;
+
+.comment-form {
+    min-height: 60px;
 }
-.comment-form form{
+
+.comment-form form {
     margin-top: @comment-form-input-margin;
     margin-bottom: @comment-form-input-margin;
 }
+
 .comment-form .profil-img {
     margin-left: 0;
 }
-.border-bottom{
-    border-bottom:1px solid @body-bg;
+
+.border-bottom {
+    border-bottom: 1px solid @body-bg;
 }
-.gab-form input{
+
+.gab-form input {
     margin-top: @comment-form-input-margin/2;
     margin-bottom: @comment-form-input-margin/2;
 }
-.usergabform{
-    margin-top:45px;
-    margin-bottom:10px;
+
+.usergabform {
+    margin-top: 45px;
+    margin-bottom: 10px;
 }
-.usergabform .gab-form{
+
+.usergabform .gab-form {
     background-color: @gab-bg-color;
     border-radius: @gab-border-radius;
 }
-.user{
+
+.user {
     background-color: @gab-bg-color;
     border-radius: @gab-border-radius;
 }
-.user-edit form{
-    margin-bottom:40px;
+
+.user-edit form {
+    margin-bottom: 40px;
 }
-.uploader{
-    margin-bottom:20px;
+
+.uploader {
+    margin-bottom: 20px;
 }
-.uploader .progress{
-    margin-top:13px;
+
+.uploader .progress {
+    margin-top: 13px;
 }
-.progress .progress-bar{
-    font-size:17px;
-    line-height:25px;
+
+.progress .progress-bar {
+    font-size: 17px;
+    line-height: 25px;
 }
-#ui-view{
-    padding-bottom:50px;
+
+#ui-view {
+    padding-bottom: 50px;
 }
 
 /*Popup JS style*/
-.popup{
-    position:fixed;
-    top:0;
-    bottom:0;
-    left:0;
-    right:0;
-
-    background-color:rgba(30, 30, 30, 0.70);
-}
-.popup .dialog{
-    position:relative;
-    margin-left:auto;
-    margin-right:auto;
-    margin-top:150px;
-    min-height:150px;
-    width:330px;
-    background-color:#fff;
-}
-.dialog-success{
-    border-top:solid 9px @brand-success;
+.popup {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(30, 30, 30, 0.70);
 }
 
-.dialog-danger{
-    border-top:solid 9px @brand-danger;
-}
-.dialog-warning{
-    border-top:solid 9px @brand-warning;
-}
-.dialog-info{
-    border-top:solid 9px @brand-info;
-}
-.popup .dialog p{
-    margin:13px;
-    margin-left:20px;
-    padding-bottom:70px;
-    font-size:18pt;
+.popup .dialog {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 150px;
+    min-height: 150px;
+    width: 330px;
+    background-color: #fff;
 }
 
-.popup-btns{
-    position:absolute;
-    bottom:10px;
-    right:17px;
+.dialog-success {
+    border-top: solid 9px @brand-success;
+}
+
+.dialog-danger {
+    border-top: solid 9px @brand-danger;
+}
+
+.dialog-warning {
+    border-top: solid 9px @brand-warning;
+}
+
+.dialog-info {
+    border-top: solid 9px @brand-info;
+}
+
+.popup .dialog p {
+    margin: 13px;
+    margin-left: 20px;
+    padding-bottom: 70px;
+    font-size: 18pt;
+}
+
+.popup-btns {
+    position: absolute;
+    bottom: 10px;
+    right: 17px;
 }
 
 .popup .dialog .popup-ok,
-.popup .dialog .popup-cancel{
-    position:relative;
-    float:right;
-    margin-left:10px;
+.popup .dialog .popup-cancel {
+    position: relative;
+    float: right;
+    margin-left: 10px;
 }
-.search-form .dropdown-menu{
-    border-radius:0;
-    border-color:@brand-success;
-    min-width:450px;
-    overflow-wrap:break-word;
-    overflow:hidden;
+
+.search-form .dropdown-menu {
+    border-radius: 0;
+    border-color: @brand-success;
+    min-width: 450px;
+    overflow-wrap: break-word;
+    overflow: hidden;
 }
-.top-search{
+
+.top-search {
     background-color: @brand-success;
-    color:#fff;
-    margin-bottom:3px;
-    margin-top:4px;
-    padding:5px;
+    color: #fff;
+    margin-bottom: 3px;
+    margin-top: 4px;
+    padding: 5px;
 }
-.search-dropdown:first-child{
-    margin-top:-10px;
+
+.search-dropdown:first-child {
+    margin-top: -10px;
 }
-.top-search a,.top-search a:hover{
-    color:#fff;
+
+.top-search a, .top-search a:hover {
+    color: #fff;
 }
-.search-form h4{
-    margin-top:2px;
-    padding:0;
-    margin-left:3px;
+
+.search-form h4 {
+    margin-top: 2px;
+    padding: 0;
+    margin-left: 3px;
 }
-.search-result p{
-    margin-bottom:3px;
+
+.search-result p {
+    margin-bottom: 3px;
 }
-.search-result{
+
+.search-result {
+    cursor: pointer;
+}
+
+.search-result:hover {
+    background-color: @body-bg;
+}
+
+.search-result .btn {
+    margin: 2px;
+}
+
+.user .btn {
+    margin-top: 23px;
+    margin-bottom: 13px;
+}
+
+.user div ul li ul {
+    list-style: none;
+   padding-left:0;
+}
+.user div ul li ul li {
+    display:inline-block;
+   
+}
+
+.user div ul li ul li .profil-img-sm{
     cursor:pointer;
+   height: @gab-profilImg-size /1.25;
+    width: @gab-profilImg-size /1.25;
+    border-radius: @gab-profilImg-borderRad/1.25;
 }
-.search-result:hover{
-    background-color:@body-bg;
-}
-.search-result .btn{
+.more-pts{
+    height: @gab-profilImg-size /1.25;
+    width: @gab-profilImg-size /1.25;
+    border-radius: @gab-profilImg-borderRad/1.25;
+    color:#5c5c5c;
+    background-color:ActiveBorder;
+    text-align:center;
+    line-height:35px;
+    font-weight:bolder;
     margin:2px;
+    margin-left:-3px;
+    cursor:default;
+}
+#searchTxt::-ms-clear {
+    display: none;
 }

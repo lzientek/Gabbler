@@ -37,6 +37,30 @@ namespace Gabbler.gApi.Controllers
             return Ok(usr.Follows.FollowsToUserBasicModel());
         }
 
+
+        [HttpPost]
+        [Route("Users/IsFollowing")]
+        [Authorize]
+        [ResponseType(typeof(IEnumerable<int>))]
+        public async Task<IHttpActionResult> IsFollowing([FromBody]int[] usersIds)
+        {
+            var usr = await User.GetActualUser(rp, db);
+            var isFollow = usr.Follows.Where(f => usersIds.Contains(f.Id_User)).Select(f=>f.Id_User).ToArray();
+            return Ok(isFollow);
+        }
+
+        [HttpGet]
+        [Route("Users/IsFollowing/{id}")]
+        [Authorize]
+        [ResponseType(typeof(bool))]
+        public async Task<IHttpActionResult> IsFollowing([FromUri]int id)
+        {
+            var usr = await User.GetActualUser(rp, db);
+            var isFollow = usr.Follows.Any(f => id == f.Id_User);
+            return Ok(isFollow);
+        }
+
+
         [HttpGet]
         [Route("Users/{id}/Followers")]
         [ResponseType(typeof(IEnumerable<UserBasicModel>))]

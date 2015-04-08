@@ -9,7 +9,8 @@
 <div class="col-xs-11 col-xs-offset-1 comments" ng-repeat="comment in gab.comments.Comments">
     <div class="col-xs-2">
 
-        <img class="gab-profil-img" ng-src="{{apiUrl}}{{comment.User.ProfilImagePath}}" fallback-src="~/Images/UserProfile.png" />
+        <img class="gab-profil-img" ng-src="{{apiUrl}}{{comment.User.ProfilImagePath}}" 
+             fallback-src="~/Images/UserProfile.png" />
     </div>
     <div class="col-xs-9">
         <p class="gab-content">{{comment.Message}}</p>
@@ -25,7 +26,8 @@
 <div class="row" ng-show="authentication.isAuth">
     <div class="col-xs-11 col-md-offset-1 comment-form">
         <div class="col-xs-2">
-            <img class="profil-img" ng-src="{{apiUrl}}{{actualUser.ProfilImagePath}}" fallback-src="~/Images/UserProfile.png" />
+            <img class="profil-img" ng-src="{{apiUrl}}{{actualUser.ProfilImagePath}}" 
+                 fallback-src="~/Images/UserProfile.png" />
         </div>
         <form class="col-xs-10" name="commentgabform" novalidate>
             <div class="col-xs-9">

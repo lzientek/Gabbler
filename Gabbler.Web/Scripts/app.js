@@ -81,8 +81,8 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
 
 // Gets executed after the injector is created and are used to kickstart the application. Only instances and constants
 // can be injected here. This is to prevent further system configuration during application run time.
-.run(['$templateCache', '$rootScope', '$state', '$stateParams',
-    function ($templateCache, $rootScope, $state, $stateParams) {
+.run(['$templateCache', '$rootScope', '$state', '$stateParams','$location',
+    function ($templateCache, $rootScope, $state, $stateParams, $location) {
 
     // <ui-view> contains a pre-rendered template for the current view
     // caching it will prevent a round-trip to a server at the first page load
@@ -93,9 +93,11 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
     $rootScope.apiUrl = serviceBase;
+
     $rootScope.$on('$stateChangeSuccess', function (event, toState) {
         $('body').css("background-image", "");
-       
+        $rootScope.path = $location.path();
+
         // Sets the layout name, which can be used to display different layouts (header, footer etc.)
         // based on which page the user is located
         $rootScope.layout = toState.layout;

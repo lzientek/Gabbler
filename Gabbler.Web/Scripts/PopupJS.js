@@ -13,6 +13,16 @@
     });
 }
 
+function removeValueFromArray(value, array) {
+    var narray=[];
+    for (var i = 0; i < array.length; i++) {
+        if (array[i] !== value) {
+            narray.push(array[i]);
+        }
+    }
+    return narray;
+};
+
 function valid(message, type, onValid, onCancel) {
     if (!type) { type = 'success' }
     $("body").append('<div class="popup"><div class="dialog dialog-' + type + '"><p>' +

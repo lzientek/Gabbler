@@ -30,6 +30,8 @@ namespace Gabbler.gApi.Helpers.ModelExtensions
                 Pseudo = usr.Pseudo,
                 NbGab = usr.Gabs.Count,
                 NbFollowers = usr.Followers.Count,
+                Followers = usr.Followers.Take(7).FollowersToUserBasicModel(),
+                Follows = usr.Follows.Take(7).FollowsToUserBasicModel(),
                 NbFollows = usr.Follows.Count,
                 BackgroundImagePath = usr.UserImage.BackgroundImage,
                 ProfilImagePath = usr.UserImage.ProfileImage,
