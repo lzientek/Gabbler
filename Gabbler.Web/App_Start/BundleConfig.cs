@@ -22,6 +22,7 @@ namespace App.Gabbler.Web
                 "~/scripts/services/services.js",
                 "~/scripts/services/authService.js",
                 "~/scripts/services/gabService.js",
+                "~/scripts/services/searchService.js",
                 "~/scripts/services/userServices.js",
                 "~/scripts/services/authInterceptorService.js",
                 "~/scripts/directives.js",

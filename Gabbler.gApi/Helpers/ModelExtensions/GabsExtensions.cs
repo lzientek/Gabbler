@@ -32,6 +32,10 @@ namespace Gabbler.gApi.Helpers.ModelExtensions
             return gabList;
         }
 
+        internal static IEnumerable<GabBasicModel> ToGabBasicModel(this IEnumerable<Gab> gabs)
+        {
+            return gabs.Select(ToGabBasicModel);
+        } 
         internal static GabBasicModel ToGabBasicModel(this Gab gab)
         {
             return new GabBasicModel()

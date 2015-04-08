@@ -18,7 +18,7 @@ namespace Gabbler.gApi.Controllers
         private DbEntities db = new DbEntities();
 
         [HttpGet]
-        [Route("Search/{text}")]
+        [Route("BasicSearch/{text}")]
         [ResponseType(typeof(SearchListModel))]
         public async Task<IHttpActionResult> GetSearch([FromUri] string text)
         {
@@ -27,9 +27,14 @@ namespace Gabbler.gApi.Controllers
                 var userSearchs = db.Users.Where(x => x.LastName.Contains(text) || x.FirstName.Contains(text) || x.Pseudo.Contains(text)).ToList();
                 var gabSearchs = db.Gabs.Where(x => x.Message.Contains(text)).ToList();
 
-                SearchListModel searchResult = new SearchListModel();
-                searchResult.ListOfUser = userSearchs.ToUserBasicModel();
-                searchResult.ListOfGab = gabSearchs.ToGabsList(0, 3);
+                SearchListModel searchResult = new SearchListModel
+                {
+                    NbResultUser = userSearchs.Count,
+                    NbResultGabs = gabSearchs.Count,
+                    ListOfUser = userSearchs.Take(3).ToUserBasicModel(),
+                    ListOfGab = gabSearchs.Take(3).ToGabBasicModel(),
+
+                };
 
                 return Ok(searchResult);
             }
@@ -38,5 +43,33 @@ namespace Gabbler.gApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet]
+        [Route("Search/{text}/{numberUser}/{numberGab}")]
+        [ResponseType(typeof(SearchListModel))]
+        public async Task<IHttpActionResult> GetSearch([FromUri] string text, [FromUri] int numberUser, [FromUri] int numberGab)
+        {
+            try
+            {
+                var userSearchs = db.Users.Where(x => x.LastName.Contains(text) || x.FirstName.Contains(text) || x.Pseudo.Contains(text)).ToList();
+                var gabSearchs = db.Gabs.Where(x => x.Message.Contains(text)).ToList();
+
+                SearchListModel searchResult = new SearchListModel
+                {
+                    NbResultUser = userSearchs.Count,
+                    NbResultGabs = gabSearchs.Count,
+                    ListOfUser = userSearchs.Take(numberUser).ToUserBasicModel(),
+                    ListOfGab = gabSearchs.Take(numberGab).ToGabBasicModel(),
+                };
+                return Ok(searchResult);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+
     }
 }

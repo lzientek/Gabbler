@@ -14,6 +14,7 @@
     margin-top: @gab-top-margin;
     margin-bottom: @gab-top-margin;
     margin-right: 0;
+    cursor:pointer;
 }
 
 .profil-img {
@@ -22,7 +23,12 @@
     border-radius: @gab-profilImg-borderRad;
     margin: 5px;
 }
-
+.profil-img-sm {
+    height: @gab-profilImg-size /1.5;
+    width: @gab-profilImg-size /1.5;
+    border-radius: @gab-profilImg-borderRad/1.5;
+    margin: 2px;
+}
 .user .profil-img {
     height: @gab-profilImg-size *2.5;
     width: @gab-profilImg-size *2.5;
@@ -141,4 +147,41 @@
     position:relative;
     float:right;
     margin-left:10px;
+}
+.search-form .dropdown-menu{
+    border-radius:0;
+    border-color:@brand-success;
+    min-width:450px;
+    overflow-wrap:break-word;
+    overflow:hidden;
+}
+.top-search{
+    background-color: @brand-success;
+    color:#fff;
+    margin-bottom:3px;
+    margin-top:4px;
+    padding:5px;
+}
+.search-dropdown:first-child{
+    margin-top:-10px;
+}
+.top-search a,.top-search a:hover{
+    color:#fff;
+}
+.search-form h4{
+    margin-top:2px;
+    padding:0;
+    margin-left:3px;
+}
+.search-result p{
+    margin-bottom:3px;
+}
+.search-result{
+    cursor:pointer;
+}
+.search-result:hover{
+    background-color:@body-bg;
+}
+.search-result .btn{
+    margin:2px;
 }

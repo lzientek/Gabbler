@@ -1,0 +1,51 @@
+﻿
+<div class="row">
+    <div class="row col-md-8 col-md-offset-2 gab">
+
+        <div class="col-xs-2">
+
+            <img class="gab-profil-img" ng-src="{{apiUrl}}{{gab.User.ProfilImagePath}}" fallback-src="~/Images/UserProfile.png" />
+        </div>
+        <div class="col-xs-9">
+            <p class="gab-content">{{gab.Content}}</p>
+        </div>
+        <div class="col-xs-12">
+            <div class="col-md-6">
+                <a href="" ng-href="/Gab/User/{{gab.User.Id}}">{{gab.User.Pseudo}}</a>
+                -
+                <span class="small">{{gab.CreationDate*1000 | date:'dd/MM/yy hh:mm:ss'}}</span>
+            </div>
+            <div class="col-md-6 gab-com-like" >
+
+                <ul class=" nav-pills small pull-right" role="tablist">
+                    <li role="presentation">
+                        <a href="#" ng-show="gab.isLiked" ng-disabled="!authentication.isAuth"
+                           ng-click="unLikeGab(gab)"
+                           data-toggle="tooltip" data-placement="top" title="{{gab.Likes | limitTo:2 | join}}">
+                            Unlike
+                            <span class="badge">{{gab.NbOfLikes}}</span>
+                        </a>
+                        <a href="#" ng-hide="gab.isLiked" ng-disabled="!authentication.isAuth"
+                           ng-click="likeGab(gab)"
+                           data-toggle="tooltip" data-placement="top" title="{{gab.Likes | limitTo:2 | join}}">
+                            Like
+                            <span class="badge">{{gab.NbOfLikes}}</span>
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="" >
+                            Comments <span class="badge">{{gab.NbOfComments}}</span>
+                        </a>
+                    </li>
+                    <li ng-show="gab.User.Pseudo == authentication.userName" role="presentation">
+                        <a href="#" ng-href="/gab/edit/{{gab.Id}}">Edit</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <gab-comments ng-show="gab.showComment" ng-controller="CommentCtrl"></gab-comments>
+
+    </div>
+</div>
+

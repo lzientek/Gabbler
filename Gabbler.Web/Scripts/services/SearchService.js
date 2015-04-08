@@ -1,18 +1,25 @@
 ﻿'use strict';
 app.factory('searchService', ['$http', function ($http) {
 
-    var gabServiceFactory = {};
+    var serviceFactory = {};
 
-    var _getSearch = function () {
+    var _getBasicSearch = function (val) {
 
-        return $http.get(serviceBase + 'gabs').then(function (results) {
+        return $http.get(serviceBase + 'basicsearch/'+val).then(function (results) {
             return results;
         });
     };
 
-    gabServiceFactory.getSearch = _getSearch;
 
+    var _getSearch = function (val, val2, val3) {
 
-    return gabServiceFactory;
+        return $http.get(serviceBase + 'search/' + val + '/' + val2 + '/' + val3 ).then(function (results) {
+            return results;
+        });
+    };
+    serviceFactory.getBasicSearch = _getBasicSearch;
+    serviceFactory.getSearch = _getSearch;
+
+    return serviceFactory;
 
 }]);

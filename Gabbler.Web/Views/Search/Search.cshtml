@@ -1,32 +1,31 @@
-﻿
-<div class="row" ng-show="authentication.isAuth">
+﻿<div class="row">
     <div class="col-md-8 col-md-offset-2 row user">
-        <form method="POST" action="{{apiUrl}}/Gab/User/{{user.Id}}">
+        <form method="POST" action="{{apiUrl}}/Gab/User/{{userSearch.Id}}">
             <div class="col-md-3">
-                <img class="profil-img" ng-src="{{apiUrl}}{{user.ProfilImagePath}}" fallback-src="~/Images/UserProfile.png" />
+                <img class="profil-img" ng-src="{{apiUrl}}{{userSearch.ProfilImagePath}}" fallback-src="~/Images/UserProfile.png" />
             </div>
             <div class="col-md-7">
-                <h3>{{user.Pseudo}}</h3>
-                <p>{{user.FirstName}} {{user.LastName}}</p>
+                <h3>{{userSearch.Pseudo}}</h3>
+                <p>{{userSearch.FirstName}} {{userSearch.LastName}}</p>
                 <ul>
-                    <li>{{user.NbGab}} Gabs</li>
-                    <li>{{user.NbFollowers}} Followers</li>
-                    <li>{{user.NbFollows}} Follows</li>
+                    <li>{{userSearch.NbGab}} Gabs</li>
+                    <li>{{userSearch.NbFollowers}} Followers</li>
+                    <li>{{userSearch.NbFollows}} Follows</li>
                 </ul>
             </div>
-            <input type="submit" class="btn btn-primary " value="View Profile"/>
-        </form> 
+            <input type="submit" class="btn btn-primary " value="View Profile" />
+        </form>
     </div>
 </div>
 
-<div class="row" ng-show="authentication.isAuth">
+<div class="row">
     <div class="col-md-8 col-md-offset-2 row gab">
-        <form method="POST" action="">
+        <form method="POST" action="{{apiUrl}}/Gab/{{gabSearch.Id}}">
             <div class="col-xs-2">
-                <img class="gab-profil-img" ng-src="{{apiUrl}}{{gab.User.ProfilImagePath}}" fallback-src="~/Images/UserProfile.png" />
+                <img class="gab-profil-img" ng-src="{{apiUrl}}{{gabSearch.User.ProfilImagePath}}" fallback-src="~/Images/UserProfile.png" />
             </div>
             <div class="col-xs-9">
-                <p class="gab-content">{{gab.Content}}</p>
+                <p class="gab-content">{{gabSearch.Content}}</p>
             </div>
             <input type="submit" class="btn btn-primary " value="view gab" />
         </form>

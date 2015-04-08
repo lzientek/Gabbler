@@ -262,12 +262,19 @@ a.list-group-item-danger.active:focus {
   margin-top: 15px;
   margin-bottom: 15px;
   margin-right: 0;
+  cursor: pointer;
 }
 .profil-img {
   height: 50px;
   width: 50px;
   border-radius: 25px;
   margin: 5px;
+}
+.profil-img-sm {
+  height: 33.33333333px;
+  width: 33.33333333px;
+  border-radius: 16.66666667px;
+  margin: 2px;
 }
 .user .profil-img {
   height: 125px;
@@ -381,6 +388,44 @@ a.list-group-item-danger.active:focus {
   position: relative;
   float: right;
   margin-left: 10px;
+}
+.search-form .dropdown-menu {
+  border-radius: 0;
+  border-color: #18bc9c;
+  min-width: 450px;
+  overflow-wrap: break-word;
+  overflow: hidden;
+}
+.top-search {
+  background-color: #18bc9c;
+  color: #fff;
+  margin-bottom: 3px;
+  margin-top: 4px;
+  padding: 5px;
+}
+.search-dropdown:first-child {
+  margin-top: -10px;
+}
+.top-search a,
+.top-search a:hover {
+  color: #fff;
+}
+.search-form h4 {
+  margin-top: 2px;
+  padding: 0;
+  margin-left: 3px;
+}
+.search-result p {
+  margin-bottom: 3px;
+}
+.search-result {
+  cursor: pointer;
+}
+.search-result:hover {
+  background-color: #ecf0f1;
+}
+.search-result .btn {
+  margin: 2px;
 }
 /*! normalize.css v2.1.3 | MIT License | git.io/normalize */
 article,

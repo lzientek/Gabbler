@@ -1,0 +1,14 @@
+﻿@{
+    PageData["title"] = "My TimeLine";
+}
+
+<h2>Timeline</h2>
+<div class="row">
+    <gab-form ng-show="authentication.isAuth"></gab-form>
+</div>
+
+@RenderPage("../Gab/Gabs.cshtml")
+
+<div class="row">
+    <button class="btn btn-info" ng-click="getMoreGabs()" ng-hide="gabs.isAllShow">voir plus</button>
+</div>
