@@ -1,8 +1,9 @@
-﻿<p>hello</p>
+﻿
 
-<div class="row search-result" ng-repeat="resultUsr in {{userSearch}}">
+<h1>User</h1>
+<div class="row search-result" ng-repeat="resultUsr in search.ListOfUser">
     <div class="col-md-2" ng-click="showUser(resultUsr.Id)">
-        <img class="profil-img-sm" fallback-src="~/Images/UserProfile.png" ng-src="{{apiUrl}}{{resultUsr.ProfilImagePath}}"/>
+        <img class="profil-img-sm" fallback-src="~/Images/UserProfile.png" ng-src="{{apiUrl}}{{resultUsr.ProfilImagePath}}" />
     </div>
     <div class="col-md-6" ng-click="showUser(resultUsr.Id)">
         <h4>{{resultUsr.Pseudo}}</h4>
@@ -13,24 +14,28 @@
     </div>
 </div>
 <div class="row">
-    Users ~ {{result.NbResultUser}} Resultats
-    <a class="pull-right" href="" ng-href="../../{{result.NbResultUser + 10}}/{{result.NbResultGabs}}">show more...</a>
+    <a href="" ng-href="../../{{maxUser + 10}}/{{maxGab}}">show more...</a>
 </div>
 
-
-<div class="row search-result" ng-click="showGab(resultGab.Id)" ng-repeat="resultGab in {{gabSearch}}">
+<h1>Gabs</h1>
+<div class="row search-result" ng-click="showGab(resultGab.Id)" ng-repeat="resultGab in gabSearch">
     <div class="col-md-2">
-        <img class="profil-img-sm" fallback-src="~/Images/UserProfile.png" title="{{resultGab.User.Pseudo}}" ng-src="{{apiUrl}}{{resultGab.User.ProfilImagePath}}"/>
+        <img class="profil-img-sm" fallback-src="~/Images/UserProfile.png" title="{{resultGab.User.Pseudo}}" ng-src="{{apiUrl}}{{resultGab.User.ProfilImagePath}}" />
     </div>
     <div class="col-md-9">
         <p>{{resultGab.Content | substr }}</p>
     </div>
 </div>
-<div class="row top-search">
-    Gabs ~
-    {{result.NbResultGabs}} Resultats
-    <a class="pull-right" href="" ng-href="/../../{{result.NbResultUser}}/{{result.NbResultGabs + 10}}">show more...</a>
+<div class="row">
+    <a href="" ng-href="../../{{maxUser}}/{{maxGab + 10}}">show more...</a>
 </div>
+
+
+
+
+
+
+
 
 
 

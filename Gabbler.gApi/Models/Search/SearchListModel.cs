@@ -16,4 +16,15 @@ namespace Gabbler.gApi.Models.Search
 
 
     }
+
+    public class SearchListModelExtend
+    {
+        public int NbMaxUser{ get; set; }
+        public int NbMaxGab { get; set; }
+        public int NbResultUser { get; set; }
+        public int NbResultGabs { get; set; }
+        public IEnumerable<UserBasicModel> ListOfUser { get; set; }
+        public IEnumerable<GabBasicModel> ListOfGab { get; set; }
+    }
+
 }

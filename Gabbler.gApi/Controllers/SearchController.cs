@@ -27,7 +27,7 @@ namespace Gabbler.gApi.Controllers
 
         [HttpGet]
         [Route("Search/{text}/{numberUser}/{numberGab}")]
-        [ResponseType(typeof(SearchListModel))]
+        [ResponseType(typeof(SearchListModelExtend))]
         public async Task<IHttpActionResult> GetSearch([FromUri] string text, [FromUri] int numberUser, [FromUri] int numberGab)
         {
             try
@@ -35,8 +35,10 @@ namespace Gabbler.gApi.Controllers
                 var userSearchs = db.Users.Where(x => x.LastName.Contains(text) || x.FirstName.Contains(text) || x.Pseudo.Contains(text)).ToList();
                 var gabSearchs = db.Gabs.Where(x => x.Message.Contains(text)).ToList();
 
-                SearchListModel searchResult = new SearchListModel
+                SearchListModelExtend searchResult = new SearchListModelExtend
                 {
+                    NbMaxUser = numberUser,
+                    NbMaxGab = numberGab,
                     NbResultUser = userSearchs.Count,
                     NbResultGabs = gabSearchs.Count,
                     ListOfUser = userSearchs.Take(numberUser).ToUserBasicModel(),
