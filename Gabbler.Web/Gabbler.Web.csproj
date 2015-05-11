@@ -100,6 +100,7 @@
     <Content Include="Content\variables.less" />
     <Content Include="Global.asax" />
     <Content Include="Images\UserProfile.png" />
+    <Content Include="Scripts\controllers\searchControllers.js" />
     <Content Include="Scripts\PopupJS.js" />
     <Content Include="Scripts\PopupJS.min.js">
       <DependentUpon>PopupJS.js</DependentUpon>

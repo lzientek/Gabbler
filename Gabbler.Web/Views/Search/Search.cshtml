@@ -1,35 +1,29 @@
-﻿<div class="row">
-    <div class="col-md-8 col-md-offset-2 row user">
-        <form method="POST" action="{{apiUrl}}/Gab/User/{{userSearch.Id}}">
-            <div class="col-md-3">
-                <img class="profil-img" ng-src="{{apiUrl}}{{userSearch.ProfilImagePath}}" fallback-src="~/Images/UserProfile.png" />
-            </div>
-            <div class="col-md-7">
-                <h3>{{userSearch.Pseudo}}</h3>
-                <p>{{userSearch.FirstName}} {{userSearch.LastName}}</p>
-                <ul>
-                    <li>{{userSearch.NbGab}} Gabs</li>
-                    <li>{{userSearch.NbFollowers}} Followers</li>
-                    <li>{{userSearch.NbFollows}} Follows</li>
-                </ul>
-            </div>
-            <input type="submit" class="btn btn-primary " value="View Profile" />
-        </form>
+﻿
+<div class="row search-result" ng-repeat="resultUsr in {{userSearch}}">
+    <div class="col-md-2" ng-click="showUser(resultUsr.Id)">
+        <img class="profil-img-sm" fallback-src="~/Images/UserProfile.png" ng-src="{{apiUrl}}{{resultUsr.ProfilImagePath}}"/>
+    </div>
+    <div class="col-md-6" ng-click="showUser(resultUsr.Id)">
+        <h4>{{resultUsr.Pseudo}}</h4>
+    </div>
+    <div class="col-md-4" ng-hide="resultUsr.Pseudo == actualUser.Pseudo">
+        <button ng-click="follow(resultUsr.Id)" ng-hide="isFollowing.indexOf(resultUsr.Id) != -1" class="btn btn-primary btn-sm pull-right">Follow ({{resultUsr.NbFollowers}})</button>
+        <button ng-click="unfollow(resultUsr.Id)" ng-show="isFollowing.indexOf(resultUsr.Id) != -1" class="btn btn-primary btn-sm pull-right">UnFollow ({{resultUsr.NbFollowers}})</button>
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-8 col-md-offset-2 row gab">
-        <form method="POST" action="{{apiUrl}}/Gab/{{gabSearch.Id}}">
-            <div class="col-xs-2">
-                <img class="gab-profil-img" ng-src="{{apiUrl}}{{gabSearch.User.ProfilImagePath}}" fallback-src="~/Images/UserProfile.png" />
-            </div>
-            <div class="col-xs-9">
-                <p class="gab-content">{{gabSearch.Content}}</p>
-            </div>
-            <input type="submit" class="btn btn-primary " value="view gab" />
-        </form>
+
+<div class="row search-result" ng-click="showGab(resultGab.Id)" ng-repeat="resultGab in {{gabSearch}}">
+    <div class="col-md-2">
+        <img class="profil-img-sm" fallback-src="~/Images/UserProfile.png" title="{{resultGab.User.Pseudo}}" ng-src="{{apiUrl}}{{resultGab.User.ProfilImagePath}}" />
+    </div>
+    <div class="col-md-9">
+        <p>{{resultGab.Content | substr }}</p>
     </div>
 </div>
+
+
+
+
 
 
