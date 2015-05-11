@@ -19,7 +19,7 @@ app.factory('searchService', ['$http', function ($http) {
     };
     serviceFactory.getBasicSearch = _getBasicSearch;
     serviceFactory.getSearch = _getSearch;
-
+    
     return serviceFactory;
 
 }]);

@@ -105,7 +105,6 @@
     <Content Include="Scripts\PopupJS.min.js">
       <DependentUpon>PopupJS.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\services\SearchService.js" />
     <Content Include="Scripts\services\searchService.js" />
     <Content Include="Scripts\vendor\angular-file-upload-all.js" />
     <Content Include="Scripts\vendor\angular-file-upload-all.min.js" />

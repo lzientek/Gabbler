@@ -55,7 +55,7 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
                 controller: 'UserGabCtrl'
             })
             .state('search', {
-                url: '/Search/:search/:numberUser/:numberGab',
+                url: '/Search/:numberUser',
                 templateUrl: '/views/Search/Search',
                 controller: 'BigSearchCtrl'
             })
