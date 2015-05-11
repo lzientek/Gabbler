@@ -70,11 +70,15 @@ angular.module('app.searchControllers', [])
 
             searchService.getSearch($stateProvider.search, $stateProvider.numberOfUser, $stateProvider.numberOfGab).then(function (result) {
 
+                console.log("debut");
+                console.log(result.data);
+                console.log("fin");
                 $scope.search = result.data;
                 $scope.userSearch = $scope.search.ListOfUser;
                 $scope.gabSearch = $scope.search.ListOfGab;
                 $scope.maxUser = $scope.search.NbMaxUser;
                 $scope.maxGab = $scope.search.NbMaxGab;
+                $scope.searchValue = $stateProvider.search;
             });
 
 

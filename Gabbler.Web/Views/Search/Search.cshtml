@@ -1,7 +1,7 @@
 ﻿
 
 <h1>User</h1>
-<div class="row search-result" ng-repeat="resultUsr in search.ListOfUser">
+<div class="row" ng-repeat="resultUsr in {{userSearch}}">
     <div class="col-md-2" ng-click="showUser(resultUsr.Id)">
         <img class="profil-img-sm" fallback-src="~/Images/UserProfile.png" ng-src="{{apiUrl}}{{resultUsr.ProfilImagePath}}" />
     </div>
@@ -14,11 +14,11 @@
     </div>
 </div>
 <div class="row">
-    <a href="" ng-href="../../{{maxUser + 10}}/{{maxGab}}">show more...</a>
+    <a href="" ng-href="/Search/{{searchValue}}/{{maxUser + 10}}/{{maxGab}}">show more...</a>
 </div>
 
 <h1>Gabs</h1>
-<div class="row search-result" ng-click="showGab(resultGab.Id)" ng-repeat="resultGab in gabSearch">
+<div class="row" ng-click="showGab(resultGab.Id)" ng-repeat="resultGab in {{gabSearch}}">
     <div class="col-md-2">
         <img class="profil-img-sm" fallback-src="~/Images/UserProfile.png" title="{{resultGab.User.Pseudo}}" ng-src="{{apiUrl}}{{resultGab.User.ProfilImagePath}}" />
     </div>
@@ -27,7 +27,7 @@
     </div>
 </div>
 <div class="row">
-    <a href="" ng-href="../../{{maxUser}}/{{maxGab + 10}}">show more...</a>
+    <a href="" ng-href="/Search/{{searchValue}}/{{maxUser}}/{{maxGab + 10}}">show more...</a>
 </div>
 
 
