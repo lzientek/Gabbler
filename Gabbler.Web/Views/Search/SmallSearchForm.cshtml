@@ -14,7 +14,7 @@
             <div class="col-md-12 search-dropdown" ng-show="result.NbResultUser>0">
                 <div class="row top-search">
                     Users ~ {{result.NbResultUser}} Resultats
-                    <a class="pull-right" href="" ng-href="/search/{{searchVal}}/10/10">show more...</a>
+                    <a class="pull-right" href="" ng-href="/Search/{{searchVal}}/10/10">show more...</a>
                 </div>
                 <div class="row search-result" ng-repeat="resultUsr in result.ListOfUser">
                     <div class="col-md-2" ng-click="showUser(resultUsr.Id)">
@@ -34,7 +34,7 @@
                 <div class="row top-search">
                     Gabs ~
                     {{result.NbResultGabs}} Resultats
-                    <a class="pull-right" href="" ng-href="/search/{{searchVal}}/10/10">show more...</a>
+                    <a class="pull-right" href="" ng-href="/Search/{{searchVal}}/10/10">show more...</a>
                 </div>
                 <div class="row search-result" ng-click="showGab(resultGab.Id)" ng-repeat="resultGab in result.ListOfGab">
                     <div class="col-md-2">

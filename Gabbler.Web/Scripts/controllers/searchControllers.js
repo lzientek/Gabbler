@@ -2,7 +2,7 @@
 // Google Analytics Collection APIs Reference:
 // https://developers.google.com/analytics/devguides/collection/analyticsjs/
 
-angular.module('app.searchController', [])
+angular.module('app.searchControllers', [])
     .controller('SearchCtrl', [
         '$scope','$rootScope','$location', 'searchService', 'userServices',
         function ($scope, $rootScope, $location, searchService, userServices) {
