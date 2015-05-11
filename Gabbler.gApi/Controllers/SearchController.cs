@@ -22,26 +22,7 @@ namespace Gabbler.gApi.Controllers
         [ResponseType(typeof(SearchListModel))]
         public async Task<IHttpActionResult> GetSearch([FromUri] string text)
         {
-            try
-            {
-                var userSearchs = db.Users.Where(x => x.LastName.Contains(text) || x.FirstName.Contains(text) || x.Pseudo.Contains(text)).ToList();
-                var gabSearchs = db.Gabs.Where(x => x.Message.Contains(text)).ToList();
-
-                SearchListModel searchResult = new SearchListModel
-                {
-                    NbResultUser = userSearchs.Count,
-                    NbResultGabs = gabSearchs.Count,
-                    ListOfUser = userSearchs.Take(3).ToUserBasicModel(),
-                    ListOfGab = gabSearchs.Take(3).ToGabBasicModel(),
-
-                };
-
-                return Ok(searchResult);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            return await GetSearch(text, 3, 3);
         }
 
         [HttpGet]
@@ -68,8 +49,6 @@ namespace Gabbler.gApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
-
 
     }
 }
