@@ -67,6 +67,9 @@ angular.module('app.searchControllers', [])
             $scope.maxUser = 0;
             $scope.maxGab = 0;
 
+            $scope.MoreGabs = false;
+            $scope.MoreUsers = false;
+
             searchService.getSearch($stateProvider.search, $stateProvider.numberUser, $stateProvider.numberGab).then(function (result) {
                 console.log(result.data);
                 $scope.search = result.data;
@@ -75,6 +78,14 @@ angular.module('app.searchControllers', [])
                 $scope.maxUser = $scope.search.NbMaxUser;
                 $scope.maxGab = $scope.search.NbMaxGab;
                 $scope.searchValue = $stateProvider.search;
+                $scope.numberUser = $stateProvider.numberUser;
+                $scope.numberGab = $stateProvider.numberGab;
+                if ($scope.search.NbResultUser > $scope.maxUser) {
+                    $scope.MoreUsers = true;
+                }
+                if ($scope.search.NbResultGab > $scope.maxGab) {
+                    $scope.MoreGabs = true;
+                }
             });
 
 

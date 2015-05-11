@@ -1,34 +1,36 @@
 ﻿
 
-<h1>User</h1>
-<div class="row" ng-repeat="resultUsr in userSearch">
-    <div class="col-md-2" ng-click="showUser(resultUsr.Id)">
-        <img class="profil-img-sm" fallback-src="~/Images/UserProfile.png" ng-src="{{apiUrl}}{{resultUsr.ProfilImagePath}}" />
+<div ng-show="search.NbResultUser>0">
+    <h1>User</h1>
+    <div class="row top-BigSearch" ng-repeat="resultUsr in userSearch">
+            <div class="col-md-1" ng-click="showUser(resultUsr.Id)">
+                <img class="profil-img" fallback-src="~/Images/UserProfile.png" ng-src="{{apiUrl}}{{resultUsr.ProfilImagePath}}" />
+            </div>
+            <div class="col-md-1" ng-click="showUser(resultUsr.Id)">
+                <h4>{{resultUsr.Pseudo}}</h4>
+            </div>
     </div>
-    <div class="col-md-6" ng-click="showUser(resultUsr.Id)">
-        <h4>{{resultUsr.Pseudo}}</h4>
+    <div class="row" ng-show="MoreUsers">
+        <a href="" ng-href="/Search/{{searchValue}}/{{maxUser + 10}}/{{maxGab}}">show more...</a>
     </div>
-    <div class="col-md-4" ng-hide="resultUsr.Pseudo == actualUser.Pseudo">
-        <button ng-click="follow(resultUsr.Id)" ng-hide="isFollowing.indexOf(resultUsr.Id) != -1" class="btn btn-primary btn-sm pull-right">Follow ({{resultUsr.NbFollowers}})</button>
-        <button ng-click="unfollow(resultUsr.Id)" ng-show="isFollowing.indexOf(resultUsr.Id) != -1" class="btn btn-primary btn-sm pull-right">UnFollow ({{resultUsr.NbFollowers}})</button>
-    </div>
-</div>
-<div class="row">
-    <a href="" ng-href="/Search/{{searchValue}}/{{maxUser + 10}}/{{maxGab}}">show more...</a>
 </div>
 
-<h1>Gabs</h1>
-<div class="row" ng-click="showGab(resultGab.Id)" ng-repeat="resultGab in gabSearch">
-    <div class="col-md-2">
-        <img class="profil-img-sm" fallback-src="~/Images/UserProfile.png" title="{{resultGab.User.Pseudo}}" ng-src="{{apiUrl}}{{resultGab.User.ProfilImagePath}}" />
+<div ng-show="search.NbResultGabs>0">
+    <h1>Gabs</h1>
+    <div class="row top-BigSearch" ng-click="showGab(resultGab.Id)" ng-repeat="resultGab in gabSearch">
+        <div class="col-md-1">
+            <img class="profil-img" fallback-src="~/Images/UserProfile.png" title="{{resultGab.User.Pseudo}}" ng-src="{{apiUrl}}{{resultGab.User.ProfilImagePath}}"/>
+        </div>
+        <div class="col-md-1">
+            <p>{{resultGab.Content | substr }}</p>
+        </div>
     </div>
-    <div class="col-md-9">
-        <p>{{resultGab.Content | substr }}</p>
+    <div class="row" ng-show="MoreGabs">
+        <a href="" ng-href="/Search/{{searchValue}}/{{maxUser}}/{{maxGab + 10}}">show more...</a>
     </div>
 </div>
-<div class="row">
-    <a href="" ng-href="/Search/{{searchValue}}/{{maxUser}}/{{maxGab + 10}}">show more...</a>
-</div>
+
+
 
 
 
