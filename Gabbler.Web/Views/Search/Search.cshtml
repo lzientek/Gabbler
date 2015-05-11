@@ -1,4 +1,5 @@
 ﻿
+
 <div class="row search-result" ng-repeat="resultUsr in {{userSearch}}">
     <div class="col-md-2" ng-click="showUser(resultUsr.Id)">
         <img class="profil-img-sm" fallback-src="~/Images/UserProfile.png" ng-src="{{apiUrl}}{{resultUsr.ProfilImagePath}}"/>
@@ -11,15 +12,24 @@
         <button ng-click="unfollow(resultUsr.Id)" ng-show="isFollowing.indexOf(resultUsr.Id) != -1" class="btn btn-primary btn-sm pull-right">UnFollow ({{resultUsr.NbFollowers}})</button>
     </div>
 </div>
+<div class="row">
+    Users ~ {{result.NbResultUser}} Resultats
+    <a class="pull-right" href="" ng-href="../../{{result.NbResultUser + 10}}/{{result.NbResultGabs}}">show more...</a>
+</div>
 
 
 <div class="row search-result" ng-click="showGab(resultGab.Id)" ng-repeat="resultGab in {{gabSearch}}">
     <div class="col-md-2">
-        <img class="profil-img-sm" fallback-src="~/Images/UserProfile.png" title="{{resultGab.User.Pseudo}}" ng-src="{{apiUrl}}{{resultGab.User.ProfilImagePath}}" />
+        <img class="profil-img-sm" fallback-src="~/Images/UserProfile.png" title="{{resultGab.User.Pseudo}}" ng-src="{{apiUrl}}{{resultGab.User.ProfilImagePath}}"/>
     </div>
     <div class="col-md-9">
         <p>{{resultGab.Content | substr }}</p>
     </div>
+</div>
+<div class="row top-search">
+    Gabs ~
+    {{result.NbResultGabs}} Resultats
+    <a class="pull-right" href="" ng-href="/../../{{result.NbResultUser}}/{{result.NbResultGabs + 10}}">show more...</a>
 </div>
 
 
