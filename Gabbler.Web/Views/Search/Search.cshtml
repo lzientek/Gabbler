@@ -1,7 +1,7 @@
 ﻿
 
 <h1>User</h1>
-<div class="row" ng-repeat="resultUsr in {{userSearch}}">
+<div class="row" ng-repeat="resultUsr in userSearch">
     <div class="col-md-2" ng-click="showUser(resultUsr.Id)">
         <img class="profil-img-sm" fallback-src="~/Images/UserProfile.png" ng-src="{{apiUrl}}{{resultUsr.ProfilImagePath}}" />
     </div>
@@ -18,7 +18,7 @@
 </div>
 
 <h1>Gabs</h1>
-<div class="row" ng-click="showGab(resultGab.Id)" ng-repeat="resultGab in {{gabSearch}}">
+<div class="row" ng-click="showGab(resultGab.Id)" ng-repeat="resultGab in gabSearch">
     <div class="col-md-2">
         <img class="profil-img-sm" fallback-src="~/Images/UserProfile.png" title="{{resultGab.User.Pseudo}}" ng-src="{{apiUrl}}{{resultGab.User.ProfilImagePath}}" />
     </div>

@@ -11,9 +11,9 @@ app.factory('searchService', ['$http', function ($http) {
     };
 
 
-    var _getSearch = function (val, val2, val3) {
+    var _getSearch = function (search, numberUser, numberGab) {
 
-        return $http.get(serviceBase + 'search/' + val + '/' + val2 + '/' + val3 ).then(function (results) {
+        return $http.get(serviceBase + 'search/' + search + '/' + numberUser + '/' + numberGab).then(function (results) {
             return results;
         });
     };

@@ -59,20 +59,16 @@ angular.module('app.searchControllers', [])
     ])
     // Path: /
     .controller('BigSearchCtrl', [
-        '$scope', '$location', '$window', '$stateProvider', 'searchService',
-        function ($scope, $location, $window, $stateProvider, searchService) {
-
+        '$scope', '$stateParams', 'searchService',
+        function ($scope, $stateProvider, searchService) {
             $scope.search = { NbMaxUser: 0, NbMaxGab: 0, NbResultUser: 0, NbResultGab: 0, ListOfUser: [], ListOfGab: [] };
             $scope.userSearch = [];
             $scope.gabSearch = [];
             $scope.maxUser = 0;
             $scope.maxGab = 0;
 
-            searchService.getSearch($stateProvider.search, $stateProvider.numberOfUser, $stateProvider.numberOfGab).then(function (result) {
-
-                console.log("debut");
+            searchService.getSearch($stateProvider.search, $stateProvider.numberUser, $stateProvider.numberGab).then(function (result) {
                 console.log(result.data);
-                console.log("fin");
                 $scope.search = result.data;
                 $scope.userSearch = $scope.search.ListOfUser;
                 $scope.gabSearch = $scope.search.ListOfGab;
