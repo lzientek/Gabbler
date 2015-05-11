@@ -29,6 +29,7 @@ namespace App.Gabbler.Web
                 "~/scripts/controllers/indexController.js",
                 "~/scripts/controllers/gabControllers.js",
                 "~/scripts/controllers/homeControllers.js",
+                "~/scripts/controllers/searchControllers.js",
                 "~/scripts/controllers/userControllers.js",
                 "~/scripts/PopupJS.min.js"
                 ));

@@ -5,7 +5,7 @@ var serviceBase = 'http://api.gabbler.com/';
 var app = angular.module('app', [
     'ui.router', 'app.filters', 'app.services', 'app.directives', 'LocalStorageModule',
     'angularFileUpload',
-    'app.indexController', 'app.homeControllers', 'app.gabControllers', 'app.userControllers'
+    'app.indexController', 'app.homeControllers', 'app.gabControllers', 'app.userControllers', 'app.searchController'
 ]);
 
 // Gets executed during the provider registrations and configuration phase. Only providers and constants can be
@@ -57,7 +57,7 @@ app.config(['$stateProvider', '$locationProvider', function ($stateProvider, $lo
             .state('search', {
                 url: '/Search/:search/:numberUser/:numberGab',
                 templateUrl: '/views/Search/Search',
-                controller: 'SearchCtrl'
+                controller: 'BigSearchCtrl'
             })
             .state('editUser', {
                 url: '/User/Edit/:userId',
