@@ -2,13 +2,13 @@
 
 <div ng-show="search.NbResultUser>0">
     <h1>User</h1>
-    <div class="row top-BigSearch" ng-repeat="resultUsr in userSearch">
-            <div class="col-md-1" ng-click="showUser(resultUsr.Id)">
-                <img class="profil-img" fallback-src="~/Images/UserProfile.png" ng-src="{{apiUrl}}{{resultUsr.ProfilImagePath}}" />
-            </div>
-            <div class="col-md-1" ng-click="showUser(resultUsr.Id)">
-                <h4>{{resultUsr.Pseudo}}</h4>
-            </div>
+    <div class="row top-BigSearch" ng-repeat="resultUsr in userSearch" ng-click="showUser(resultUsr.Id)">
+        <div class="col-md-1" ng-click="showUser(resultUsr.Id)">
+            <img class="profil-img" fallback-src="~/Images/UserProfile.png" ng-src="{{apiUrl}}{{resultUsr.ProfilImagePath}}" />
+        </div>
+        <div class="col-md-2" ng-click="showUser(resultUsr.Id)">
+            <h4>{{resultUsr.Pseudo}}</h4>
+        </div>
     </div>
     <div class="row" ng-show="MoreUsers">
         <a href="" ng-href="/Search/{{searchValue}}/{{maxUser + 10}}/{{maxGab}}">show more...</a>
