@@ -29,7 +29,7 @@ angular.module('app.gabControllers', [])
                 if (data.Id !== $scope.gabs.Gabs[0].Id && $rootScope.authentication.userName !== data.User.Pseudo) {
                     data.isLiked = false;
                     data.showComment = false;
-                    data.CreationDate = (new Date(data.CreationDate).getTime()) / 100;
+                    data.CreationDate = (new Date(data.CreationDate).getTime()) / 1000;
                     $scope.gabs.Gabs.reverse();
                     $scope.gabs.Gabs.push(data);
                     $scope.gabs.Gabs.reverse();
