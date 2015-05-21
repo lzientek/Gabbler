@@ -9,6 +9,7 @@ using Gabbler.gApi.Helpers.Auth;
 using Gabbler.gApi.Helpers.ModelExtensions;
 using Gabbler.gApi.Models;
 using Gabbler.gApi.Models.Gabs;
+using PusherServer;
 
 namespace Gabbler.gApi.Controllers
 {
@@ -16,6 +17,7 @@ namespace Gabbler.gApi.Controllers
     {
         private DbEntities db = new DbEntities();
         private AuthRepository rp = new AuthRepository();
+        private readonly Pusher _pusher = new Pusher("121147", "798b5619cf17678b512f", "c7ec2f6349c142be48f3");
 
         private const int NbOfGabsPerPage = 6;
 
@@ -103,6 +105,7 @@ namespace Gabbler.gApi.Controllers
                 g.User = await User.GetActualUser(rp, db);
                 db.Gabs.Add(g);
                 await db.SaveChangesAsync();
+                _pusher.Trigger("gab_channel", "new_gab", g.ToGabBasicModel());
                 return Created(string.Format("/Gabs/{0}", g.Id), g.ToGabDetailModel());
             }
             catch (Exception ex)

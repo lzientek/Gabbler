@@ -23,6 +23,20 @@ angular.module('app.gabControllers', [])
         '$scope', '$location', '$window', '$rootScope', 'gabService',
         function ($scope, $location, $window, $rootScope, gabService) {
 
+            var pusher = new Pusher('798b5619cf17678b512f');
+            var channel = pusher.subscribe('gab_channel');
+            channel.bind('new_gab', function (data) {
+                if (data.Id !== $scope.gabs.Gabs[0].Id && $rootScope.authentication.userName !== data.User.Pseudo) {
+                    data.isLiked = false;
+                    data.showComment = false;
+                    data.CreationDate = (new Date(data.CreationDate).getTime()) / 100;
+                    $scope.gabs.Gabs.reverse();
+                    $scope.gabs.Gabs.push(data);
+                    $scope.gabs.Gabs.reverse();
+                    $scope.gabs.NbOfShownGabs++;
+                    $scope.$apply();
+                }
+            });
 
             //get gabs
             gabService.getAllGabs().then(function (result) {
@@ -62,6 +76,7 @@ angular.module('app.gabControllers', [])
             $scope.addGab = function () {
                 var content = { Content: $scope.newGab.Content };
                 $scope.newGab.Content = ""; //reset the field value
+                $scope.gabform.$setPristine();
                 gabService.addGab(content)
                     .success(function (result) {
                         for (var i = $scope.gabs.Gabs.length - 1; i >= 0; i--) {
@@ -69,7 +84,6 @@ angular.module('app.gabControllers', [])
                         }
                         $scope.gabs.Gabs[0] = result;
                         $scope.gabs.NbOfShownGabs++;
-                        $scope.gabform.$setPristine();
 
                     }).error(function (error) {
                         $scope.newGab.newGab = content;
@@ -395,7 +409,7 @@ angular.module('app.gabControllers', [])
                     var i = getGabIndex($scope, gabId);
                     $scope.gabs.Gabs[i].showComment = true;
                     gabService.getGabMoreComments(gabId, $scope.gabs.Gabs[i].comments.NbOfShownComments)
-                        .then(function(result) {
+                        .then(function (result) {
                             //get gab
                             $scope.gabs.Gabs[i].comments.NbOfShownComments += result.data.NbOfShownComments;
                             var tab = $scope.gabs.Gabs[i].comments.Comments.reverse();
@@ -412,7 +426,7 @@ angular.module('app.gabControllers', [])
                             $scope.gab.comments.Comments = tab.reverse();
                         });
                 }
-                
+
             }
 
 
