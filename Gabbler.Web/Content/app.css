@@ -403,6 +403,18 @@ a.list-group-item-danger.active:focus {
   margin-top: 4px;
   padding: 5px;
 }
+
+.top-BigSearch {
+  background-color: #18bc9c;
+  color: #fff;
+  margin-bottom: 3px;
+  margin-top: 4px;
+  padding: 5px;
+  height: auto;
+  width: auto;
+
+}
+
 .search-dropdown:first-child {
   margin-top: -10px;
 }
