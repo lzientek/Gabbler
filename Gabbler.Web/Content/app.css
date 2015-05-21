@@ -411,7 +411,8 @@ a.list-group-item-danger.active:focus {
   margin-top: 4px;
   padding: 5px;
   height: auto;
-    width: auto;
+  width: auto;
+
 }
 
 .search-dropdown:first-child {
